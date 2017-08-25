@@ -22,9 +22,9 @@ function opptySchReset()
 	$("#purchase_type_srch option:eq(0)").prop("selected", "selected");
 }
 
-function opptyDetail(oppty_no)
+function opptyDetail(oppty_no, opptyPageNum)
 {
-	location.href = ctx + "/oppty_detail?oppty_no=" + oppty_no;
+	location.href = ctx + "/oppty_detail?oppty_no=" + oppty_no + "&opptyPageNum=" + opptyPageNum;
 }
 
 // 단건 등록
@@ -76,7 +76,7 @@ function opptySchList(opptyPageNum)
 				tbodyContent = "<tr>" +
 	 			"<td style='text-align: left;' >" +data.srcList[i].oppty_no +"</td>" +
 	 			"<td style='text-align: left;'>" +
-	 				"<a onclick=opptyDetail('"+data.srcList[i].oppty_no+"'); id='"+data.srcList[i].oppty_no+"'>" + data.srcList[i].oppty_name+"</a></td>" +
+	 				"<a onclick=opptyDetail('"+data.srcList[i].oppty_no+"','"+data.opptyPageNum+"'); id='"+data.srcList[i].oppty_no+"'>" + data.srcList[i].oppty_name+"</a></td>" +
 	 			"<td style='text-align: left;'>" + data.srcList[i].cust_no +"</td>" +
 	 			"<td style='text-align: left;'>" + data.srcList[i].cust_name +"</td>" +
 	 			"<td style='text-align: left;'>" + data.srcList[i].cust_phone + "</td>" +
@@ -105,7 +105,7 @@ function opptySchList(opptyPageNum)
 				pageContent = "<input type='hidden' id='opptyPageNum' value='"+data.opptyPageNum+"'/><input type='hidden' id='opptyEndPageNum' value='"+data.page.endPageNum+"'/>"
 				+"◀ <input type='text' id='pageInput' value='"+data.page.startPageNum+"' onkeypress=\"opptyPageNumInputEnter(event);\" style='width: 25px; text-align: center;'/>" 
 				+"<a onclick=\"opptySchList("+data.page.endPageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
-				+"<a onclick=\"opptySchList("+(data.pageNum+1)+");\" id='pNum' style='cursor: pointer;'> ▶ </a>";
+				+"<a onclick=\"opptySchList("+(data.opptyPageNum+1)+");\" id='pNum' style='cursor: pointer;'> ▶ </a>";
 			} else if(data.opptyPageNum == data.page.endPageNum){
 				pageContent = "<input type='hidden' id='opptyPageNum' value='"+data.opptyPageNum+"'/><input type='hidden' id='opptyEndPageNum' value='"+data.page.endPageNum+"'/>"
 				+"<a onclick=\"opptySchList("+(data.opptyPageNum-1)+");\" id='pNum' style='cursor: pointer;'> ◀ </a>"

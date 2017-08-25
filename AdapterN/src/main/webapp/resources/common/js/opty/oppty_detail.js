@@ -38,9 +38,9 @@ function wordch(thisword)
 	return flag;
 }
 
-function opptyList()
+function opptyList(opptyPageNum)
 {
-	location.href = ctx + "/oppty";
+	location.href = ctx + "/oppty?opptyPageNum="+opptyPageNum;
 }
 
 // popup

@@ -304,12 +304,12 @@ $(document).ready(function(){
 			<div id="coupon_detail_btn_div">
 				<c:if test="${ opptyDetail.oppty_no == null }">
  		 			<input type="button" class="tr_btn" id="oppty_single_add" onclick="opptySingleAdd();" value="저장">
-					<input type="button" class="func_btn" id="oppty_list" onclick="opptyList();" value="취소">
+					<input type="button" class="func_btn" id="oppty_list" onclick="opptyList('${opptyPageNum}');" value="취소">
 				</c:if>
 				<c:if test="${ opptyDetail.oppty_no != null }">
  		 			<input type="button" class="func_btn" id="oppty_detail_mdfy" onclick="opptyMody();" value="편집">
  		 			<input type="button" class="tr_btn" id="oppty_detail_del" onclick="opptyDel();" value="삭제">
-					<input type="button" class="func_btn" id="oppty_list" onclick="opptyList();" value="취소">
+					<input type="button" class="func_btn" id="oppty_list" onclick="opptyList('${opptyPageNum}');" value="취소">
 				</c:if>
  			</div>
 		 	<div id="coupon_mdfy_btn_div">

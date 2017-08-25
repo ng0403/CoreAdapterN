@@ -172,10 +172,10 @@ public class OpptyController {
 	
 	// 상세보기 및 단건등록화면
 	@RequestMapping(value="oppty_detail")
-	public ModelAndView opptyDetail(String oppty_no, String flg)
+	public ModelAndView opptyDetail(@RequestParam(value = "opptyPageNum", defaultValue = "1") int opptyPageNum, String oppty_no, String flg)
 	{
 		System.out.println(oppty_no);
-		
+		System.out.println("opptyPageNum? " + opptyPageNum);
 		if(oppty_no == null || oppty_no == "")	// 단건등록 시
 		{
 			OpptyVO opptyNo = opptyService.opptyNoIndex();
@@ -195,7 +195,7 @@ public class OpptyController {
 			mov.addObject("purchaseType", purchase);
 			mov.addObject("paymentCd", payment);
 			mov.addObject("recperCd", recper);
-			
+			mov.addObject("opptyPageNum", opptyPageNum);
 			menuImport(mov, "oppty");
 			
 			return mov;
@@ -221,7 +221,7 @@ public class OpptyController {
 			mov.addObject("purchaseType", purchase);
 			mov.addObject("paymentCd", payment);
 			mov.addObject("recperCd", recper);
-			
+			mov.addObject("opptyPageNum", opptyPageNum);
 			menuImport(mov, "oppty");
 			
 			return mov;

@@ -149,7 +149,7 @@
 	 	 			<tr>
 	 		 			<td style="text-align: left;" >${ list.oppty_no }</td>
 	 		 			<td style="text-align: left;" >
-	 		 				<a onclick="opptyDetail('${ list.oppty_no }');" id="${ list.oppty_no }">${ list.oppty_name }</a>
+	 		 				<a onclick="opptyDetail('${ list.oppty_no }', '${opptyPageNum}');" id="${ list.oppty_no }">${ list.oppty_name }</a>
 	 		 			</td>
 		 	 			<td style="text-align: left;" >${ list.cust_no }</td>
 	 		 			<td style="text-align: left;" >${ list.cust_name }</td>
