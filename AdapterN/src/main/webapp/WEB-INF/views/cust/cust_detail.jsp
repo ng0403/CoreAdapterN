@@ -44,7 +44,7 @@ $(document).ready(function(){
 	<c:if test="${flg == 0 }">
  		<div class="titleDIV">
 		<span class="titleText">
-		    ■  <a style="cursor: pointer;" onclick="custList();"> 고객</a> > <span id="cust_form_title">고객 상세정보</span>
+		    ■  <a style="cursor: pointer;" onclick="custList('1');"> 고객</a> > <span id="cust_form_title">고객 상세정보</span>
 		</span>
 	</div>   
 	</c:if>
@@ -52,7 +52,7 @@ $(document).ready(function(){
 	<c:if test="${flg == 1 }">
  		<div class="titleDIV">
 		<span class="titleText">
-		    ■  <a style="cursor: pointer;" onclick="custList();"> 고객</a> > <span id="cust_form_title">고객 추가</span>
+		    ■  <a style="cursor: pointer;" onclick="custList('1');"> 고객</a> > <span id="cust_form_title">고객 추가</span>
 		</span>
 	</div>   
 	</c:if>
@@ -60,7 +60,7 @@ $(document).ready(function(){
 	<c:if test="${flg == 2}">
  		<div class="titleDIV">
 		<span class="titleText">
-		    ■  <a style="cursor: pointer;" onclick="custList();"> 고객</a> > <span id="cust_form_title">고객 수정</span>
+		    ■  <a style="cursor: pointer;" onclick="custList('1');"> 고객</a> > <span id="cust_form_title">고객 수정</span>
 		</span>
 	</div>   
 	</c:if>

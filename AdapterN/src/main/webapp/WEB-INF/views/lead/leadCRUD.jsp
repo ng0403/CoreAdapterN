@@ -33,7 +33,7 @@ $(document).ready(function(){
 	<c:if test="${flg == 1 }">
  		<div class="titleDIV" id ="lead_insert_title">
 		<span class="titleText">
-		    ■  <a style="cursor: pointer;" onclick="leadlist();"> 가망고객</a> > <span id="coupon_form_title">가망고객 추가</span>
+		    ■  <a style="cursor: pointer;" onclick="leadlist('1');"> 가망고객</a> > <span id="coupon_form_title">가망고객 추가</span>
 		</span>
 	</div>   
 	</c:if>

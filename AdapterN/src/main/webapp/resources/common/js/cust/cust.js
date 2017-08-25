@@ -67,9 +67,9 @@ function custSchReset()
 	$("#phone_no").val("");
 }
 
-function custList()
+function custList(custPageNum)
 {
-	location.href = ctx + '/cust';
+	location.href = ctx + '/cust?custPageNum=' + custPageNum;
 }
 
 function custDelete()
