@@ -159,7 +159,7 @@ public class CustController {
 	}
 
 	@RequestMapping(value="/custForm")
-	public ModelAndView custForm(@RequestParam("cust_no") String cust_no){
+	public ModelAndView custForm(@RequestParam("cust_no") String cust_no, @RequestParam(value = "custPageNum", defaultValue = "1") int custPageNum){
 		
 		List<CommonCodeVO> vititCdList = commonCode.vititCdList();
 		List<CommonCodeVO> vititDtlCdList = commonCode.vititDtlCdList();			
@@ -174,6 +174,7 @@ public class CustController {
 		if(cust_no == null || cust_no == "" ){
 			
 			mav.addObject("flg", "1");
+			mav.addObject("custPageNum", custPageNum);
 			
 		}else if(cust_no != null || cust_no != ""){
 			
@@ -186,7 +187,7 @@ public class CustController {
 			mav.addObject("custDlist", custDlist);
 			mav.addObject("custPList", custPList);
 			mav.addObject("custAList", custAList);
-			
+			mav.addObject("custPageNum", custPageNum);
 		}
 		
 		mav.addObject("vititCdList", vititCdList);
@@ -194,7 +195,7 @@ public class CustController {
 		mav.addObject("phoneTypeCdList", phoneTypeCdList);
 		mav.addObject("phoneCountryCdList", phoneCountryCdList);
 		mav.addObject("addrTypeCdList", addrTypeCdList);
-		
+		mav.addObject("custPageNum", custPageNum);
 		menuImport(mav, "cust");
 		
 		return mav;

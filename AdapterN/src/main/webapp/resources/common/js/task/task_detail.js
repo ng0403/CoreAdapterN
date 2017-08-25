@@ -279,8 +279,8 @@ function task_del_save() {
 }
 
 // 취소버튼
-function task_cancel() {
-	location.href="/task";
+function task_cancel(taskPageNum) {
+	location.href="/task?taskPageNum=" + taskPageNum;
 }
 
 //리스트 이동 클릭함수

@@ -169,7 +169,7 @@ function searchKeyword(pageNum)
 					    tbodyContent = "<tr>" +
 					    "<td style='text-align: left;' >" + data.custList[i].cust_no +"</td>" +
 					    "<td style='text-align: left;'>" +
-	 	 					"<a href='#' onclick=custDetail('"+data.custList[i].cust_no+"'); id='"+data.custList[i].cust_no+"'>" + data.custList[i].cust_name+"</a></td>" +
+	 	 					"<a href='#' onclick=custDetail('"+data.custList[i].cust_no+"','"+data.pageNum+"'); id='"+data.custList[i].cust_no+"'>" + data.custList[i].cust_name+"</a></td>" +
 	 	 				"<td style='text-align: left;'>" + data.custList[i].chart_no +"</td>" +
 	 	 				"<td style='text-align: left;' > " + vititCdList_contents +
 	 	 				"</td>" +
@@ -247,9 +247,9 @@ function cust_add(){
 }
  
 // 고객 상세정보
- function custDetail(a) {
+ function custDetail(a, custPageNum) {
    var no = a; 
-   location.href=ctx + "/custForm?cust_no=" + no;
+   location.href=ctx + "/custForm?cust_no=" + no + "&custPageNum=" + custPageNum;
    
    $("#cust_phone").css("display", "block");
  }
@@ -408,8 +408,8 @@ function cust_modify_save()
 
  
  // 취소버튼 
- function cust_cancel(){
-	 location.href="/cust"
+ function cust_cancel(custPageNum){
+	 location.href="/cust?custPageNum=" + custPageNum;
  } 
  
 

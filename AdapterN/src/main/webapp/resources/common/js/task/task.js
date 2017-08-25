@@ -57,7 +57,7 @@ function taskSchList(pageNum) {
 		            tbodyContent = "<tr>" +
 		             "<td style='text-align: left;' >" +data.srcList[i].task_no +"</td>" +
 		             "<td style='text-align: left;'>" +
-		                "<a onclick=taskDetail('"+data.srcList[i].task_no+"'); id='"+data.srcList[i].task_no+"'>" + data.srcList[i].subject+"</a></td>" +
+		                "<a onclick=taskDetail('"+data.srcList[i].task_no+"','"+data.taskPageNum+"'); id='"+data.srcList[i].task_no+"'>" + data.srcList[i].subject+"</a></td>" +
 		             "<td style='text-align: left;'>" + data.srcList[i].cust_no +"</td>" +
 		             "<td style='text-align: left;'>" + data.srcList[i].cust_name +"</td>" +
 		             "<td style='text-align: left;'>" + data.srcList[i].phone_no + "</td>" +
@@ -131,9 +131,9 @@ function task_add(){
 }
 
 //상담 상세정보
-function taskDetail(a) {
+function taskDetail(a, taskPageNum) {
   var no = a; 
-  location.href="/task_detail?task_no=" + no; 
+  location.href="/task_detail?task_no=" + no +"&taskPageNum=" + taskPageNum; 
 }
 
 //엔터키 기능

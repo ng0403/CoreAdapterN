@@ -107,7 +107,7 @@
 		 	 		<tr>
 		 	 			<td style="text-align: left;" >${list.task_no}</td>
 		 	 			<td style="text-align: left;" >
-		 	 				<a href="#" onclick="taskDetail('${list.task_no}');" id="${list.task_no}">${list.subject}</a>
+		 	 				<a href="#" onclick="taskDetail('${list.task_no}', '${taskPageNum}');" id="${list.task_no}">${list.subject}</a>
 		 	 			</td>
 		 	 			<td style="text-align: left;" >${list.cust_no}</td>
 		 	 			<td style="text-align: left;" >${list.cust_name}</td>

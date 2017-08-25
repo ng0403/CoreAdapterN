@@ -206,14 +206,14 @@ $(document).ready(function(){
 	 	 <div id="cust_detail_div">
 	 	 	<input type="button" class="func_btn" id="cust_update" value="편집" onclick="cust_modify(${custDlist.cust_no});">
 	 	 	<input type="button" class="tr_btn" id="cust_delete" value="삭제" onclick="cust_delete(${custDlist.cust_no});">
-	 	 	<input type="button" class="func_btn" id="cust_detail_cancel" value="취소" onclick="cust_cancel();">
+	 	 	<input type="button" class="func_btn" id="cust_detail_cancel" value="취소" onclick="cust_cancel('${custPageNum}');">
 	 	 </div> 
 	 </c:if>
 	
 	<c:if test="${flg == 1 }">
 	 	 <div id="cust_single_add_div">
 	 	 	<input type="button" class="tr_btn" id="cust_single_add" value="저장" onclick="cust_add_save();">
-	 	 	<input type="button" class="func_btn" id="cust_list" onclick="custList();" value="취소">
+	 	 	<input type="button" class="func_btn" id="cust_list" onclick="custList('${custPageNum}');" value="취소">
 <!-- 	 	 	<input type="button" class="func_btn" id="cust_single_cancel" value="취소" onclick="cust_cancel();"> -->
 	 	 </div> 
 	 </c:if>
@@ -221,7 +221,7 @@ $(document).ready(function(){
 	 	  <div id="cust_update_div">
 	 		<input type="button" class="func_btn" id="cust_single_modify" value="편집" onclick="cust_modify();">
 	 		<input type="button" class="tr_btn" id="cust_delete" value="삭제" onclick="custDelete();">
-		 	<input type="button" class="func_btn" id="cust_list" onclick="custList();" value="취소">
+		 	<input type="button" class="func_btn" id="cust_list" onclick="custList('${custPageNum}');" value="취소">
 	 	 </div> 
 	 </c:if>
     </div>

@@ -233,7 +233,7 @@
 			 	 <div id="cust_detail_div">
 			 	 	<input type="button" class="func_btn" id="task_update" value="편집" onclick="task_modify(${taskDetail.task_no});">
 			 	 	<input type="button" class="func_btn" id="task_delete" value="삭제" onclick="task_remove();">
-			 	 	<input type="button" class="func_btn" id="task_detail_cancel" value="취소" onclick="task_cancel();">
+			 	 	<input type="button" class="func_btn" id="task_detail_cancel" value="취소" onclick="task_cancel('${taskPageNum}');">
 			 	 </div> 
 			 </c:if>
 			
@@ -241,14 +241,14 @@
 			 	 <div id="cust_single_add_div">
 			 	 	<input type="button" class="tr_btn" id="task_single_add" value="저장" onclick= "task_add_save();">
 			 	 	<input type="button" class="tr_btn" id="task_single_del" value="삭제" onclick= "task_del_save();">
-			 	 	<input type="button" class="func_btn" id="task_single_cancel" value="취소" onclick="task_cancel();">
+			 	 	<input type="button" class="func_btn" id="task_single_cancel" value="취소" onclick="task_cancel('${taskPageNum}');">
 			 	 </div> 
 			 </c:if>
 			 <c:if test="${flg == 2 }">	 
 			 	  <div id="cust_update_div">
 			 	 	<input type="button" class="func_btn" id="task_single_modify" value="편집" onclick="task_modify_btn();">
 			 	 	<input type="button" class="tr_btn" id="task_single_del" value="삭제" onclick= "task_del_save();">
-			 	 	<input type="button" class="func_btn" id="task_single_cancel" value="취소" onclick="task_cancel();">
+			 	 	<input type="button" class="func_btn" id="task_single_cancel" value="취소" onclick="task_cancel('${taskPageNum}');">
 			 	 </div> 
 			 </c:if>
 	    </div>

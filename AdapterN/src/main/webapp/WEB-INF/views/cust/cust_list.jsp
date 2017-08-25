@@ -122,7 +122,7 @@ var vititDtlCdList = new Array();
 	 	 		<tr>
 	 	 			<td style="text-align: left;" >${list.cust_no}</td>
 	 	 			<td style="text-align: left;" >
-	 	 				<a href="#" onclick="custDetail('${list.cust_no}');" id="${list.cust_no}">${list.cust_name}</a>
+	 	 				<a href="#" onclick="custDetail('${list.cust_no}','${pageNum}');" id="${list.cust_no}">${list.cust_name}</a>
 	 	 			</td>
 	 	 			<td style="text-align: left;" >${list.chart_no}</td>
 	 	 			<td style="text-align: left;" >

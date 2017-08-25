@@ -178,7 +178,8 @@ public class TaskController {
 	
 	// 상세보기 및 단건등록화면
 	@RequestMapping(value="task_detail")
-	public ModelAndView taskDetail(String task_no, String flg) {
+	public ModelAndView taskDetail(@RequestParam(value = "taskPageNum", defaultValue = "1") int taskPageNum,
+			String task_no, String flg) {
 
 		if(task_no == null || task_no == "")	// 단건등록 시
 		{
@@ -192,7 +193,7 @@ public class TaskController {
 			mov.addObject("dtypeCd", dtypeCd);
 			mov.addObject("scoreCd", scoreCd);
 			mov.addObject("flg", "1");
-			
+			mov.addObject("taskPageNum", taskPageNum);
 			menuImport(mov, "task");
 			
 			return mov;
@@ -208,7 +209,7 @@ public class TaskController {
 			mov.addObject("dtypeCd", dtypeCd);
 			mov.addObject("scoreCd", scoreCd);
 			mov.addObject("flg", "2");
-			
+			mov.addObject("taskPageNum", taskPageNum);
 			menuImport(mov, "task");
 			
 			return mov;
