@@ -12,8 +12,8 @@
 
 <!-- 리드 리스트  -->
    <select id="leadList" resultType="com.core.plus.lead.vo.LeadVO" parameterType="java.util.Map">
-   select P.*
-   from (
+	   select P.*
+	   from (
       	select
          l.lead_no,
          l.lead_name,

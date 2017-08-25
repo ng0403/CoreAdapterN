@@ -92,7 +92,7 @@
 	 	 		<tr>
 	 	 			<td style="text-align: left;" >${list.lead_no}</td>
 	 	 			<td style="text-align: left;" >
-	 	 			<a href="#" onclick="leadDetail('${list.lead_no}');" id="${list.lead_no}">${list.lead_name}</a>
+	 	 			<a href="#" onclick="leadDetail('${list.lead_no}', '${pageNum}');" id="${list.lead_no}">${list.lead_name}</a>
 	 	 			</td>
 	 	 			<td style="text-align: left;" >${list.cust_no}</td>
 	 	 			<td style="text-align: left;" >${list.cust_name}</td>

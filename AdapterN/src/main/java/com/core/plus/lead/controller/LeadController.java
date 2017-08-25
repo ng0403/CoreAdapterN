@@ -60,9 +60,9 @@ public class LeadController {
 	
 	//초기 list 출력
 	@RequestMapping(value="lead")
-	public ModelAndView lead_list(@RequestParam(value = "PageNum", defaultValue = "1") int PageNum) {
-		System.out.println("entering");
-	
+	public ModelAndView lead_list(@RequestParam(value = "pageNum", defaultValue = "1") int PageNum) {
+		System.out.println("entering" + PageNum);
+		
 		Map<String, Object> leadMap = new HashMap<String, Object>();
 		leadMap.put("PageNum", PageNum);
 		
@@ -88,13 +88,15 @@ public class LeadController {
 	
 	//가망 고객 상세정보
 	@RequestMapping(value="lead_detail", method={RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView lead_detail(@RequestParam("lead_no") String lead_no){ 
+	public ModelAndView lead_detail(@RequestParam("lead_no") String lead_no, @RequestParam("pageNum") String PageNum){ 
 	 
 		System.out.println("lead_no : " + lead_no);
+		System.out.println("PageNum? " + PageNum);
 		ModelAndView mov = new ModelAndView("leadCRUD");
 		mov.addObject("detail", leadService.lead_detail(lead_no));
 		mov.addObject("nal","2017-08-09");
 		mov.addObject("flg", "0");
+		mov.addObject("PageNum", PageNum);
 		System.out.println(mov.toString());
 		
 		menuImport(mov, "lead");
@@ -200,6 +202,7 @@ public class LeadController {
 		
 		// paging
 	  PagerVO page = leadService.getLeadListRow(kwMap);
+	  System.out.println("조건 검색 page? " + page.toString());
 	  kwMap.put("page", page);
 		
 		
