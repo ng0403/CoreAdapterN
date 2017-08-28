@@ -112,7 +112,7 @@ function task_add_save() {
 					alert("상담이 저장되었습니다.");
 					alert("상담 리스트로 이동합니다.");
 					//location.href= ctx + '/task';
-					task_cancel();
+					taskList();
 					
 				}, error : function(request,status,error) {
 				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -238,7 +238,7 @@ function task_modify_save() {
 					alert("상담이 수정되었습니다.");
 					alert("상담 리스트로 이동합니다.");
 					//location.href= ctx + '/task';
-					task_cancel();
+					taskList();
 					
 				}, error : function(request,status,error) {
 				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -268,7 +268,7 @@ function task_del_save() {
 					alert("상담이 삭제되었습니다.");
 					alert("상담 리스트로 이동합니다.");
 					
-					task_cancel();
+					taskList();
 					
 				},
 				error : function(request,status,error) {

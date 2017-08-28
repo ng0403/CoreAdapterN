@@ -20,6 +20,7 @@
 
 <input type="hidden" id="ctx" value="${ctx}">
 <input type="hidden" id="flg" value="${flg}">
+<input type="hidden" id="taskPageNum" value="${taskPageNum}">
 <!-- 상담 -->
 <div id="task_detail">
 	<div style="height:10px;"></div>

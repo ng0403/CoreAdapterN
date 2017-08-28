@@ -218,8 +218,8 @@ public class TaskController {
 	
 	/* CUD */
 	@RequestMapping(value="task_single_add", method=RequestMethod.POST)
-	public @ResponseBody int taskSingleInsert(TaskVO taskVo, HttpSession session, HttpServletRequest request) {
-		
+	public @ResponseBody int taskSingleInsert(TaskVO taskVo, HttpSession session, HttpServletRequest request,
+												@RequestParam(value = "taskPageNum", defaultValue = "1") int taskPageNum) {
 		int flg=1;
 		int result = 0;
 		result = taskService.taskInsert(taskVo);
@@ -229,7 +229,8 @@ public class TaskController {
 	
 	// 수정
 	@RequestMapping(value="task_edit", method=RequestMethod.POST)
-	public @ResponseBody int taskEdit(TaskVO taskVo, HttpSession session) {
+	public @ResponseBody int taskEdit(TaskVO taskVo, HttpSession session,
+										@RequestParam(value = "taskPageNum", defaultValue = "1") int taskPageNum) {
 		
 		int result = 0;
 		int flg=2;
@@ -241,7 +242,8 @@ public class TaskController {
 	
 	// 삭제
 	@RequestMapping(value="task_delete", method=RequestMethod.POST)
-	public @ResponseBody int taskDelete(TaskVO taskVo, HttpSession session) {
+	public @ResponseBody int taskDelete(TaskVO taskVo, HttpSession session,
+											@RequestParam(value = "taskPageNum", defaultValue = "1") int taskPageNum) {
 		
 		int result = 0;
 		
