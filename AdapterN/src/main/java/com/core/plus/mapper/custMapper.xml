@@ -205,8 +205,8 @@
 	
 	<!-- import Test -->
 	<insert id="custExcelInsert" parameterType="com.core.plus.contact.cust.vo.CustVO">
-		insert into tb_cust (cust_no, cust_name, visit_cd, visit_dtl_cd, rec_per)
-		values (#{cust_no}, #{cust_name}, #{visit_cd}, #{visit_dtl_cd}, #{rec_per})
+		insert into tb_cust (cust_no, cust_name, resident_no, chart_no, cust_id, visit_cd, visit_dtl_cd, visit_cn, rec_per, remark_cn)
+		values (#{cust_no}, #{cust_name}, #{resident_no}, #{chart_no}, #{cust_id}, #{visit_cd}, #{visit_dtl_cd}, #{visit_cn}, #{rec_per}, #{remark_cn})
 	</insert>
 	
 </mapper>

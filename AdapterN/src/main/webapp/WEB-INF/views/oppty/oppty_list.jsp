@@ -210,7 +210,7 @@
 
 
 <!-- 다건등록 모달창 테스트 -->
-<div id="multiInsertModalDiv" style="display: none;">
+<div id="opptyMultiInsertModalDiv" style="display: none;">
     <div style="width: 100%; height:7%; background-color: #ececec;" align="right">
  		<input type="button" value="X" id="popupBoxClose" onclick="popupClose();" >
  	</div>
@@ -240,8 +240,3 @@
 	</form>
 	<input type="hidden" id="h_nm_menu">
 </div>
-
-
-
-
-

@@ -358,7 +358,16 @@ public class CustController {
         System.out.println(result);
         
         return new ModelAndView("/cust/excel_import_tab", "result", result);
-    }	
+    }
+    
+//    custExcelUpload
+    @RequestMapping(value="/custExcelUpload", method = {RequestMethod.POST, RequestMethod.GET})
+    public @ResponseBody int custExcelForm(@RequestParam("excelFile") MultipartFile file) throws Exception
+    {
+    	int result = custService.excelUpload(file);
+    	
+    	return result;
+    }
 
 	
 	public void menuImport(ModelAndView mav, String url){

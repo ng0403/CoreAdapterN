@@ -57,6 +57,12 @@ function wordch(thisword)
 	return flag;
 }
 
+//Popup 닫기
+function popupClose()
+{
+	$.unblockUI();
+}
+
 function custSchReset()
 {
 	$("#cust_no").val("");
@@ -235,7 +241,7 @@ function custPageNumInputEnter(event) {
 			$("#pageInput").val($("#pageNum").val());
 			$("#pageInput").focus();
 		} else {
-			cupnPaging(pageNum);
+			searchKeyword(pageNum);
 		}
 	}
 	event.stopPropagation();
@@ -781,18 +787,19 @@ function cust_addr_save()
 //엑셀 Import 팝업	
 function excelImportOpen() 
 {
-	var popWidth  = '520'; // 파업사이즈 너비
-	var popHeight = '160'; // 팝업사이즈 높이
-	var winHeight = document.body.clientHeight;	// 현재창의 높이
-	var winWidth = document.body.clientWidth;	// 현재창의 너비
-	var winX = window.screenLeft;	// 현재창의 x좌표
-	var winY = window.screenTop;	// 현재창의 y좌표
-
-	var popX = winX + (winWidth - popWidth)/2;
-	var popY = winY + (winHeight - popHeight)/2;
-	var popUrl = "excelImportTab";
-	var popOption = "width=520, height=160, resize=no, scrollbars=no, status=no, location=no, directories=no; ,top=pop,left=popX";
-	window.open(popUrl, "_blank","width="+popWidth+"px,height="+popHeight+"px,top="+popY+",left="+popX);
+	// 팝업창 표시
+	$.blockUI({ message: $('#custMultiInsertModalDiv'),
+    	css: { 
+    	'left': '65%',
+    	'top': '50%',
+    	'margin-left': '-400px',
+    	'margin-top': '-250px',
+    	'width': '400px',
+    	'height': '250px',
+    	'cursor': 'default'
+    	}
+		,onOverlayClick : $.unblockUI
+	});
 }
 
 //엑셀파일 insert
@@ -814,8 +821,23 @@ function check()
     }
     if (confirm("업로드 하시겠습니까?")) 
     {
-    	$("#excelUploadForm").append(excelFile);
-    	$("#excelUploadForm").submit();
+    	var options = {
+        		type	: 	'POST',
+        		cache	: 	false,
+        		url		: 	ctx + "/custExcelUpload",
+        		success	:	function(data) {
+        			popupClose();
+        			searchKeyword(1);
+        			alert(data + " 건이 등록되었습니다.");
+        		},
+        		error	: function(data) {
+        			alert("엑셀 업로드 중 에러가 발생했습니다.");
+        			return;
+        		}
+    	};
+    	$("#excelUploadForm").ajaxSubmit(options);
+//    	$("#excelUploadForm").append(excelFile);
+//    	$("#excelUploadForm").submit();
 	}
 	
 //	opener.parent.location.reload();

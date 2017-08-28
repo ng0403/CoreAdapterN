@@ -33,6 +33,12 @@ function opptySingleAddForm()
 	location.href = ctx + "/oppty_detail";
 }
 
+//Popup 닫기
+function popupClose()
+{
+	$.unblockUI();
+}
+
 function opptySchList(opptyPageNum)
 {
 	var oppty_no_srch 	= $("#oppty_no_srch").val();
@@ -145,7 +151,7 @@ function opptyPageNumInputEnter(event) {
 			$("#pageInput").val($("#pageNum").val());
 			$("#pageInput").focus();
 		} else {
-			cupnPaging(pageNum);
+			opptySchList(pageNum);
 		}
 	}
 	event.stopPropagation();
@@ -172,7 +178,7 @@ function opptyPageNumInputEnter(event) {
 function opptyExcelImportOpen()
 {
 	// 팝업창 표시
-	$.blockUI({ message: $('#multiInsertModalDiv'),
+	$.blockUI({ message: $('#opptyMultiInsertModalDiv'),
     	css: { 
     	'left': '65%',
     	'top': '50%',
@@ -185,12 +191,6 @@ function opptyExcelImportOpen()
 		,onOverlayClick : $.unblockUI
 	});
 	
-}
-
-//Popup 닫기
-function popupClose()
-{
-	$.unblockUI();
 }
 
 //엑셀파일 insert

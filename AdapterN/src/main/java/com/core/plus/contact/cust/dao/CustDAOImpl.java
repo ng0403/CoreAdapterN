@@ -97,14 +97,19 @@ public class CustDAOImpl implements CustDAO{
 			Cell cell = null;
 			
 			// 컬럼을 담을 변수를 생성
-			String cust_no = null;
+			String cust_no = null;			// 0
 			String cust_name = null;
+			String resident_no = null;
+			String chart_no = null;
+			String cust_id = null;
 			String visit_cd = null;
 			String visit_dtl_cd = null;
+			String visit_cn = null;
 			String rec_per = null;
+			String remark_cn = null;
 			
 			int rows = sheet.getPhysicalNumberOfRows();
-//			int cells = row.getPhysicalNumberOfCells();
+			System.out.println("rows : " + rows);
 			
 			for(int i=0; i<rows; i++)
 			{
@@ -121,8 +126,36 @@ public class CustDAOImpl implements CustDAO{
 				
 				cell = row.getCell(1);	// cust_name
 				cust_name = cell.getStringCellValue().trim();
+				System.out.println("cust_name : " + cust_name);
 				
-				cell = row.getCell(2);
+				cell = row.getCell(2);	// resident_no
+				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
+				{
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					resident_no = cell.getStringCellValue().trim();
+					
+					System.out.println("resident_no : " + resident_no);
+				}
+				
+				cell = row.getCell(3);	// chart_no
+				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
+				{
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					chart_no = cell.getStringCellValue().trim();
+					
+					System.out.println("chart_no : " + chart_no);
+				}
+				
+				cell = row.getCell(4);	// cust_id
+				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
+				{
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					cust_id = cell.getStringCellValue().trim();
+					
+					System.out.println("cust_id : " + cust_id);
+				}
+				
+				cell = row.getCell(5);	
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
@@ -132,29 +165,40 @@ public class CustDAOImpl implements CustDAO{
 					
 				}
 				
-				cell = row.getCell(3);
+				cell = row.getCell(6);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
 					visit_dtl_cd = String.format("%03d", tmp);
-					
 				}
 				
-				cell = row.getCell(4);	// cust_name
+				cell = row.getCell(7);	// visit_cn
+				visit_cn = cell.getStringCellValue().trim();
+				
+				cell = row.getCell(8);	// rec_per
 				rec_per = cell.getStringCellValue().trim();
+				
+				cell = row.getCell(9);	// remark_cn
+				remark_cn = cell.getStringCellValue().trim();
 
 				// VO
 				CustVO custVo = new CustVO();
 				custVo.setCust_no(cust_no);
 				custVo.setCust_name(cust_name);
+				custVo.setResident_no(resident_no);
+				custVo.setChart_no(chart_no);
+				custVo.setCust_id(cust_id);
 				custVo.setVisit_cd(visit_cd);
 				custVo.setVisit_dtl_cd(visit_dtl_cd);
+				custVo.setVisit_cn(visit_cn);
 				custVo.setRec_per(rec_per);
+				custVo.setRemark_cn(remark_cn);
 				
 				System.out.println("VO : " + custVo);
 				
 				if(cust_no != null)
 				{
+					System.out.println("sql");
 					// DB Insert
 					result += sqlSession.insert("cust.custExcelInsert", custVo);
 				}
