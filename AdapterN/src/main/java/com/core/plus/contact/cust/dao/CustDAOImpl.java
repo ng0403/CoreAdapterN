@@ -89,12 +89,14 @@ public class CustDAOImpl implements CustDAO{
 		System.out.println("Excel Upload Dao");
 		int result = 0;
 		
+		// excel import
 		try {
 			Workbook workBook = WorkbookFactory.create(destFile.getInputStream());
 			Sheet sheet = workBook.getSheetAt(0);
 			Row row = null;
 			Cell cell = null;
 			
+			// 컬럼을 담을 변수를 생성
 			String cust_no = null;
 			String cust_name = null;
 			String visit_cd = null;
