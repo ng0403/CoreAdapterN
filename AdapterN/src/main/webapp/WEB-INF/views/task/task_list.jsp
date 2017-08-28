@@ -8,6 +8,7 @@
 
 <script type="text/javascript" src="${ctx}/resources/common/js/task/task.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/task/task_detail.js"></script> 
+<script src="http://malsup.github.com/jquery.form.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -162,3 +163,35 @@
    </div>
 </div>
 
+
+<!-- 다건등록 모달창 테스트 -->
+<div id="multiInsertModalDiv" style="display: none;">
+    <div style="width: 100%; height:7%; background-color: #ececec;" align="right">
+ 		<input type="button" value="X" id="popupBoxClose" onclick="popupClose();" >
+ 	</div>
+ 	
+ 	<form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post" action="${ctx}/taskExcelUpload">
+<!-- 	<form method='post' name='custListPopup' id='custListPopup'> -->
+	<div id="multiInsertModalContent" style="margin: 0 1.5% 0 1.5%;">
+		<div class="titleDIV" style="text-align: left; width: 100%;">
+			<span class="titleText">■ 다건 등록(Excel Import)</span>
+		</div>
+		<div style="height:25px;"></div>
+		<div id="multiInsertModalList" class="commonList">
+			 	<table id="multiInsertModalTables" style="width: 100%;">
+			 	 	<thead>
+			 	 		<tr id="multiInsertTableHeader">
+							<td style="width: 40%; text-align: right;">
+								<input id="excelFile" type="file" name="excelFile" class="btn btn-default" style="float: center;"/>
+							</td>
+							<td>
+								<input type="button" value="업로드" class="back_btn" style="float: right;" onclick="taskExcelCheck();"/> <!-- onclick="viewProdMenuList(1); -->
+							</td>
+			 	 		</tr>
+			 	 	</thead>
+			 	</table>
+		</div>	
+	</div>
+	</form>
+	<input type="hidden" id="h_nm_menu">
+</div>

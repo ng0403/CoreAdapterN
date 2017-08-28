@@ -418,4 +418,18 @@ public class TaskController {
         
         return new ModelAndView("/task/excel_import_tab", "result", result);
     }	
-}
+    
+    // Excel Data Import Ajax
+    @RequestMapping(value="/taskExcelUpload", method = {RequestMethod.POST, RequestMethod.GET})
+	public @ResponseBody int taskExcelForm(@RequestParam("excelFile") MultipartFile file) throws Exception 
+    {
+    	System.out.println("Excel Ajax : " + file);
+		int result = taskService.excelUpload(file);
+		
+		return result;
+	}
+    
+    
+    
+    
+}	
