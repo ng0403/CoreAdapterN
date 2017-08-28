@@ -259,22 +259,22 @@ public class TaskDAOImpl implements TaskDAO {
 			int rows = sheet.getPhysicalNumberOfRows();
 			System.out.println(rows);
 			
-			for(int i=0; i<rows; i++) {
+			for(int i=1; i<rows; i++) {
 				row = sheet.getRow(i);
 				
-				cell = row.getCell(0);
-				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
-				{
-					cell.setCellType(Cell.CELL_TYPE_STRING);
-					task_no = cell.getStringCellValue();
-					System.out.println("task_no"+task_no);
-				}
+//				cell = row.getCell(0);
+//				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
+//				{
+//					cell.setCellType(Cell.CELL_TYPE_STRING);
+//					task_no = cell.getStringCellValue();
+//					System.out.println("task_no"+task_no);
+//				}
 				
-				cell = row.getCell(1);
+				cell = row.getCell(0);
 				subject = cell.getStringCellValue().trim();
 				System.out.println("subject"+subject);
 				
-				cell = row.getCell(2);
+				cell = row.getCell(1);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					cell.setCellType(Cell.CELL_TYPE_STRING);
@@ -282,7 +282,7 @@ public class TaskDAOImpl implements TaskDAO {
 					System.out.println("cust_no"+cust_no);
 				}
 				
-				cell = row.getCell(3);
+				cell = row.getCell(2);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					cell.setCellType(Cell.CELL_TYPE_STRING);
@@ -291,7 +291,7 @@ public class TaskDAOImpl implements TaskDAO {
 				}
 				
 				
-				cell = row.getCell(4);
+				cell = row.getCell(3);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					cell.setCellType(Cell.CELL_TYPE_STRING);
@@ -299,11 +299,11 @@ public class TaskDAOImpl implements TaskDAO {
 					System.out.println("oppty_no"+oppty_no);
 				}
 				
-				cell = row.getCell(5);
+				cell = row.getCell(4);
 				location = cell.getStringCellValue();
 				System.out.println("location"+location);
 				
-				cell = row.getCell(6);
+				cell = row.getCell(5);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
@@ -311,7 +311,7 @@ public class TaskDAOImpl implements TaskDAO {
 					System.out.println("next_day"+next_day);
 				}
 				
-				cell = row.getCell(7);
+				cell = row.getCell(6);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					cell.setCellType(Cell.CELL_TYPE_STRING);
@@ -320,7 +320,7 @@ public class TaskDAOImpl implements TaskDAO {
 					System.out.println("emp_no");
 				}
 				
-				cell = row.getCell(8);
+				cell = row.getCell(7);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
@@ -328,7 +328,7 @@ public class TaskDAOImpl implements TaskDAO {
 					System.out.println("dtype_cd"+dtype_cd);
 				}
 				
-				cell = row.getCell(9);
+				cell = row.getCell(8);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
@@ -336,12 +336,12 @@ public class TaskDAOImpl implements TaskDAO {
 					System.out.println("score_cd"+score_cd);
 				}
 				
-				cell = row.getCell(10);
+				cell = row.getCell(9);
 				remark_cn = cell.getStringCellValue();
 				System.out.println("remark_cn"+remark_cn);
 				
 				TaskVO taskVo = new TaskVO();
-				taskVo.setTask_no(task_no);;
+//				taskVo.setTask_no(task_no);
 				taskVo.setSubject(subject);
 				taskVo.setCust_no(cust_no);
 				taskVo.setLead_no(lead_no);;
@@ -355,10 +355,10 @@ public class TaskDAOImpl implements TaskDAO {
 				
 				System.out.println("VO : " + taskVo);
 				
-				if(task_no != null || taskVo.getTask_no() != null)
-				{
+//				if(task_no != null || taskVo.getTask_no() != null)
+//				{
 					result += sqlSession.insert("task.task_multi_insert", taskVo);
-				}
+//				}
 			}
 			
 		} catch (InvalidFormatException e) {

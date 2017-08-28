@@ -301,6 +301,10 @@
    </select>
    
    <insert id="task_multi_insert"  parameterType="com.core.plus.task.vo.TaskVO">
+		<selectKey keyProperty="task_no" resultType="String" order="BEFORE">
+	         SELECT IF(SUBSTR(MAX(task_no), 1, 10) = DATE_FORMAT(now(), '%Y%m%d%H'), MAX(task_no)+1, concat(DATE_FORMAT(now(), '%Y%m%d%H'),'00001')) task_no 
+	         FROM tb_task USE INDEX(PRIMARY)
+	    </selectKey>
 		insert into tb_task
 		(
 		    task_no , subject  , cust_no  , emp_no   , next_day  , dtype_cd
