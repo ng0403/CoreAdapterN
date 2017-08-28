@@ -409,6 +409,7 @@ function cust_modify_save()
  
  // 취소버튼 
  function cust_cancel(custPageNum){
+	 alert("고객 리스트 화면으로 이동합니다.");
 	 location.href="/cust?custPageNum=" + custPageNum;
  } 
  
