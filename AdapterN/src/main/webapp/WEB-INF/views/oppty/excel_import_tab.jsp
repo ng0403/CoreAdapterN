@@ -20,9 +20,10 @@
 	 var result = $("#result").val();
 	 if(result > 0){
 	 	console.log(result);
-		 opener.parent.location.reload();
+	 	location.href = '/oppty';
+// 		 opener.parent.location.reload();
 // 		 sleep(1*1000);
-		 window.open("about:blank","_self").close();
+// 		 window.open("about:blank","_self").close();
 	 }
  });
  
@@ -35,10 +36,10 @@
 		<!-- Modal Main Div -->
 	<div>
 		<div style="text-align: center; margin-top: 10%;">
-			<form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post"action="${ctx}/opptyExcelUploadAjax"> 
-				<input id="excelFile" type="file" name="excelFile" class="btn btn-default" style="float: center;"/>
-				<input type="button" id="addExcelImpoartBtn" class="btn btn-default" onclick="opptyExcelCheck();" value="업로드" style="float: center;">
-			</form>
+<%-- 			<form id="excelUploadForm" name="excelUploadForm" enctype="multipart/form-data" method="post"action="${ctx}/opptyExcelUploadAjax">  --%>
+<!-- 				<input id="excelFile" type="file" name="excelFile" class="btn btn-default" style="float: center;"/> -->
+<!-- 				<input type="button" id="addExcelImpoartBtn" class="btn btn-default" onclick="opptyExcelCheck();" value="업로드" style="float: center;"> -->
+<!-- 			</form> -->
 		</div>
 		
 	</div>

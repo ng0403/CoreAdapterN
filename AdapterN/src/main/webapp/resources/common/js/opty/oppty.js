@@ -152,20 +152,45 @@ function opptyPageNumInputEnter(event) {
 }
 
 //엑셀 Import 팝업	
-function opptyExcelImportOpen() 
-{
-	var popWidth  = '520'; // 파업사이즈 너비
-	var popHeight = '160'; // 팝업사이즈 높이
-	var winHeight = document.body.clientHeight;	// 현재창의 높이
-	var winWidth = document.body.clientWidth;	// 현재창의 너비
-	var winX = window.screenLeft;	// 현재창의 x좌표
-	var winY = window.screenTop;	// 현재창의 y좌표
+//function opptyExcelImportOpen() 
+//{
+//	var popWidth  = '520'; // 파업사이즈 너비
+//	var popHeight = '160'; // 팝업사이즈 높이
+//	var winHeight = document.body.clientHeight;	// 현재창의 높이
+//	var winWidth = document.body.clientWidth;	// 현재창의 너비
+//	var winX = window.screenLeft;	// 현재창의 x좌표
+//	var winY = window.screenTop;	// 현재창의 y좌표
+//
+//	var popX = winX + (winWidth - popWidth)/2;
+//	var popY = winY + (winHeight - popHeight)/2;
+//	var popUrl = "opptyExcelImportTab";
+//	var popOption = "width=520, height=160, resize=no, scrollbars=no, status=no, location=no, directories=no; ,top=pop,left=popX";
+//	window.open(popUrl, "_blank","width="+popWidth+"px,height="+popHeight+"px,top="+popY+",left="+popX);
+//}
 
-	var popX = winX + (winWidth - popWidth)/2;
-	var popY = winY + (winHeight - popHeight)/2;
-	var popUrl = "opptyExcelImportTab";
-	var popOption = "width=520, height=160, resize=no, scrollbars=no, status=no, location=no, directories=no; ,top=pop,left=popX";
-	window.open(popUrl, "_blank","width="+popWidth+"px,height="+popHeight+"px,top="+popY+",left="+popX);
+//popup
+function opptyExcelImportOpen()
+{
+	// 팝업창 표시
+	$.blockUI({ message: $('#multiInsertModalDiv'),
+    	css: { 
+    	'left': '65%',
+    	'top': '50%',
+    	'margin-left': '-400px',
+    	'margin-top': '-250px',
+    	'width': '400px',
+    	'height': '500px',
+    	'cursor': 'default'
+    	}
+		,onOverlayClick : $.unblockUI
+	});
+	
+}
+
+//Popup 닫기
+function popupClose()
+{
+	$.unblockUI();
 }
 
 //엑셀파일 insert
@@ -176,22 +201,34 @@ function opptyExcelCheck()
     if (excelFile == "" || excelFile == null) 
     {
         alert("파일을 선택해주세요.");
-        
         return false;
     } 
     else if (!opptyCheckFileType(excelFile)) 
     {
         alert("엑셀 파일만 업로드 가능합니다.");
-        
         return false;
     }
     if (confirm("업로드 하시겠습니까?")) 
     {
-    	$("#excelUploadForm").append(excelFile);
-    	$("#excelUploadForm").submit();
+    	var options = {
+    		type	: 	'POST',
+    		cache	: 	false,
+    		url		: 	ctx + "/opptyExcelUpload",
+    		success	:	function(data) {
+    			popupClose();
+    			opptySchList(1);
+    			alert(data + " 건이 등록되었습니다.");
+    		},
+    		error	: function(data) {
+    			alert("엑셀 업로드 중 에러가 발생했습니다.");
+    			return;
+    		}
+    	};
+    	$("#excelUploadForm").ajaxSubmit(options);
+//    	$("#excelUploadForm").append(excelFile);
+//    	$("#excelUploadForm").submit();
 	}
 	
-//	opener.parent.location.reload();
 }
 
 //엑셀 파일 추가 fucntion

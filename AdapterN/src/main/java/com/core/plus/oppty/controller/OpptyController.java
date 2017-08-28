@@ -486,7 +486,6 @@ public class OpptyController {
 		return mov;
 	}	
 	
-	
 	// Excel Data Import
     @RequestMapping(value = "/opptyExcelUploadAjax", headers = "content-type=multipart/*", method = RequestMethod.POST)
     public ModelAndView excelUploadAjax(MultipartHttpServletRequest request)  throws Exception
@@ -504,6 +503,16 @@ public class OpptyController {
         System.out.println(result);
         
         return new ModelAndView("/oppty/excel_import_tab", "result", result);
-    }	
+    }
+    
+ // Excel Data Import Ajax
+    @RequestMapping(value="/opptyExcelUpload", method = {RequestMethod.POST, RequestMethod.GET})
+	public @ResponseBody int opptyExcelForm(@RequestParam("excelFile") MultipartFile file) throws Exception 
+    {
+    	System.out.println("Excel Ajax : " + file);
+		int result = opptyService.excelUpload(file);
+		
+		return result;
+	}
 
 }
