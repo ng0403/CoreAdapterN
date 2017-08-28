@@ -24,7 +24,7 @@
 <div id="task_detail">
 	<div style="height:10px;"></div>
 	
-	<c:if test="${flg == 0 }">
+	<c:if test="${flg == 2 }">
  		<div class="titleDIV">
 			<span class="titleText">
 			    ■  <a style="cursor: pointer;" onclick="taskList();"> 상담</a> > <span id="task_form_title">상담 상세정보</span>
@@ -40,13 +40,13 @@
 		</div>   
 	</c:if>
 	
-	<c:if test="${flg == 2}">
- 		<div class="titleDIV">
-			<span class="titleText">
-			    ■  <a style="cursor: pointer;" onclick="taskList();"> 상담</a> > <span id="cust_form_title">상담 수정</span>
-			</span>
-		</div>   
-	</c:if>
+<%-- 	<c:if test="${flg == 2}"> --%>
+<!--  		<div class="titleDIV"> -->
+<!-- 			<span class="titleText"> -->
+<!-- 			    ■  <a style="cursor: pointer;" onclick="taskList();"> 상담</a> > <span id="cust_form_title">상담 수정</span> -->
+<!-- 			</span> -->
+<!-- 		</div>    -->
+<%-- 	</c:if> --%>
 	
 	<div style="height:10px;"></div>
 	<form role="form" name="task_single_add" id="task_single_add" method="post" action="${ctx}/task_single_add" >	
@@ -84,7 +84,7 @@
 	 				</c:if>
 	 				<c:if test="${flg == 2 }">
 						<input type="hidden" id="cust_no" name="cust_no" value="${taskDetail.cust_no}" >
-						<input type="text" name="cust_name" id="cust_name" maxlength="50" value="${taskDetail.cust_name}" style="width: 60%; background-color: white;" disabled="disabled">
+						<input type="text" name="cust_name" id="cust_name" maxlength="50" value="${taskDetail.cust_name}" style="width: 60%; background-color: rgb(235, 235, 228);" disabled="disabled">
 						<input type="button" class="back_btn" id="custSchBtn" value="고객" onclick="custSchPopupOpen();">
 	 				</c:if>
 	 			</td>
@@ -97,7 +97,7 @@
 	 				</c:if>
 	 				<c:if test="${flg == 2 }">
 			       		<input type="hidden" name="emp_no" id="emp_no" value="${taskDetail.emp_no}"> 
-						<input name="emp_name" id="emp_name" type="text" maxlength="50" value="${taskDetail.emp_name}" style="width: 60%; background-color: white;" disabled="disabled">
+						<input name="emp_name" id="emp_name" type="text" maxlength="50" value="${taskDetail.emp_name}" style="width: 60%; background-color: rgb(235, 235, 228);" disabled="disabled">
 						<input type="button" class="back_btn" id="empSchBtn" value="담담자" onclick="empSchPopupOpen();">
 	 				</c:if>
 	 			</td>
@@ -131,7 +131,7 @@
 					</c:if>
 					<c:if test="${flg == 2 }">
 				 		 <select id="dtype_cd" name="dtype_cd" 
-									style="margin-left: 0; width: 62%; text-align: center; font-size: 10.5px; padding: 0.3em 0.3em;" disabled="disabled">
+									style="margin-left: 0; width: 62%; text-align: center; font-size: 10.5px; padding: 0.3em 0.3em; background-color: rgb(235, 235, 228);" disabled="disabled">
 							<option value="">선택해 주십시오</option>
 							<c:forEach var="dtypeCd" items="${ dtypeCd }">
 								<c:if test= "${ dtypeCd.code == taskDetail.dtype_cd }">
@@ -155,7 +155,7 @@
 					</c:if>
 					<c:if test="${flg == 2 }">
 						<input type="hidden" id="lead_no" name="lead_no" value="${taskDetail.lead_no}" >
-						<input type="text" name="lead_name" id="lead_name" maxlength="50" value="${taskDetail.lead_name}" style="width: 60%; background-color: white;" disabled="disabled">
+						<input type="text" name="lead_name" id="lead_name" maxlength="50" value="${taskDetail.lead_name}" style="width: 60%; background-color: rgb(235, 235, 228);" disabled="disabled">
 						<input type="button" class="back_btn" id="leadSchBtn" value="가망고객" onclick="leadSchPopupOpen();">
 					</c:if>
 				</td>
@@ -168,7 +168,7 @@
 	 				</c:if>
 	 				<c:if test="${flg == 2 }">
 						<input type="hidden" name="oppty_no" id="oppty_no" value="${taskDetail.oppty_no}"> 
-						<input name="oppty_name" id="oppty_name" type="text" maxlength="50" value="${taskDetail.oppty_name}" style="width: 60%; background-color: white;" disabled="disabled">
+						<input name="oppty_name" id="oppty_name" type="text" maxlength="50" value="${taskDetail.oppty_name}" style="width: 60%; background-color: rgb(235, 235, 228);" disabled="disabled">
 						<input type="button" class="back_btn" id="opptySchBtn" value="영업기회" onclick="opptySchPopupOpen(); ">
 	 				</c:if>
 	 			</td>
@@ -192,7 +192,7 @@
 					</c:if>
 					<c:if test="${flg == 2 }">
 						<select id="score_cd" name="score_cd" 
-									style="margin-left: 0; width: 62%; text-align: center; font-size: 10.5px; padding: 0.3em 0.3em;" disabled="disabled">
+									style="margin-left: 0; width: 62%; text-align: center; font-size: 10.5px; padding: 0.3em 0.3em; background-color: rgb(235, 235, 228);" disabled="disabled">
 							<option value="">선택해 주십시오</option>
 							<c:forEach var="scoreCd" items="${ scoreCd }">
 								<c:if test= "${ scoreCd.code eq taskDetail.score_cd }">

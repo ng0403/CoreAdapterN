@@ -219,6 +219,8 @@ public class TaskController {
 	/* CUD */
 	@RequestMapping(value="task_single_add", method=RequestMethod.POST)
 	public @ResponseBody int taskSingleInsert(TaskVO taskVo, HttpSession session, HttpServletRequest request) {
+		
+		int flg=1;
 		int result = 0;
 		result = taskService.taskInsert(taskVo);
 		

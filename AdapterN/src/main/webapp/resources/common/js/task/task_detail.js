@@ -128,6 +128,8 @@ function task_add_save() {
 function task_modify_btn() {
 	
 	if($("#task_single_modify").val() == "편집") {
+		
+		document.getElementById('task_form_title').innerHTML ="상담 수정";
 		$("#task_single_modify").val("저장");
 		$("#task_single_modify").removeClass("func_btn");
 		$("#task_single_modify").addClass("tr_btn");
@@ -143,6 +145,9 @@ function task_modify_btn() {
 		$('#location').removeAttr("disabled");
 		$('#remark_cn').removeAttr("disabled");
 			
+		$("#task_form_tbl input[type='text'], textarea, input[type='date'], select").attr({
+			style:'background-color:white'
+		});
 		return false;
 		
 	} if($("#task_single_modify").val() == "저장") {
