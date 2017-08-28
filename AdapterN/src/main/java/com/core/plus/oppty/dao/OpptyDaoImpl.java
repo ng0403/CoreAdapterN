@@ -378,24 +378,24 @@ public class OpptyDaoImpl implements OpptyDao {
 			int rows = sheet.getPhysicalNumberOfRows();
 			System.out.println(rows);
 			
-			for(int i=0; i<rows; i++) {
+			for(int i=1; i<rows; i++) {
 				row = sheet.getRow(i);
 				
-				cell = row.getCell(0);
-				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
-				{
-					cell.setCellType(Cell.CELL_TYPE_STRING);
-					oppty_no = cell.getStringCellValue();
-					
-					System.out.println("oppty_no");
-				}
+//				cell = row.getCell(0);
+//				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
+//				{
+//					cell.setCellType(Cell.CELL_TYPE_STRING);
+//					oppty_no = cell.getStringCellValue();
+//					
+//					System.out.println("oppty_no");
+//				}
 				
-				cell = row.getCell(1);
+				cell = row.getCell(0);
 				oppty_name = cell.getStringCellValue().trim();
 				
 				System.out.println("oppty_name");
 
-				cell = row.getCell(2);
+				cell = row.getCell(1);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					cell.setCellType(Cell.CELL_TYPE_STRING);
@@ -404,7 +404,7 @@ public class OpptyDaoImpl implements OpptyDao {
 					System.out.println("cust_no");
 				}
 				
-				cell = row.getCell(3);
+				cell = row.getCell(2);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					cell.setCellType(Cell.CELL_TYPE_STRING);
@@ -413,69 +413,68 @@ public class OpptyDaoImpl implements OpptyDao {
 					System.out.println("emp_no");
 				}
 				
-				cell = row.getCell(4);
+				cell = row.getCell(3);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
 					oppty_status_cd = String.format("%03d", tmp);
 				}
 				
-				cell = row.getCell(5);
+				cell = row.getCell(4);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
 					oppty_stage_cd = String.format("%03d", tmp);
 				}
 				
-				cell = row.getCell(6);
+				cell = row.getCell(5);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					score = (int) cell.getNumericCellValue();
 				}
 				
-				cell = row.getCell(7);
+				cell = row.getCell(6);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
 					exp_close_day = String.valueOf(tmp);
 				}
 				
-				cell = row.getCell(8);
+				cell = row.getCell(7);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
 					dtype_cd = String.format("%03d", tmp);
 				}
 				
-				cell = row.getCell(9);
+				cell = row.getCell(8);
 				sur_plan_cn = cell.getStringCellValue();
 				
-				cell = row.getCell(10);
+				cell = row.getCell(9);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
 					purchase_type = String.format("%03d", tmp);
 				}
 				
-				cell = row.getCell(11);
+				cell = row.getCell(10);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
 					payment_cd = String.format("%03d", tmp);
 				}
 				
-				cell = row.getCell(12);
+				cell = row.getCell(11);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
 					rec_per_cd = String.format("%03d", tmp);
 				}
 				
-				cell = row.getCell(13);
+				cell = row.getCell(12);
 				remark_cn = cell.getStringCellValue();
 				
 				OpptyVO opptyVo = new OpptyVO();
-				opptyVo.setOppty_no(oppty_no);
 				opptyVo.setOppty_name(oppty_name);
 				opptyVo.setCust_no(cust_no);
 				opptyVo.setEmp_no(emp_no);
@@ -492,10 +491,7 @@ public class OpptyDaoImpl implements OpptyDao {
 				
 				System.out.println("VO : " + opptyVo);
 				
-				if(oppty_no != null || opptyVo.getOppty_no() != null)
-				{
-					result += sqlSession.insert("oppty.oppty_multi_insert", opptyVo);
-				}
+				result += sqlSession.insert("oppty.oppty_multi_insert", opptyVo);
 			}
 			
 		} catch (InvalidFormatException e) {

@@ -111,6 +111,17 @@ $(document).ready(function(){
 				</c:if>
  			</td>
 		</tr>
+		<tr>
+			<th class="discount_cost" style="text-align:right;">소개자</th>
+			<td>
+				<c:if test="${ flg == 2 }">
+					<input type="text" id="rec_per" name="rec_per" value="${custDlist.cust_id}" readonly="readonly">
+				</c:if>
+				<c:if test="${ flg == 1 }">
+					<input type="text" id="rec_per" name="rec_per" value="${custDlist.cust_id}">
+				</c:if>
+			</td>
+		</tr>
 		
 		<tr>
 			<th id="impTh" class="discount_cost" style="text-align:right;">* 내원경로</th>

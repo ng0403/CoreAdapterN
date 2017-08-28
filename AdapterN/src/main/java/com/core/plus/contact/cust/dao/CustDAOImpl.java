@@ -111,24 +111,24 @@ public class CustDAOImpl implements CustDAO{
 			int rows = sheet.getPhysicalNumberOfRows();
 			System.out.println("rows : " + rows);
 			
-			for(int i=0; i<rows; i++)
+			for(int i=1; i<rows; i++)
 			{
 				row = sheet.getRow(i);
 				
-				cell = row.getCell(0);	// cust_no
-				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
-				{
-					cell.setCellType(Cell.CELL_TYPE_STRING);
-					cust_no = cell.getStringCellValue().trim();
-					
-					System.out.println("cust_no : " + cust_no);
-				}
+//				cell = row.getCell(0);	// cust_no
+//				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
+//				{
+//					cell.setCellType(Cell.CELL_TYPE_STRING);
+//					cust_no = cell.getStringCellValue().trim();
+//					
+//					System.out.println("cust_no : " + cust_no);
+//				}
 				
-				cell = row.getCell(1);	// cust_name
+				cell = row.getCell(0);	// cust_name
 				cust_name = cell.getStringCellValue().trim();
 				System.out.println("cust_name : " + cust_name);
 				
-				cell = row.getCell(2);	// resident_no
+				cell = row.getCell(1);	// resident_no
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					cell.setCellType(Cell.CELL_TYPE_STRING);
@@ -137,7 +137,7 @@ public class CustDAOImpl implements CustDAO{
 					System.out.println("resident_no : " + resident_no);
 				}
 				
-				cell = row.getCell(3);	// chart_no
+				cell = row.getCell(2);	// chart_no
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					cell.setCellType(Cell.CELL_TYPE_STRING);
@@ -146,7 +146,7 @@ public class CustDAOImpl implements CustDAO{
 					System.out.println("chart_no : " + chart_no);
 				}
 				
-				cell = row.getCell(4);	// cust_id
+				cell = row.getCell(3);	// cust_id
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					cell.setCellType(Cell.CELL_TYPE_STRING);
@@ -155,7 +155,7 @@ public class CustDAOImpl implements CustDAO{
 					System.out.println("cust_id : " + cust_id);
 				}
 				
-				cell = row.getCell(5);	
+				cell = row.getCell(4);	
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
@@ -165,25 +165,25 @@ public class CustDAOImpl implements CustDAO{
 					
 				}
 				
-				cell = row.getCell(6);
+				cell = row.getCell(5);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
 				{
 					int tmp = (int) cell.getNumericCellValue();
 					visit_dtl_cd = String.format("%03d", tmp);
 				}
 				
-				cell = row.getCell(7);	// visit_cn
+				cell = row.getCell(6);	// visit_cn
 				visit_cn = cell.getStringCellValue().trim();
 				
-				cell = row.getCell(8);	// rec_per
+				cell = row.getCell(7);	// rec_per
 				rec_per = cell.getStringCellValue().trim();
 				
-				cell = row.getCell(9);	// remark_cn
+				cell = row.getCell(8);	// remark_cn
 				remark_cn = cell.getStringCellValue().trim();
 
 				// VO
 				CustVO custVo = new CustVO();
-				custVo.setCust_no(cust_no);
+//				custVo.setCust_no(cust_no);
 				custVo.setCust_name(cust_name);
 				custVo.setResident_no(resident_no);
 				custVo.setChart_no(chart_no);
@@ -196,11 +196,12 @@ public class CustDAOImpl implements CustDAO{
 				
 				System.out.println("VO : " + custVo);
 				
+				result += sqlSession.insert("cust.custExcelInsert", custVo);
+				
 				if(cust_no != null)
 				{
 					System.out.println("sql");
 					// DB Insert
-					result += sqlSession.insert("cust.custExcelInsert", custVo);
 				}
 					
 			}

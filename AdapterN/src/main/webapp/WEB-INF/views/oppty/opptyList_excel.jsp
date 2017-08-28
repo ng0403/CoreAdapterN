@@ -39,19 +39,36 @@
 <table class="taskExcelTbl">
 	<thead>
 		<tr>
-			<td class="header" style="width: 10%;">기회번호</td>
-			<td class="header" style="width: 10%;">기회명</td>
-			<td class="header" style="width: 10%;">고객번호</td>
-			<td class="header" style="width: 10%;">고객명</td>
-			<td class="header" style="width: 10%;">전화번호</td>
-			<td class="header" style="width: 10%;">담당자명</td>
-			<td class="header" style="width: 10%;">기회상태</td>
-			<td class="header" style="width: 10%;">기회단계</td>
-			<td class="header" style="width: 10%;">예상종료일자</td>
-			<td class="header" style="width: 10%;">분류</td>
-			<td class="header" style="width: 10%;">구매</td>
-			<td class="header" style="width: 10%;">소개자</td>
-			<td class="header" style="width: 10%;">등록일시</td>
+			<c:if test="${not empty opptyExcelExport}">
+				<td class="header" style="width: 10%;">기회번호</td>
+				<td class="header" style="width: 10%;">기회명</td>
+				<td class="header" style="width: 10%;">고객번호</td>
+				<td class="header" style="width: 10%;">고객명</td>
+				<td class="header" style="width: 10%;">전화번호</td>
+				<td class="header" style="width: 10%;">담당자명</td>
+				<td class="header" style="width: 10%;">기회상태</td>
+				<td class="header" style="width: 10%;">기회단계</td>
+				<td class="header" style="width: 10%;">예상종료일자</td>
+				<td class="header" style="width: 10%;">분류</td>
+				<td class="header" style="width: 10%;">구매</td>
+				<td class="header" style="width: 10%;">소개자</td>
+				<td class="header" style="width: 10%;">등록일시</td>
+			</c:if>
+			<c:if test="${empty opptyExcelExport}">
+				<td class="header" style="width: 10%;">기회명</td>
+				<td class="header" style="width: 10%;">고객번호</td>
+				<td class="header" style="width: 10%;">담당자번호</td>
+				<td class="header" style="width: 10%;">기회상태</td>
+				<td class="header" style="width: 10%;">기회단계</td>
+				<td class="header" style="width: 10%;">점수</td>
+				<td class="header" style="width: 10%;">예상종료일자</td>
+				<td class="header" style="width: 10%;">분류</td>
+				<td class="header" style="width: 10%;">시/수술계획</td>
+				<td class="header" style="width: 10%;">구매</td>
+				<td class="header" style="width: 10%;">결제처</td>
+				<td class="header" style="width: 10%;">소개자</td>
+				<td class="header" style="width: 10%;">특이사항</td>
+			</c:if>
 		</tr>
 	</thead>
 	<tbody>
@@ -77,19 +94,19 @@
 			
 		<c:if test="${fn:length(opptyExcelExport) == 0}">
 			<tr style="cursor: default; background-color: white;">
-				<td class="body" id="no" ><c:out value=""></c:out></td>
-					<td class="body"></td>
-					<td class="body" id="no"></td>
-					<td class="body"></td>
-					<td class="body"></td>
-					<td class="body"></td>
-					<td class="body"></td>
-					<td class="body"></td>
-					<td class="body"></td>
-					<td class="body"></td>
-					<td class="body"></td>
-					<td class="body"></td>
-					<td class="body"></td>
+				<td class="body"></td>
+				<td class="body" id="no"></td>
+				<td class="body" id="no"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
 			</tr>
 		</c:if>
 	</tbody>

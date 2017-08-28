@@ -149,6 +149,7 @@ function searchKeyword(pageNum)
  						var cust_no   = data.custList[i].cust_no;
  						var cust_name = data.custList[i].cust_name;
  						var chart_no  = data.custList[i].chart_no;
+ 						var cust_id	  = data.custList[i].cust_id;
  						var rec_per   = data.custList[i].rec_per;
  						var phone_no  = data.custList[i].phone_no;
  						var main_address = data.custList[i].main_address;
@@ -305,6 +306,7 @@ function cust_add_save()
 					visit_cd		: $("#visit_cd").val(),
 					visit_dtl_cd 	: $("#visit_dtl_cd ").val(),
 					visit_cn		: $("#visit_cn").val(),
+					rec_per			: $("#rec_per").val(),
 					remark_cn		: $("#remark_cn").val()
 				},
 				dataType : "json",
@@ -395,6 +397,7 @@ function cust_modify_save()
 					cust_id			: $("#cust_id").val(),
 					visit_cd		: $("#visit_cd").val(),
 					visit_dtl_cd 	: $("#visit_dtl_cd ").val(),
+					rec_per			: $("#rec_per").val(),
 					visit_cn		: $("#visit_cn").val(),
 					remark_cn		: $("#remark_cn").val()
 				},

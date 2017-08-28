@@ -239,6 +239,9 @@ function opptyCheckFileType(filePath)
 	if (fileFormat.indexOf("xlsx") > -1) {
 		return true;
 	} 
+//	if (fileFormat.indexOf("xls") > -1) {
+//		return true;
+//	} 
 	else {
 		return false;
 	}
