@@ -10,7 +10,7 @@
 	Date currentTime = new Date();
 	String mTime = mSimpleDateFormat.format (currentTime);
 	response.setHeader("Content-Disposition", "attachment; filename="+UriUtils.encodeFragment("상담목록","UTF-8")+mTime+".xls;'");
-	response.setHeader("Content-Description", "JSP Generated Data");
+// 	response.setHeader("Content-Description", "JSP Generated Data");
 	response.setContentType("application/vnd.ms-excel");
 %>
 <html>
