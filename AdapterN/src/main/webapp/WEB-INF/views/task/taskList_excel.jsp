@@ -19,7 +19,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 .taskExcelTbl {
-	border: thin solid black;
+	border: thin solid black;2
 }
 .header{
 	border: thin solid black;
