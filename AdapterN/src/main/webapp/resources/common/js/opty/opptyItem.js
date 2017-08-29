@@ -10,21 +10,13 @@ var ctx = $("#ctx").val();
 var tmp;
 var selQty;
 var selDC;
+var paymentDay;
 var main_cate_cd;
 var mid_cate_cd;
 var totalPrice;
 
 $(document).ready(function(){
-//	$('.patment_day').datepicker();
-	$(document).find('.payment_day').removeClass('hasDatepicker').datepicker({
-		dateFormat: "yy-mm-dd",
-	    defaultDate: "+1w",
-	    numberOfMonths: 1,
-	    changeMonth: true,
-	    showMonthAfterYear: true ,
-	    changeYear: true
-	});
-	
+
 	mainCatePopup();
 	midCatePopup();
 	smallCatePopup();
@@ -34,12 +26,37 @@ $(document).ready(function(){
 		selQty = $(this);
 	});
 	
+	// 클릭한 input태그(제안금액)를 찾아서 값은 담는다. 
 	$(document).on('click', '.offer_price', function(event) {
 		selDC = $(this);
 		totalPrice = selDC.parent().parent().children().eq(6).children().eq(0).val();
 	});
 	
+	$(document).on('click', '.payment_day', function(event) {
+		$(this).removeClass('hasDatepicker').datepicker();
+//		paymentDay = $(this);
+//		paymenyValue();
+	});
 });
+
+function paymenyValue()
+{
+	// 동적으로 생성한 태그에 datepicker 추가
+//	$(document).find("input[class=payment_day]").removeClass('hasDatepicker').datepicker();
+	paymentDay.removeClass('hasDatepicker').datepicker();
+}
+
+//체크박스 전체 선택.
+function actAllChk()
+{
+	var checkbox=$('#opptyItemTable tbody').find('input[type=checkbox]');
+	
+	if($('#optyItemChk').is(":checked")){
+		$(checkbox).prop("checked", true);
+	}else{
+		$(checkbox).prop("checked", false);
+	}
+}
 
 // 테이블 생성(Ajax)
 function opptyItemAdd()
@@ -68,7 +85,6 @@ function opptyItemAdd()
 			"<td style='text-align: left;'><input type='text' class='payment_day' id='payment_day' name='payment_day'></td>"+
 		"</tr>"
 	);
-	
 	
 }
 
@@ -108,58 +124,56 @@ function opptyItemInsert()
 	
 	console.log(opptyItemList);
 	
-	$.ajax({
-		url : ctx + '/opptyItemInsert',
-		type: 'POST',
-		dataType : 'json',
-		data : {
-			oppty_no	  : oppty_no,
-			opptyItemList : opptyItemList
-		},
-		success:function(data){
-			tbody.children().remove();
-			
-			var size = data.length;
-			var total_price = 0;
-			var offer_price = 0;
-			
-			for(var i=0; i<size; i++)
-			{
-//				total = data.qty * list_price - dc_price;
-
-				tbodyContent = "<tr>" +
-				"<td><input type='checkbox' class='del_chk' name='del_chk'></td>" +
-	 			"<td style='text-align: left;'>" +
-	 				"<input type='hidden' class='main_cate_cd' name='main_cate_cd' value='"+ data[i].main_cate_cd +"'>" +
-	 				"<input type='text' class='main_cate_name' name='main_cate_name' value='"+ data[i].main_cate_name +"'></td>" +
-	 			"<td style='text-align: left;'>" +
-	 				"<input type='hidden' class='mid_cate_cd' name='mid_cate_cd' value='"+ data[i].mid_cate_cd +"'>" +
- 					"<input type='text' class='mid_cate_name' name='mid_cate_name' value='"+ data[i].mid_cate_name +"'></td>" +
- 				"<td style='text-align: left;'>" +
-	 				"<input type='hidden' class='small_cate_cd' name='small_cate_cd' value='"+ data[i].small_cate_cd +"'>" +
- 					"<input type='text' class='small_cate_name' name='small_cate_name' value='"+ data[i].small_cate_name +"'></td>" +
- 				"<td style='text-align: left;'>" +
- 					"<input type='text' class='qty' name='qty' value='"+ data[i].qty +"'></td>" +
- 				"<td style='text-align: left;'>" +
- 					"<input type='text' class='list_price' name='list_price' value='"+ data[i].list_price +"'></td>" +
- 				"<td style='text-align: left;'>" +
- 					"<input type='text' class='total_price' name='total_price' value='"+ data[i].total_price +"' readonly='readonly'></td>" +
- 				"<td style='text-align: left;'>" +
- 					"<input type='text' class='dc_price' name='dc_price' value='"+ data[i].dc_price +"'></td>" +
- 				"<td style='text-align: left;'>" +
- 					"<input type='text' class='offer_price' name='offer_price' value='"+ data[i].offer_price +"'></td>" +
- 				"<td style='text-align: left;'>" +
- 					"<input type='text' class='payment_day' name='payment_day' value='"+ data[i].payment_day +"'></td>" +
-	 			"</tr>"
- 					
- 				tbody.append(tbodyContent);
-			}
-			
-		},
-		error:function(request){
-			alert("error : " + request.status)
-		}
-	});
+//	$.ajax({
+//		url : ctx + '/opptyItemInsert',
+//		type: 'POST',
+//		dataType : 'json',
+//		data : {
+//			oppty_no	  : oppty_no,
+//			opptyItemList : opptyItemList
+//		},
+//		success:function(data){
+//			tbody.children().remove();
+//			
+//			var size = data.length;
+//			var total_price = 0;
+//			var offer_price = 0;
+//			
+//			for(var i=0; i<size; i++)
+//			{
+//				tbodyContent = "<tr>" +
+//				"<td><input type='checkbox' class='del_chk' name='del_chk'></td>" +
+//	 			"<td style='text-align: left;'>" +
+//	 				"<input type='hidden' class='main_cate_cd' name='main_cate_cd' value='"+ data[i].main_cate_cd +"'>" +
+//	 				"<input type='text' class='main_cate_name' name='main_cate_name' value='"+ data[i].main_cate_name +"'></td>" +
+//	 			"<td style='text-align: left;'>" +
+//	 				"<input type='hidden' class='mid_cate_cd' name='mid_cate_cd' value='"+ data[i].mid_cate_cd +"'>" +
+// 					"<input type='text' class='mid_cate_name' name='mid_cate_name' value='"+ data[i].mid_cate_name +"'></td>" +
+// 				"<td style='text-align: left;'>" +
+//	 				"<input type='hidden' class='small_cate_cd' name='small_cate_cd' value='"+ data[i].small_cate_cd +"'>" +
+// 					"<input type='text' class='small_cate_name' name='small_cate_name' value='"+ data[i].small_cate_name +"'></td>" +
+// 				"<td style='text-align: left;'>" +
+// 					"<input type='text' class='qty' name='qty' value='"+ data[i].qty +"'></td>" +
+// 				"<td style='text-align: left;'>" +
+// 					"<input type='text' class='list_price' name='list_price' value='"+ data[i].list_price +"'></td>" +
+// 				"<td style='text-align: left;'>" +
+// 					"<input type='text' class='total_price' name='total_price' value='"+ data[i].total_price +"' readonly='readonly'></td>" +
+// 				"<td style='text-align: left;'>" +
+// 					"<input type='text' class='dc_price' name='dc_price' value='"+ data[i].dc_price +"'></td>" +
+// 				"<td style='text-align: left;'>" +
+// 					"<input type='text' class='offer_price' name='offer_price' value='"+ data[i].offer_price +"'></td>" +
+// 				"<td style='text-align: left;'>" +
+// 					"<input type='text' class='payment_day' name='payment_day' value='"+ data[i].payment_day +"'></td>" +
+//	 			"</tr>"
+// 					
+// 				tbody.append(tbodyContent);
+//			}
+//			
+//		},
+//		error:function(request){
+//			alert("error : " + request.status)
+//		}
+//	});
 }
 
 // 삭제버튼 눌렀을 시
@@ -173,14 +187,6 @@ function opptyItemDelte()
 	console.log(delQty);
 	
 	delTr.remove();
-//	if(delQty == 1)
-//	else if(delQty > 1)		// 수량이 1 이상일 경우 수량을 깍는다.
-//	{
-//		var qty = delQty - 1;
-//		
-//		checkbox.parent().parent().children().eq(4).children().val(qty);
-//	}
-	
 }
 
 /* Popup */
@@ -554,6 +560,33 @@ function viewSmallCateList(smallCatePopupPageNum)
 	});
 }
 
+//대/중/소분류 리스트 페이징 엔터 기능
+function catePageNumInputEnter(event) {
+	$(document).ready(function() {
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if (keycode == '13') {
+			var prodMenuPageNum = parseInt($("#catePageInput").val());
+			if ($("#catePageInput").val() == '') {
+				alert("페이지 번호를 입력하세요.")
+				$("#catePageInput").val($("#catePageNum").val());
+				$("#catePageInput").focus();
+			} else if(prodMenuPageNum > parseInt($("#cateEndPageNum").val())) {
+				alert("페이지 번호가 너무 큽니다.");
+				$("#catePageInput").val($("#catePageNum").val());
+				$("#catePageInput").focus();
+			} else if (1 > prodMenuPageNum) {
+				alert("페이지 번호가 너무 작습니다.");
+				$("#catePageInput").val($("#catePageNum").val());
+				$("#catePageInput").focus();
+			} else {
+//				viewProdMenuListForGiftBon(prodMenuPageNum, 2);
+			}
+		}
+		event.stopPropagation();
+	});
+}
+
+// 총금액 계산
 function totalPrice()
 {
 	var inputQty = selQty.val();
@@ -562,12 +595,7 @@ function totalPrice()
 	
 	// total_price에 값 대입
 	total = selQty.parent().parent().children().eq(6).children().eq(0).val(totalPrice);
-	
-//	console.log(selQty.parent().parent().children().eq(5).children().eq(0).val());	// list_price
-//	console.log(selQty.parent().parent().children().eq(6).children().eq(0).val());	// total_price
-	
 }
-
 
 function dcPrice()
 {
@@ -605,48 +633,8 @@ function dcPrice()
 			selDC.parent().parent().children().eq(7).children().eq(0).val(reset);
 		}
 	}
-	
-	
 }
 
-// 체크박스 전체 선택.
-function actAllChk()
-{
-	var checkbox=$('#opptyItemTable tbody').find('input[type=checkbox]');
-	
-	if($('#optyItemChk').is(":checked")){
-		$(checkbox).prop("checked", true);
-	}else{
-		$(checkbox).prop("checked", false);
-	}
-}
-
-
-// 대/중/소분류 리스트 페이징 엔터 기능
-function catePageNumInputEnter(event) {
-	$(document).ready(function() {
-		var keycode = (event.keyCode ? event.keyCode : event.which);
-		if (keycode == '13') {
-			var prodMenuPageNum = parseInt($("#catePageInput").val());
-			if ($("#catePageInput").val() == '') {
-				alert("페이지 번호를 입력하세요.")
-				$("#catePageInput").val($("#catePageNum").val());
-				$("#catePageInput").focus();
-			} else if(prodMenuPageNum > parseInt($("#cateEndPageNum").val())) {
-				alert("페이지 번호가 너무 큽니다.");
-				$("#catePageInput").val($("#catePageNum").val());
-				$("#catePageInput").focus();
-			} else if (1 > prodMenuPageNum) {
-				alert("페이지 번호가 너무 작습니다.");
-				$("#catePageInput").val($("#catePageNum").val());
-				$("#catePageInput").focus();
-			} else {
-//				viewProdMenuListForGiftBon(prodMenuPageNum, 2);
-			}
-		}
-		event.stopPropagation();
-	});
-}
 
 
 
