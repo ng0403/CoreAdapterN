@@ -853,8 +853,8 @@ function checkFileType(filePath)
 
 
 //엑셀 출력 적용 함수
-function download_list_Excel(formID, flg) {
-	
+function download_list_Excel(formID, flg) 
+{
 	var t = flg;
 	var ctx = $("#ctx").val();
 	var form = $("#"+formID);
@@ -863,7 +863,6 @@ function download_list_Excel(formID, flg) {
 	
 	if(confirm("엑셀로 출력하시겠습니까? 대량의 경우 대기시간이 필요합니다.")) 
 	{
-		
 		form.append(excel);
 		form.append(flg);
 		
@@ -871,14 +870,11 @@ function download_list_Excel(formID, flg) {
 		{
 			form.attr("action", "/toCustExcel");
 			form.submit();
-			
 		} 
 		else(flg == 1) 
 		{
 			form.attr("action", "/toCustExcel");
 			form.submit();
-//			form.attr("action", "/task_sch");
-//			form.submit();
 		}
 	} 
 	$("input[name=excel]").val("");

@@ -145,6 +145,15 @@
 			a.cust_no = #{cust_no}
 	</select>
 	
+	<!-- 중복체크 -->
+	<select id="custDuplicate" parameterType="com.core.plus.contact.cust.vo.CustVO" resultType="int">
+		SELECT count(*)
+		FROM 
+			tb_cust
+		WHERE
+			cust_name = #{cust_name} AND resident_no = #{resident_no}
+	</select>
+	
 	<insert id="custInsert" parameterType="com.core.plus.contact.cust.vo.CustVO">
 		<selectKey keyProperty="cust_no" resultType="String" order="BEFORE">
 			SELECT 
@@ -205,8 +214,31 @@
 	
 	<!-- import Test -->
 	<insert id="custExcelInsert" parameterType="com.core.plus.contact.cust.vo.CustVO">
-		insert into tb_cust (cust_no, cust_name, resident_no, chart_no, cust_id, visit_cd, visit_dtl_cd, visit_cn, rec_per, remark_cn)
-		values (#{cust_no}, #{cust_name}, #{resident_no}, #{chart_no}, #{cust_id}, #{visit_cd}, #{visit_dtl_cd}, #{visit_cn}, #{rec_per}, #{remark_cn})
+		<selectKey keyProperty="cust_no" resultType="String" order="BEFORE">
+			SELECT 
+                  IF(SUBSTR(MAX(cust_no), 1, 10) = DATE_FORMAT(now(), '%Y%m%d%H')
+                     , MAX(cust_no)+1
+                     , concat(DATE_FORMAT(now(), '%Y%m%d%H'),'00001')) cust_no
+                  FROM tb_cust USE INDEX(PRIMARY)
+		</selectKey>
+		insert into tb_cust 
+			(cust_no, cust_name, resident_no, chart_no, cust_id, visit_cd, visit_dtl_cd, visit_cn, rec_per, remark_cn)
+		values 
+			(#{cust_no}, #{cust_name}, #{resident_no}, #{chart_no}, #{cust_id}, #{visit_cd}, #{visit_dtl_cd}, #{visit_cn}, #{rec_per}, #{remark_cn})
 	</insert>
+	
+	<update id="custExcelUpdate" parameterType="com.core.plus.contact.cust.vo.CustVO">
+		UPDATE tb_cust
+		SET
+			chart_no = #{chart_no}
+			,cust_id = #{cust_id}
+			,visit_cd = #{visit_cd}
+			,visit_dtl_cd = #{visit_dtl_cd}
+			,visit_cn = #{visit_cn}
+			,rec_per = #{rec_per}
+			,remark_cn = #{remark_cn}
+		WHERE 
+			cust_name = #{cust_name} AND resident_no = #{resident_no}
+	</update>
 	
 </mapper>

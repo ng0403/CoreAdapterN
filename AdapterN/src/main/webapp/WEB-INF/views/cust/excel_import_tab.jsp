@@ -18,6 +18,7 @@
 <script type="text/javascript">
  $(document).ready(function() {
 	 var result = $("#result").val();
+	 console.log(result);
 	 if(result > 0){
 		 opener.parent.location.reload();
 // 		 sleep(1*1000);

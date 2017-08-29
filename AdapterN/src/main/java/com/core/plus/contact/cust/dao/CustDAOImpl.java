@@ -195,14 +195,20 @@ public class CustDAOImpl implements CustDAO{
 				
 				System.out.println("VO : " + custVo);
 				
-				result += sqlSession.insert("cust.custExcelInsert", custVo);
+				// 이름 / 주민번호를 확인하는 쿼리 필요.(중복체크)
+				// check 변수(int) 카운트? 0, 1
+				int check = sqlSession.selectOne("cust.custDuplicate", custVo);	// count 있으면 1 / 0
+				System.out.println(check);
 				
-				if(cust_no != null)
+				if(check == 1)	// 존재하는 회원
 				{
-					System.out.println("sql");
-					// DB Insert
+					result += sqlSession.update("cust.custExcelUpdate", custVo);
 				}
-					
+				else			// 신규 회원
+				{
+					result += sqlSession.insert("cust.custExcelInsert", custVo);
+				}
+				
 			}
 			
 		} catch (InvalidFormatException e) {

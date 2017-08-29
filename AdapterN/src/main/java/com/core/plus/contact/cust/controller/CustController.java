@@ -344,23 +344,7 @@ public class CustController {
 	}
 	
 	// Excel Data Import
-    @RequestMapping(value = "/excelUploadAjax", headers = "content-type=multipart/*", method = RequestMethod.POST)
-    public ModelAndView excelUploadAjax(MultipartHttpServletRequest request)  throws Exception{
-        MultipartFile excelFile = request.getFile("excelFile");
-        System.out.println("excelFile : " + excelFile);
-		
-        System.out.println("엑셀 파일 업로드 컨트롤러");
-        if(excelFile==null || excelFile.isEmpty()){
-            throw new RuntimeException("엑셀파일을 선택 해 주세요.");
-        }
-        
-        int result = custService.excelUpload(excelFile);
-        System.out.println(result);
-        
-        return new ModelAndView("/cust/excel_import_tab", "result", result);
-    }
-    
-//    custExcelUpload
+	// custExcelUpload
     @RequestMapping(value="/custExcelUpload", method = {RequestMethod.POST, RequestMethod.GET})
     public @ResponseBody int custExcelForm(@RequestParam("excelFile") MultipartFile file) throws Exception
     {
@@ -388,3 +372,25 @@ public class CustController {
 	}
 
 }
+
+/**
+ * 안씀.
+ * @RequestMapping(value = "/excelUploadAjax", headers = "content-type=multipart/*", method = RequestMethod.POST)
+    public ModelAndView excelUploadAjax(MultipartHttpServletRequest request)  throws Exception
+    {
+        MultipartFile excelFile = request.getFile("excelFile");
+        System.out.println("excelFile : " + excelFile);
+        Map<String, Object> result1 = new HashMap<String, Object>(0);
+		
+        System.out.println("엑셀 파일 업로드 컨트롤러");
+        if(excelFile==null || excelFile.isEmpty()){
+            throw new RuntimeException("엑셀파일을 선택 해 주세요.");
+        }
+        
+        int result = custService.excelUpload(excelFile);
+        System.out.println(result);
+        
+        return new ModelAndView("/cust/excel_import_tab", "result", result);
+    }
+ *   
+ * */
