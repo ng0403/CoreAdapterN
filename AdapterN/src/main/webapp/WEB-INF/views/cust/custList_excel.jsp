@@ -38,17 +38,32 @@
 <body>
 <table class="taskExcelTbl">
 	<thead>
-		<tr>
-			<td class="header" style="width: 10%;">고객번호</td>
-			<td class="header" style="width: 10%;">고객명</td>
-			<td class="header" style="width: 10%;">차트번호</td>
-			<td class="header" style="width: 10%;">내원경로</td>
-			<td class="header" style="width: 10%;">내원경로상세</td>
-			<td class="header" style="width: 10%;">소개자</td>
-			<td class="header" style="width: 10%;">전화번호</td>
-			<td class="header" style="width: 10%;">주소</td>
-			<td class="header" style="width: 10%;">등록일시</td>
-		</tr>
+		<c:if test="${not empty custExcelExport}">
+			<tr>
+				<td class="header" style="width: 10%;">고객번호</td>
+				<td class="header" style="width: 10%;">고객명</td>
+				<td class="header" style="width: 10%;">차트번호</td>
+				<td class="header" style="width: 10%;">내원경로</td>
+				<td class="header" style="width: 10%;">내원경로상세</td>
+				<td class="header" style="width: 10%;">소개자</td>
+				<td class="header" style="width: 10%;">전화번호</td>
+				<td class="header" style="width: 10%;">주소</td>
+				<td class="header" style="width: 10%;">등록일시</td>
+			</tr>
+		</c:if>
+		<c:if test="${empty custExcelExport}">
+			<tr>
+				<td class="header" style="width: 10%;">고객명</td>
+				<td class="header" style="width: 10%;">주민번호</td>
+				<td class="header" style="width: 10%;">차트번호</td>
+				<td class="header" style="width: 10%;">전능고객ID</td>
+				<td class="header" style="width: 10%;">내원경로</td>
+				<td class="header" style="width: 10%;">내원경로상세</td>
+				<td class="header" style="width: 10%;">내원경로내용</td>
+				<td class="header" style="width: 10%;">소개자</td>
+				<td class="header" style="width: 10%;">특이사항</td>
+			</tr>
+		</c:if>
 	</thead>
 	<tbody>
 		<c:if test="${not empty custExcelExport}">			
@@ -69,15 +84,15 @@
 			
 		<c:if test="${fn:length(custExcelExport) == 0}">
 			<tr style="cursor: default; background-color: white;">
-				<td class="body" id="no" ></td>
-					<td class="body"></td>
-					<td class="body" id="no" ></td>
-					<td class="body"></td>
-					<td class="body"></td>
-					<td class="body"></td>
-					<td class="body"></td>
-					<td class="body"></td>
-					<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
+				<td class="body"></td>
 			</tr>
 		</c:if>
 	</tbody>

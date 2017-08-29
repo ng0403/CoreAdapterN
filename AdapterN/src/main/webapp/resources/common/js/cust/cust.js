@@ -26,14 +26,25 @@ $(document).ready(function(){
 		$(this).prop("checked", true);
 	});	
 	
-//	$(document).on( 'click','.postcodify_search', function(event) {
-//		// 팝업창 표시
-//		console.log("TEMP");
-//		$(this).postcodifyPopUp();
-//	});
-	
+	// 주민번호 숫자만 입력
+	$("#resident_no").keyup(function(event) {
+		
+		if(event.keyCode < 48 || event.keyCode > 57) {
+			alert("숫자만 입력 가능합니다.");
+			this.value = this.value.replace(/[^0-9]/g,'');
+			return false;
+		}
+	});
 });
 
+//취소버튼 
+function cust_cancel(custPageNum)
+{
+	alert("고객 리스트 화면으로 이동합니다.");
+	location.href="/cust?custPageNum=" + custPageNum;
+} 
+
+// 특수문자 예외처리
 function wordch(thisword)
 {
 	console.log(thisword);
@@ -63,6 +74,7 @@ function popupClose()
 	$.unblockUI();
 }
 
+// 검색 초기화 버튼
 function custSchReset()
 {
 	$("#cust_no").val("");
@@ -78,6 +90,7 @@ function custList(custPageNum)
 	location.href = ctx + '/cust?custPageNum=' + custPageNum;
 }
 
+// 고객 삭제
 function custDelete()
 {
 	 console.log($("#cust_no").val());
@@ -326,6 +339,7 @@ function cust_add_save()
 	});
  }
  
+// 편집 눌렀을 때
  function cust_modify()
  {
 	 if($("#cust_single_modify").val() == "편집")
@@ -414,15 +428,6 @@ function cust_modify_save()
 	});
  }
  
-
- 
- // 취소버튼 
- function cust_cancel(custPageNum){
-	 alert("고객 리스트 화면으로 이동합니다.");
-	 location.href="/cust?custPageNum=" + custPageNum;
- } 
- 
-
  // 테이블 행 추가
 function cust_phone_add() {
 	var cust_no = $("#cust_no").val();
@@ -485,14 +490,9 @@ function cust_remove()
 	delTr.remove();
 	
 	var table_tbody = document.getElementById('table_tbody');
-//    if (table_tbody.rows.length < 1) return;
-//     my_tbody.deleteRow(0); // 상단부터 삭제
-//    table_tbody.deleteRow( table_tbody.rows.length-1 ); // 하단부터 삭제
-	
 }
 
 // 전화번호 등록
-//function cust_phone_save(cust_no)
 function cust_phone_save()
 {
 	var cust_no = $("#cust_no").val();
@@ -515,7 +515,6 @@ function cust_phone_save()
 		else
 			primary_yn= "N";
 			
-		
 		console.log($(this).children().eq(1).children().eq(0).val());
 		phone_type_cd.push($(this).children().eq(1).children().eq(0).val());
 		country_cd.push($(this).children().eq(2).children().eq(0).val());
@@ -661,17 +660,12 @@ function custAddr_remove() {
 	
 	var checkbox=$('#custA_form_tbl tbody').find('input[type=checkbox]:checked');	// 체크된 체크박스를 담는다.
 	var delTr = checkbox.parent().parent();											// 체크된 체크박스의 tr을 담는다.
-//	var delQty = checkbox.parent().parent().children().eq(4).children().val();		// 체크된 체크박스의 item의 수량을 담는다.
 	
 	console.log(delTr);
 	
 	delTr.remove();
 	
 	var table_tbody = document.getElementById('tableAddr_tbody');
-//    if (table_tbody.rows.length < 1) return;
-//     my_tbody.deleteRow(0); // 상단부터 삭제
-//    table_tbody.deleteRow( table_tbody.rows.length-1 ); // 하단부터 삭제
-	
 }
 
 //function cust_addr_save(cust_no)
@@ -839,11 +833,8 @@ function check()
         		}
     	};
     	$("#excelUploadForm").ajaxSubmit(options);
-//    	$("#excelUploadForm").append(excelFile);
-//    	$("#excelUploadForm").submit();
 	}
 	
-//	opener.parent.location.reload();
 }
 
 //엑셀 파일 추가 fucntion

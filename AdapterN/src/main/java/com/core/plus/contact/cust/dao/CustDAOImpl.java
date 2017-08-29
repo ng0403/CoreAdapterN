@@ -162,7 +162,6 @@ public class CustDAOImpl implements CustDAO{
 					visit_cd = String.format("%03d", tmp);
 					
 					System.out.println("visit : " + visit_cd);
-					
 				}
 				
 				cell = row.getCell(5);

@@ -83,10 +83,10 @@ $(document).ready(function(){
 			<th  style="text-align:right;">주민번호</th>
 			<td>
 				<c:if test="${ flg == 2 }">
-	 			 	<input type="text" id="resident_no" name="resident_no" value="${custDlist.resident_no }" readonly="readonly">
+	 			 	<input type="text" id="resident_no" name="resident_no" value="${custDlist.resident_no }" readonly="readonly" maxlength="13">
 				</c:if>
 				<c:if test="${ flg == 1 }">
-	 			 	<input type="text" id="resident_no" name="resident_no" value="${custDlist.resident_no }" >
+	 			 	<input type="text" id="resident_no" name="resident_no" value="${custDlist.resident_no }" maxlength="13">
 				</c:if>
   			</td>
 		</tr>
@@ -203,10 +203,10 @@ $(document).ready(function(){
 			<th  style="text-align:right;">특이사항</th>
 			<td colspan="3">
 				<c:if test="${ flg == 2 }">
-					<input type="text" id="remark_cn" name="remark_cn" readonly="readonly" value="${custDlist.remark_cn}" >
+					<input type="text" id="remark_cn" name="remark_cn" readonly="readonly" value="${custDlist.remark_cn}" style="height: 50px;">
 				</c:if>
 				<c:if test="${ flg == 1 }">
-					<input type="text" id="remark_cn" name="remark_cn" value="${custDlist.remark_cn}">
+					<input type="text" id="remark_cn" name="remark_cn" value="${custDlist.remark_cn}" style="height: 50px;">
 				</c:if>		
  			</td>
  		</tr>
