@@ -38,22 +38,22 @@ $(document).ready(function(){
 	});
 
 	// 숫자만 입력할 수 있게 한다.
-	$(document).on('keyup', '.qty', function(event){
-		if(event.keyCode < 48 || event.keyCode > 57) {
-			alert("숫자만 입력 가능합니다.");
-			this.value = this.value.replace(/[^0-9]/g,'');
-			return false;
-		}
-	});
+//	$(document).on('keyup', '.qty', function(event){
+//		if(event.keyCode < 48 || event.keyCode > 57) {
+//			alert("숫자만 입력 가능합니다.");
+//			this.value = this.value.replace(/[^0-9]/g,'');
+//			return false;
+//		}
+//	});
 	
 	// 숫자만 입력할 수 있게 한다.
-	$(document).on('keyup', '.offer_price', function(event){
-		if(event.keyCode < 48 || event.keyCode > 57) {
-			alert("숫자만 입력 가능합니다.");
-			this.value = this.value.replace(/[^0-9]/g,'');
-			return false;
-		}
-	});
+//	$(document).on('keyup', '.offer_price', function(event){
+//		if(event.keyCode < 48 || event.keyCode > 57) {
+//			alert("숫자만 입력 가능합니다.");
+//			this.value = this.value.replace(/[^0-9]/g,'');
+//			return false;
+//		}
+//	});
 });
 
 //체크박스 전체 선택.

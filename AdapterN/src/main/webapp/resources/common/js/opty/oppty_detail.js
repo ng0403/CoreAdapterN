@@ -175,7 +175,7 @@ function viewCustList(custPopupPageNum)
         	viewLoadingHide();	
         },
 		error: function(data) { 
-			alert("고객목록을 불러오지 못했습니다.");
+			alert("매출기회목록을 불러오지 못했습니다.");
 			return false;
 		}
 	});
@@ -375,16 +375,6 @@ function opptySingleAdd()
 		if($("#score").val() == 0 || $("#score").val() == null || $("#score").val() == "")
 		{
 			$("#score").val(0);
-		}
-		if(wordch($("#sur_plan_cn").val()) == false)
-		{
-			alert("시/수술계획는 특수문자 입력불가능합니다.");
-			return false;
-		}
-		if(wordch($("#description").val()) == false)
-		{
-			alert("특이사항에는 특수문자는 입력불가능합니다.");
-			return false;
 		}
 		
 		var ynChk = confirm("해당 기회를 추가하시겠습니까?");

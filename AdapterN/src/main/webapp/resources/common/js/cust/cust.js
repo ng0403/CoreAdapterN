@@ -27,14 +27,14 @@ $(document).ready(function(){
 	});	
 	
 	// 주민번호 숫자만 입력
-	$("#resident_no").keyup(function(event) {
-		
-		if(event.keyCode < 48 || event.keyCode > 57) {
-			alert("숫자만 입력 가능합니다.");
-			this.value = this.value.replace(/[^0-9]/g,'');
-			return false;
-		}
-	});
+//	$("#resident_no").keyup(function(event) {
+//		
+//		if(event.keyCode < 48 || event.keyCode > 57) {
+//			alert("숫자만 입력 가능합니다.");
+//			this.value = this.value.replace(/[^0-9]/g,'');
+//			return false;
+//		}
+//	});
 });
 
 //취소버튼 
@@ -292,16 +292,6 @@ function cust_add_save()
 		alert("내원경로상세를 선택해주세요.");
 		return false;
 	}
-	if(wordch($("#visit_cn").val()) == false)
-	{
-		alert("내원경로세부는 특수문자 입력불가능합니다.");
-		return false;
-	}
-	if(wordch($("#remark_cn").val()) == false)
-	{
-		alert("특이사항에는 특수문자 입력불가능합니다.");
-		return false;
-	}
 	 
 	$(document).ready(function() {
 		var cust_no = $("#cust_no").val();
@@ -326,9 +316,9 @@ function cust_add_save()
 				success : function(data) {
 					console.log(data);
 					$("#cust_no").val(data.cust_no);
-					console.log($("#cust_no").val());
 					alert("고객이 저장되었습니다.");
-					console.log($("#cust_no").val());
+					alert("고객 리스트로 이동합니다.");
+					location.href = ctx + '/cust';
 				}, error : function(request,status,error) {
 				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
@@ -383,16 +373,6 @@ function cust_modify_save()
 	if($("#visit_dtl_cd").val() == null || $("#visit_dtl_cd").val() == "")
 	{
 		alert("내원경로상세를 선택해주세요.");
-		return false;
-	}
-	if(wordch($("#visit_cn").val()) == false)
-	{
-		alert("내원경로세부는 특수문자 입력불가능합니다.");
-		return false;
-	}
-	if(wordch($("#remark_cn").val()) == false)
-	{
-		alert("특이사항에는 특수문자 입력불가능합니다.");
 		return false;
 	}
 	
@@ -485,11 +465,9 @@ function cust_remove()
 	var checkbox=$('#custP_form_tbl tbody').find('input[type=checkbox]:checked');	// 체크된 체크박스를 담는다.
 	var delTr = checkbox.parent().parent();											// 체크된 체크박스의 tr을 담는다.
 	
-	console.log(delTr);
-	
 	delTr.remove();
 	
-	var table_tbody = document.getElementById('table_tbody');
+//	var table_tbody = document.getElementById('table_tbody');
 }
 
 // 전화번호 등록
