@@ -8,6 +8,7 @@
 
 var ctx = $("#ctx").val();
 var tmp;
+var count = 0;
 var selQty;
 var selDC;
 var paymentDay;
@@ -33,9 +34,25 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.payment_day', function(event) {
-		$(this).removeClass('hasDatepicker').datepicker();
-//		paymentDay = $(this);
-//		paymenyValue();
+		console.log($(this));
+	});
+
+	// 숫자만 입력할 수 있게 한다.
+	$(document).on('keyup', '.qty', function(event){
+		if(event.keyCode < 48 || event.keyCode > 57) {
+			alert("숫자만 입력 가능합니다.");
+			this.value = this.value.replace(/[^0-9]/g,'');
+			return false;
+		}
+	});
+	
+	// 숫자만 입력할 수 있게 한다.
+	$(document).on('keyup', '.offer_price', function(event){
+		if(event.keyCode < 48 || event.keyCode > 57) {
+			alert("숫자만 입력 가능합니다.");
+			this.value = this.value.replace(/[^0-9]/g,'');
+			return false;
+		}
 	});
 });
 
@@ -78,14 +95,15 @@ function opptyItemAdd()
 				"<input type='hidden' class='small_cate_cd' name='small_cate_cd' value=''>" +
 				"<input type='text' class='small_cate_name' name='small_cate_name' readonly='readonly'></td>"+
 			"<td style='text-align: left;'><input type='text' class='qty' name='qty' onkeyup='totalPrice();'></td>"+
-			"<td style='text-align: left;'><input type='text' class='list_price' name='list_price'></td>"+
+			"<td style='text-align: left;'><input type='text' class='list_price' name='list_price' readonly='readonly'></td>"+
 			"<td style='text-align: left;'><input type='text' class='total_price' name='total_price' readonly='readonly'></td>"+
 			"<td style='text-align: left;'><input type='text' class='dc_price' name='dc_price' readonly='readonly'></td>"+
 			"<td style='text-align: left;'><input type='text' class='offer_price' name='offer_price' onkeyup='dcPrice();'></td>"+
-			"<td style='text-align: left;'><input type='text' class='payment_day' id='payment_day' name='payment_day'></td>"+
+			"<td style='text-align: left;'><input type='text' class='payment_day' id='payment_day"+ count+"' name='payment_day' readonly='readonly'></td>"+
 		"</tr>"
 	);
-	
+	count++;	// datepicker 값을 넣기 위한 id 카운트
+	$(document).find("input[class=payment_day]").removeClass('hasDatepicker').datepicker();		// datepicker 동적 생성
 }
 
 function opptyItemInsert()
@@ -124,56 +142,53 @@ function opptyItemInsert()
 	
 	console.log(opptyItemList);
 	
-//	$.ajax({
-//		url : ctx + '/opptyItemInsert',
-//		type: 'POST',
-//		dataType : 'json',
-//		data : {
-//			oppty_no	  : oppty_no,
-//			opptyItemList : opptyItemList
-//		},
-//		success:function(data){
-//			tbody.children().remove();
-//			
-//			var size = data.length;
-//			var total_price = 0;
-//			var offer_price = 0;
-//			
-//			for(var i=0; i<size; i++)
-//			{
-//				tbodyContent = "<tr>" +
-//				"<td><input type='checkbox' class='del_chk' name='del_chk'></td>" +
-//	 			"<td style='text-align: left;'>" +
-//	 				"<input type='hidden' class='main_cate_cd' name='main_cate_cd' value='"+ data[i].main_cate_cd +"'>" +
-//	 				"<input type='text' class='main_cate_name' name='main_cate_name' value='"+ data[i].main_cate_name +"'></td>" +
-//	 			"<td style='text-align: left;'>" +
-//	 				"<input type='hidden' class='mid_cate_cd' name='mid_cate_cd' value='"+ data[i].mid_cate_cd +"'>" +
-// 					"<input type='text' class='mid_cate_name' name='mid_cate_name' value='"+ data[i].mid_cate_name +"'></td>" +
-// 				"<td style='text-align: left;'>" +
-//	 				"<input type='hidden' class='small_cate_cd' name='small_cate_cd' value='"+ data[i].small_cate_cd +"'>" +
-// 					"<input type='text' class='small_cate_name' name='small_cate_name' value='"+ data[i].small_cate_name +"'></td>" +
-// 				"<td style='text-align: left;'>" +
-// 					"<input type='text' class='qty' name='qty' value='"+ data[i].qty +"'></td>" +
-// 				"<td style='text-align: left;'>" +
-// 					"<input type='text' class='list_price' name='list_price' value='"+ data[i].list_price +"'></td>" +
-// 				"<td style='text-align: left;'>" +
-// 					"<input type='text' class='total_price' name='total_price' value='"+ data[i].total_price +"' readonly='readonly'></td>" +
-// 				"<td style='text-align: left;'>" +
-// 					"<input type='text' class='dc_price' name='dc_price' value='"+ data[i].dc_price +"'></td>" +
-// 				"<td style='text-align: left;'>" +
-// 					"<input type='text' class='offer_price' name='offer_price' value='"+ data[i].offer_price +"'></td>" +
-// 				"<td style='text-align: left;'>" +
-// 					"<input type='text' class='payment_day' name='payment_day' value='"+ data[i].payment_day +"'></td>" +
-//	 			"</tr>"
-// 					
-// 				tbody.append(tbodyContent);
-//			}
-//			
-//		},
-//		error:function(request){
-//			alert("error : " + request.status)
-//		}
-//	});
+	$.ajax({
+		url : ctx + '/opptyItemInsert',
+		type: 'POST',
+		dataType : 'json',
+		data : {
+			oppty_no	  : oppty_no,
+			opptyItemList : opptyItemList
+		},
+		success:function(data){
+			tbody.children().remove();
+			
+			var size = data.length;
+			for(var i=0; i<size; i++)
+			{
+				tbodyContent = "<tr>" +
+				"<td><input type='checkbox' class='del_chk' name='del_chk'></td>" +
+	 			"<td style='text-align: left;'>" +
+	 				"<input type='hidden' class='main_cate_cd' name='main_cate_cd' value='"+ data[i].main_cate_cd +"'>" +
+	 				"<input type='text' class='main_cate_name' name='main_cate_name' value='"+ data[i].main_cate_name +"'></td>" +
+	 			"<td style='text-align: left;'>" +
+	 				"<input type='hidden' class='mid_cate_cd' name='mid_cate_cd' value='"+ data[i].mid_cate_cd +"'>" +
+ 					"<input type='text' class='mid_cate_name' name='mid_cate_name' value='"+ data[i].mid_cate_name +"'></td>" +
+ 				"<td style='text-align: left;'>" +
+	 				"<input type='hidden' class='small_cate_cd' name='small_cate_cd' value='"+ data[i].small_cate_cd +"'>" +
+ 					"<input type='text' class='small_cate_name' name='small_cate_name' value='"+ data[i].small_cate_name +"'></td>" +
+ 				"<td style='text-align: left;'>" +
+ 					"<input type='text' class='qty' name='qty' value='"+ data[i].qty +"'></td>" +
+ 				"<td style='text-align: left;'>" +
+ 					"<input type='text' class='list_price' name='list_price' value='"+ data[i].list_price +"'></td>" +
+ 				"<td style='text-align: left;'>" +
+ 					"<input type='text' class='total_price' name='total_price' value='"+ data[i].total_price +"' readonly='readonly'></td>" +
+ 				"<td style='text-align: left;'>" +
+ 					"<input type='text' class='dc_price' name='dc_price' value='"+ data[i].dc_price +"'></td>" +
+ 				"<td style='text-align: left;'>" +
+ 					"<input type='text' class='offer_price' name='offer_price' value='"+ data[i].offer_price +"'></td>" +
+ 				"<td style='text-align: left;'>" +
+ 					"<input type='text' class='payment_day' name='payment_day' value='"+ data[i].payment_day +"'></td>" +
+	 			"</tr>"
+ 					
+ 				tbody.append(tbodyContent);
+			}
+			
+		},
+		error:function(request){
+			alert("error : " + request.status)
+		}
+	});
 }
 
 // 삭제버튼 눌렀을 시
@@ -336,8 +351,6 @@ function midCatePopup()
 			viewMidCateList(1);
 		}
 	});
-	
-	
 }
 
 function viewMidCateList(mainCatePopupPageNum)
@@ -464,8 +477,6 @@ function smallCatePopup()
 			viewSmallCateList(1);
 		}
 	});
-	
-	
 }
 
 function viewSmallCateList(smallCatePopupPageNum)
@@ -607,8 +618,6 @@ function dcPrice()
 	offerPrice = parseInt(offerPrice);
 	reset = parseInt(reset);
 
-	console.log(offerPrice);
-	console.log(isNaN(offerPrice));
 	if(isNaN(offerPrice))
 	{
 		offerPrice = 0;
