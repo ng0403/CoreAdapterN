@@ -45,23 +45,23 @@
 					<tr style="background-color: white; cursor:default; border:0;">
 						 <th style="width:5%;">기회번호</th>
 						 <td style="width:15%;">
-						    <input type="text" id="oppty_no_srch" name="oppty_no_srch" value="" style="width:80%" onkeypress="cupnEnterSearch(event);">
+						    <input type="text" id="oppty_no_srch" name="oppty_no_srch" value="" style="width:80%" onkeypress="opptySchList(event);">
 						 </td>
 						 
 						 <th style="width:5%;">기회명</th>
 						 <td style="width:15%;">
-						    <input type="text" id="oppty_name_srch" name="oppty_name_srch" value="" style="width:80%" onkeypress="cupnEnterSearch(event);">
+						    <input type="text" id="oppty_name_srch" name="oppty_name_srch" value="" style="width:80%" onkeypress="opptySchList(event);">
 						 </td>
 						 
 						 <th style="width:5%;">고객명</th>
 						 <td style="width:15%;">
-						    <input type="text" id="cust_name_srch" name="cust_name_srch" value="" style="width:80%" onkeypress="cupnEnterSearch(event);">
+						    <input type="text" id="cust_name_srch" name="cust_name_srch" value="" style="width:80%" onkeypress="opptySchList(event);">
 						 </td>
 					</tr>
 					<tr>
 						<th style="width:5%;">담당자명</th>
 						<td style="width:15%;">
-						    <input type="text" id="emp_name_srch" name="emp_name_srch" value="" style="width:80%" onkeypress="cupnEnterSearch(event);">
+						    <input type="text" id="emp_name_srch" name="emp_name_srch" value="" style="width:80%" onkeypress="opptySchList(event);">
 						</td >
 						
 						<th style="width:5%;">기회상태</th>
@@ -173,7 +173,7 @@
 		 	 <input type="button" class="func_btn" id="oppty_single_add" value="단건등록" onclick="opptySingleAddForm();">
 		 	 <input type="button" class="func_btn" id="oppty_multi_add" value="다건등록" onclick="opptyExcelImportOpen();">
 		 	 <input type="button" class="func_btn" id="exportBtn"      value="엑셀출력"  onclick="download_list_Excel('opptyListForm', 0);" >	
-		 	 <input type="button" class="func_btn" id="exportBtn"      value="엑셀Form 출력"  onclick="download_list_Excel('opptyListForm', 1);" >	
+		 	 <input type="button" class="func_btn" id="exportBtn"      value="엑셀템플릿 출력"  onclick="download_list_Excel('opptyListForm', 1);" >	
 		</div>
 	 	<div class="pagingDiv">
 			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>

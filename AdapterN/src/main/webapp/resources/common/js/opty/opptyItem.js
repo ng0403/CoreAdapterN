@@ -147,6 +147,8 @@ function opptyItemInsert()
 		success:function(data){
 			tbody.children().remove();
 			
+			alert("매출기회 상품이 추가되었습니다.");
+			
 			var size = data.length;
 			for(var i=0; i<size; i++)
 			{

@@ -257,26 +257,52 @@ function download_list_Excel(formID, flg) {
 	var excel = $('<input type="hidden" value="true" name="excel">');
 	var flg = $("<input type='hidden' value='"+ flg +"' name='flg'>");
 	
-	if(confirm("엑셀로 출력하시겠습니까? 대량의 경우 대기시간이 필요합니다.")) 
+	if(flg == 0)
 	{
-		form.append(excel);
-		form.append(flg);
-		
-		if(flg == 0) 
+		if(confirm("엑셀로 출력하시겠습니까? 대량의 경우 대기시간이 필요합니다.")) 
 		{
-			form.attr("action", "/toOpptyExcel");
-			form.submit();
+			form.append(excel);
+			form.append(flg);
 			
-		} 
-		else(flg == 1) 
-		{
-			form.attr("action", "/toOpptyExcel");
-			form.submit();
+//			if(flg == 0) 
+//			{
+				form.attr("action", "/toOpptyExcel");
+				form.submit();
+				
+//			} 
+//			else(flg == 1) 
+//			{
+				form.attr("action", "/toOpptyExcel");
+				form.submit();
 //			form.attr("action", "/task_sch");
 //			form.submit();
-		}
-	} 
-	$("input[name=excel]").val("");
+//			}
+		} 
+		$("input[name=excel]").val("");
+	}
+	else if(flg == 1)
+	{
+		if(confirm("엑셀 템플릿을 출력합니다.")) 
+		{
+			form.append(excel);
+			form.append(flg);
+			
+//			if(flg == 0) 
+//			{
+//				form.attr("action", "/toOpptyExcel");
+//				form.submit();
+//				
+//			} 
+//			else(flg == 1) 
+//			{
+				form.attr("action", "/toOpptyExcel");
+				form.submit();
+//			form.attr("action", "/task_sch");
+//			form.submit();
+//			}
+		} 
+		$("input[name=excel]").val("");
+	}
 }
 
 

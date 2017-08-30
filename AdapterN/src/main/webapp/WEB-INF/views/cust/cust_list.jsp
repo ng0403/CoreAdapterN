@@ -52,15 +52,15 @@ var vititDtlCdList = new Array();
 					<tr style="background-color: white; cursor:default; border:0;">
 						 <th style="width:5%;">고객번호</th>
 						 <td style="width:15%;">
-						    <input type="text" id="cust_no" name="cust_no" value="" style="width:80%" onkeypress="cupnEnterSearch(event);">
+						    <input type="text" id="cust_no" name="cust_no" value="" style="width:80%" onkeypress="searchKeyword(event);">
 						 </td> 
 						 <th style="width:5%;">고객명</th>
 						 <td style="width:15%;">
-						    <input type="text" id="cust_name" name="cust_name" value="" style="width:80%" onkeypress="cupnEnterSearch(event);">
+						    <input type="text" id="cust_name" name="cust_name" value="" style="width:80%" onkeypress="searchKeyword(event);">
 						 </td>
 						  <th style="width:5%;">차트번호</th>
 						 <td style="width:15%;">
-						    <input type="text" id="chart_no" name="chart_no" value="" style="width:80%" onkeypress="cupnEnterSearch(event);">
+						    <input type="text" id="chart_no" name="chart_no" value="" style="width:80%" onkeypress="searchKeyword(event);">
 						 </td>
 					  
  		                 <td style="width: 12%;">
@@ -89,12 +89,12 @@ var vititDtlCdList = new Array();
 					
 						 <th style="width:5%;">소개자</th>
 						 <td style="width:15%;">
-							<input type="text" id="rec_per" name="rec_per" value=""  style="width : 80%;" onkeypress="cupnEnterSearch(event);">
+							<input type="text" id="rec_per" name="rec_per" value=""  style="width : 80%;" onkeypress="searchKeyword(event);">
  						 </td>
 						 
 						  <th style="width:5%;">전화번호</th>
 						 <td style="width:15%;">
-						    <input type="text" id="phone_no" name="phone_no" value="" style="width:80%" onkeypress="cupnEnterSearch(event);" placeholder="-없이 숫자만 입력하세요.">
+						    <input type="text" id="phone_no" name="phone_no" value="" style="width:80%" onkeypress="searchKeyword(event);" placeholder="-없이 숫자만 입력하세요.">
 						 </td>
 					
 					</tr>
@@ -150,7 +150,7 @@ var vititDtlCdList = new Array();
  		 	 <input type="button" class="func_btn" id="cust_add" value="단건등록" onclick="cust_add();">
 		 	 <input type="button" class="func_btn" id="lead_add_multi" value="다건등록" onclick="excelImportOpen();">
 		 	 <input type="button" class="func_btn" id="exportBtn"      value="엑셀출력"  onclick="download_list_Excel('custListForm', 0);" >
-		 	 <input type="button" class="func_btn" id="exportBtn"      value="엑셀Form 출력"  onclick="download_list_Excel('custListForm', 1);" >
+		 	 <input type="button" class="func_btn" id="exportBtn"      value="엑셀템플릿 출력"  onclick="download_list_Excel('custListForm', 1);" >
 		</div>
 	 	<div class="pagingDiv">
 			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>

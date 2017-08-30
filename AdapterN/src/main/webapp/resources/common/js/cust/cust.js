@@ -344,6 +344,7 @@ function cust_add_save()
 		$("#cust_id").prop("readonly", false);
 		$("#reason_cd").prop("readonly", false);
 		$("#remark_cn").prop("readonly", false);
+		$("#rec_per").prop("readonly", false);
 
 		$("#visit_cd").prop("disabled", false);
 		$("#visit_dtl_cd").prop("disabled", false);
@@ -398,6 +399,9 @@ function cust_modify_save()
 				dataType : "json",
 				success : function(data) {
 					alert("고객이 수정되었습니다.");
+					alert("고객 리스트로 이동합니다.");
+					
+					location.href = ctx + "/cust";
 				}, error : function(request,status,error) {
 				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
@@ -698,7 +702,7 @@ function cust_addr_save()
 			console.log(data);
 			tbody.children().remove();
 			
-			alert("우편번호가 입력되었습니다.");
+			alert("우편번호가 등록되었습니다.");
 			
 			var size = data.length;
 			
@@ -839,23 +843,49 @@ function download_list_Excel(formID, flg)
 	var excel = $('<input type="hidden" value="true" name="excel">');
 	var flg = $("<input type='hidden' value='"+ flg +"' name='flg'>");
 	
-	if(confirm("엑셀로 출력하시겠습니까? 대량의 경우 대기시간이 필요합니다.")) 
+	console.log(t);
+	
+	if(t == 0)
 	{
-		form.append(excel);
-		form.append(flg);
-		
-		if(flg == 0) 
+		if(confirm("엑셀로 출력하시겠습니까? 대량의 경우 대기시간이 필요합니다.")) 
 		{
-			form.attr("action", "/toCustExcel");
-			form.submit();
+			form.append(excel);
+			form.append(flg);
+			
+//			if(flg == 0) 
+//			{
+				form.attr("action", "/toCustExcel");
+				form.submit();
+//			} 
+//			else(flg == 1) 
+//			{
+//				form.attr("action", "/toCustExcel");
+//				form.submit();
+//			}
 		} 
-		else(flg == 1) 
+		$("input[name=excel]").val("");
+	}
+	else if(t == 1)
+	{
+		if(confirm("엑셀 템플릿을 출력합니다.")) 
 		{
-			form.attr("action", "/toCustExcel");
-			form.submit();
-		}
-	} 
-	$("input[name=excel]").val("");
+			form.append(excel);
+			form.append(flg);
+//			
+//			if(flg == 0) 
+//			{
+//				form.attr("action", "/toCustExcel");
+//				form.submit();
+//			} 
+//			else(flg == 1) 
+//			{
+				form.attr("action", "/toCustExcel");
+				form.submit();
+//			}
+		} 
+		$("input[name=excel]").val("");
+	}
+	
 }
 
 

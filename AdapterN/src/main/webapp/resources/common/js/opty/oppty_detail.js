@@ -442,6 +442,7 @@ function opptyMody()
 		$("#purchase_type_sel").prop("disabled", false);
 		$("#payment_cd_sel").prop("disabled", false);
 		$("#rec_per_cd_sel").prop("disabled", false);
+		$("#exp_close_day").prop("disabled", false);
 		
 		return false;
 	}
