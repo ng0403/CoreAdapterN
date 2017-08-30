@@ -435,7 +435,7 @@ function viewOpptyList(opptyPopupPageNum)
 				+"<a onclick=\"viewOpptyList("+data.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
 				+"<a onclick=\"viewOpptyList("+(data.pageNum+1)+");\" id='pNum' style='cursor: pointer;'> ▶ </a>";
 			}
-			$("#empPopupPagingDiv").append(pageContent);
+			$("#opptyPopupPagingDiv").append(pageContent);
 			
 		},
 		beforeSend: function(){
