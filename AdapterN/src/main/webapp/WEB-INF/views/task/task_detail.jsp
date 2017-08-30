@@ -217,7 +217,7 @@
 	 			</td>
 			</tr>
 	 		<tr>
-				<th id="impTh" style="text-align:right;">* 특이사항</th>
+				<th style="text-align:right;">특이사항</th>
 				<td>
 					<c:if test="${flg == 1 }">
 			 			<input type="text" id="remark_cn" name="remark_cn" value="${taskDetail.remark_cn}" >

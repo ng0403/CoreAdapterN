@@ -79,14 +79,7 @@ function task_add_save() {
 		} else if (wordch($("#location").val()) == false) {
 			alert("진행장소에 특수문자는 입력 불가능합니다.");
 			return false;
-		} else if ($("#remark_cn").val() == 0 || $("#remark_cn").val() == null || $("#remark_cn").val() == "") {
-			alert("특이사항을 입력하세요.");
-			$("#remark_cn").focus();
-			return false;
-		} else if (wordch($("#remark_cn").val()) == false) {
-			alert("특이사항에 특수문자는 입력 불가능합니다.");
-			return false;
-		}
+		} 
 	 	
 		var ynChk = confirm("해당 상담을 저장하시겠습니까?");
 		if(ynChk){
@@ -207,14 +200,7 @@ function task_modify_save() {
 		} else if (wordch($("#location").val()) == false) {
 			alert("진행장소에 특수문자는 입력 불가능합니다.");
 			return false;
-		} else if ($("#remark_cn").val() == 0 || $("#remark_cn").val() == null || $("#remark_cn").val() == "") {
-			alert("특이사항을 입력하세요.");
-			$("#remark_cn").focus();
-			return false;
-		} else if (wordch($("#remark_cn").val()) == false) {
-			alert("특이사항에 특수문자는 입력 불가능합니다.");
-			return false;
-		}
+		} 
 	 
 		var ynChk = confirm("해당 상담을 수정하시겠습니까?");
 		if(ynChk){
