@@ -235,24 +235,6 @@ function exportToExcel(){
    document.taskExcelForm.submit();
 }
 
-
-//엑셀 Import 팝업	
-//function taskExcelImportOpen() 
-//{
-//	var popWidth  = '520'; // 파업사이즈 너비
-//	var popHeight = '160'; // 팝업사이즈 높이
-//	var winHeight = document.body.clientHeight;	// 현재창의 높이
-//	var winWidth = document.body.clientWidth;	// 현재창의 너비
-//	var winX = window.screenLeft;	// 현재창의 x좌표
-//	var winY = window.screenTop;	// 현재창의 y좌표
-//
-//	var popX = winX + (winWidth - popWidth)/2;
-//	var popY = winY + (winHeight - popHeight)/2;
-//	var popUrl = "taskExcelImportTab";
-//	var popOption = "width=520, height=160, resize=no, scrollbars=no, status=no, location=no, directories=no; ,top=pop,left=popX";
-//	window.open(popUrl, "_blank","width="+popWidth+"px,height="+popHeight+"px,top="+popY+",left="+popX);
-//}
-
 //popup
 function taskExcelImportOpen()
 {
@@ -311,11 +293,7 @@ function taskExcelCheck()
     		}
 		};
 		$("#excelUploadForm").ajaxSubmit(options);
-//		$("#excelUploadForm").append(excelFile);
-//		$("#excelUploadForm").submit();
 		}
-		
-	//	opener.parent.location.reload();
 }
 
 //엑셀 파일 추가 fucntion

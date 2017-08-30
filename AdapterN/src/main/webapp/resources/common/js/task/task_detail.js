@@ -4,7 +4,7 @@
 * task_modify_btn() 					: 상담 편집버튼 클릭 시 disabled  해제
 * task_modify_save()					: 상담 수정 
 * task_del_save()						: 상담 삭제
-* task_cancel()							: 상담 취소버튼(리스트로 이동)
+* task_cancel()							: 상담 리스트로 이동
 */
 
 var ctx = $("#ctx").val();

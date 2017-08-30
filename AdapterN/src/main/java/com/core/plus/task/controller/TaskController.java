@@ -67,21 +67,6 @@ public class TaskController {
 		Map<String, Object> taskMap = new HashMap<String, Object>();
 		taskMap.put("taskPageNum", taskPageNum);
 		
-		
-		
-		int flg=0;
-		//엑셀 출력 부분(리스트 전체 출력)
-		if(excel != null){
-			if(excel.equals("true")){
-				
-				ModelAndView mav = new ModelAndView("/task/taskList_excel");
-				List<TaskVO> taskExcelExport = taskService.taskExcelExport(taskMap);
-				mav.addObject("taskExcelExport", taskExcelExport);
-
-				return mav;
-			}
-		}
-		
 		// paging
 		PagerVO page = taskService.getTaskListRow(taskMap);
 		taskMap.put("page", page);
@@ -151,6 +136,7 @@ public class TaskController {
 		Map<String, Object> taskMap = new HashMap<String, Object> ();
 		if(temp == '0')
 		{
+			// 검색 조건
 			taskMap.put("task_no_srch", task_no_srch);
 			taskMap.put("subject_srch", subject_srch);
 			taskMap.put("cust_name_srch", cust_name_srch);
@@ -216,7 +202,7 @@ public class TaskController {
 		}
 	}
 	
-	/* CUD */
+	// 추가
 	@RequestMapping(value="task_single_add", method=RequestMethod.POST)
 	public @ResponseBody int taskSingleInsert(TaskVO taskVo, HttpSession session, HttpServletRequest request,
 												@RequestParam(value = "taskPageNum", defaultValue = "1") int taskPageNum) {
