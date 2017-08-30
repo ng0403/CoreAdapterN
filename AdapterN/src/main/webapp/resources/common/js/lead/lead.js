@@ -564,7 +564,7 @@ function download_Excel_form(a) {
 
 
 //엑셀 Import 팝업	
-function leadExcelImportOpen() 
+/*function leadExcelImportOpen() 
 {
 	var popWidth  = '520'; // 파업사이즈 너비
 	var popHeight = '160'; // 팝업사이즈 높이
@@ -578,6 +578,33 @@ function leadExcelImportOpen()
 	var popUrl = "leadExcelImportTab";
 	var popOption = "width=520, height=160, resize=no, scrollbars=no, status=no, location=no, directories=no; ,top=pop,left=popX";
 	window.open(popUrl, "_blank","width="+popWidth+"px,height="+popHeight+"px,top="+popY+",left="+popX);
+}*/
+
+
+//excel 다중 import popup
+function leadExcelImportOpen()
+{
+ 
+	// 팝업창 표시
+	$.blockUI({ message: $('#multiInsertModalDiv'),
+    	css: { 
+    	'left': '65%',
+    	'top': '50%',
+    	'margin-left': '-400px',
+    	'margin-top': '-250px',
+    	'width': '400px',
+    	'height': '500px',
+    	'cursor': 'default'
+    	}
+		,onOverlayClick : $.unblockUI
+	});
+	
+}
+
+//Popup 닫기
+function popupClose()
+{
+	$.unblockUI();
 }
 
 //엑셀파일 insert
@@ -599,8 +626,26 @@ function leadExcelCheck()
     }
     if (confirm("업로드 하시겠습니까?")) 
     {
+    	
+    	var options = {
+        		type	: 	'POST',
+        		cache	: 	false,
+        		url		: "/leadExcelUpload",
+        		success	:	function(data) {
+        			popupClose();
+        			searchKeyword(1);
+        			alert(data + " 건이 등록되었습니다.");
+        		},
+        		error	: function(data) {
+        			alert("엑셀 업로드 중 에러가 발생했습니다.");
+        			return;
+        		}
+        	};
+        	$("#excelUploadForm").ajaxSubmit(options);
+    	
+    	/* 
     	$("#excelUploadForm").append(excelFile);
-    	$("#excelUploadForm").submit();
+    	$("#excelUploadForm").submit();*/
 	}
 	
 //	opener.parent.location.reload();

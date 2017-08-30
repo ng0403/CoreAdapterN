@@ -38,6 +38,7 @@
 <body>
 <table class="taskExcelTbl">
 	<thead>
+	<c:if test="${not empty leadExcelExport}">		
 		<tr>
 			<td class="header" style="width: 10%;">리드번호</td>
 			<td class="header" style="width: 10%;">리드명</td>
@@ -49,6 +50,20 @@
 			<td class="header" style="width: 10%;">순위</td>
 			<td class="header" style="width: 10%;">등록일시</td>
 		</tr>
+		</c:if>
+		
+		 <c:if test="${fn:length(leadExcelExport) == 0}" >
+		 <td class="header" style="width: 10%;">리드명</td>
+			<td class="header" style="width: 10%;">고객번호</td>
+			<td class="header" style="width: 10%;">고객명</td>
+			<td class="header" style="width: 10%;">담당자번호</td>
+			<td class="header" style="width: 10%;">담당자명</td>
+			<td class="header" style="width: 10%;">접촉할일자</td>
+			<td class="header" style="width: 10%;">순위</td>
+			<td class="header" style="width: 10%;">포기사유</td>
+			<td class="header" style="width: 10%;">특이사항</td> 
+		 </c:if>
+		 
 	</thead>
 	<tbody>
 		<c:if test="${not empty leadExcelExport}">			
@@ -69,15 +84,16 @@
 			
 		  <c:if test="${fn:length(leadExcelExport) == 0}" >
 			<tr style="cursor: default; background-color: white;">
-				<td class="body" id="no" ></td>
-					<td class="body"></td>
+				<td class="body"></td>
 					<td class="body" id="no"></td>
+					<td class="body" ></td>
+					<td class="body" id="no" ></td>
 					<td class="body"></td>
 					<td class="body"></td>
 					<td class="body"></td>
 					<td class="body"></td>
 					<td class="body"></td>
-					<td class="body"></td>
+				
 			</tr>
 		</c:if> 
 	</tbody>

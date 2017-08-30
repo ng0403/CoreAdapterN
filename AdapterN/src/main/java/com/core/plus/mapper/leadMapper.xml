@@ -207,10 +207,17 @@
    </select>
    
    <insert id="lead_multi_insert" parameterType="com.core.plus.lead.vo.LeadVO">
-		insert into tb_lead
-			(lead_no, lead_name, cust_no, emp_no, contact_day, rank_cd, reason_cd, remark_cn)
-		values
-			(#{lead_no},#{lead_name}, #{cust_no}, #{emp_no}, date_format(#{contact_day}, '%Y%m%d'), #{rank_cd}, #{reason_cd}, #{remark_cn})
+	 <selectKey keyProperty="lead_no" resultType="String" order="BEFORE">
+         SELECT IF(SUBSTR(MAX(lead_no), 1, 10) = DATE_FORMAT(now(), '%Y%m%d%H'), MAX(lead_no)+1, concat(DATE_FORMAT(now(), '%Y%m%d%H'),'00001')) lead_no
+         FROM tb_lead USE INDEX(PRIMARY)
+     </selectKey> 
+		
+     insert into tb_lead
+   (lead_no, create_date, update_date, lead_name, cust_no, emp_no, contact_day, rank_cd, reason_cd, remark_cn)
+   values
+   (#{lead_no}, now(), now(), #{lead_name}, #{cust_no}, #{emp_no}, date_format(#{contact_day}, '%Y%m%d'), #{rank_cd}, #{reason_cd}, #{remark_cn})
+	
+	
 	</insert>
    
 </mapper>

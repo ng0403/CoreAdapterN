@@ -73,7 +73,7 @@ public class LeadController {
 		System.out.println("page?? " + page.toString());
 		
 		List<LeadVO> vo = leadService.lead_list(leadMap);
-	 
+		System.out.println("vovo ?? " + vo.toString());
 		ModelAndView mov = new ModelAndView("lead_list");
 		mov.addObject("page", page);
 		mov.addObject("pageNum", PageNum);
@@ -110,7 +110,7 @@ public class LeadController {
 
 		ModelAndView mov = new ModelAndView("leadCRUD");
 		mov.addObject("flg", "1");
-		
+		mov.addObject("PageNum", "1");
 		menuImport(mov, "lead");
 		
 		return mov;
@@ -342,7 +342,7 @@ public class LeadController {
         MultipartFile excelFile = request.getFile("excelFile");
         System.out.println("excelFile : " + excelFile);
 		
-        System.out.println("엑셀 파일 업로드 컨트롤러");
+        System.out.println("lead 엑셀 파일 업로드 컨트롤러");
        
         if(excelFile==null || excelFile.isEmpty()){
             throw new RuntimeException("엑셀파일을 선택 해 주세요.");
@@ -353,5 +353,15 @@ public class LeadController {
         
         return new ModelAndView("/lead/excel_import_tab", "result", result);
     }	
+    
+    // Excel Data Import Ajax
+    @RequestMapping(value="/leadExcelUpload", method = {RequestMethod.POST, RequestMethod.GET})
+	public @ResponseBody int opptyExcelForm(@RequestParam("excelFile") MultipartFile file) throws Exception 
+    {
+    	System.out.println("Excel Ajax : " + file);
+		int result = leadService.excelUpload(file);
+		
+		return result;
+	}
 
 }
