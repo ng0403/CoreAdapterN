@@ -144,6 +144,10 @@ function task_modify_btn() {
 		$('#oppty_no').removeAttr("disabled");
 		$('#location').removeAttr("disabled");
 		$('#remark_cn').removeAttr("disabled");
+		$('#custSchBtn').removeAttr("disabled");
+		$('#empSchBtn').removeAttr("disabled");
+		$('#leadSchBtn').removeAttr("disabled");
+		$('#opptySchBtn').removeAttr("disabled");
 			
 		$("#task_form_tbl input[type='text'], textarea, input[type='date'], select").attr({
 			style:'background-color:white'
