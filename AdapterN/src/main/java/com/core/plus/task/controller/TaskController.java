@@ -253,7 +253,9 @@ public class TaskController {
 		
 		// 고객리스트 불러오는 서비스/다오/맵퍼 작성
 		if(s_cust_name == null || s_cust_name == "") {
+			
 			List<CustVO> custPopupList = taskService.custPopupList(map);
+			
 			map.put("custPopupList", custPopupList);
 			
 			return map;
