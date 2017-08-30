@@ -94,7 +94,7 @@ var vititDtlCdList = new Array();
 						 
 						  <th style="width:5%;">전화번호</th>
 						 <td style="width:15%;">
-						    <input type="text" id="phone_no" name="phone_no" value="" style="width:80%" onkeypress="cupnEnterSearch(event);">
+						    <input type="text" id="phone_no" name="phone_no" value="" style="width:80%" onkeypress="cupnEnterSearch(event);" placeholder="-없이 숫자만 입력하세요.">
 						 </td>
 					
 					</tr>

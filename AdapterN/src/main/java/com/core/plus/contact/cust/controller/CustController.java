@@ -84,6 +84,7 @@ public class CustController {
 		return mav; 
 	}
 	
+	// 리스트 Ajax(조회, 페이징)
 	@RequestMapping(value="/custAjax", method={RequestMethod.POST, RequestMethod.GET})
 	@ResponseBody
 	public Map<String, Object> custListAjax(@RequestParam(value = "custPageNum", defaultValue = "1") int custPageNum,
@@ -171,12 +172,13 @@ public class CustController {
 		
 		mav.setViewName("cust_detail");
 		
-		if(cust_no == null || cust_no == "" ){
+		if(cust_no == null || cust_no == "" ){	// 단건등록
 			
 			mav.addObject("flg", "1");
 			mav.addObject("custPageNum", custPageNum);
 			
-		}else if(cust_no != null || cust_no != ""){
+		}
+		else if(cust_no != null || cust_no != ""){	// 상세보기
 			
 			CustVO custDlist = custService.custDetailList(cust_no);
 			List<CustVO> custPList = custPhoneService.custPhoneDetailList(cust_no);
@@ -207,24 +209,8 @@ public class CustController {
 //			@RequestParam(value="cust_list[]",required=false) List<String> cust_list
 			CustVO cvoS, String cust_no){
 		int result;
-//		int flg;
-//		System.out.println("cvoS" + cvoS);
-//		System.out.println("cust_no"+cust_no);
-//		CustVO cvo = new CustVO();
-//		if(cust_list != null){
-//			for(int i=0; i < cust_list.size(); i++){
-//				cvo.setCust_name(cust_list.get(i));
-//				cvo.setResident_no(cust_list.get(++i));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-//				cvo.setChart_no(cust_list.get(++i));
-//				cvo.setCust_id(cust_list.get(++i));
-//				cvo.setVisit_cd(cust_list.get(++i));
-//				cvo.setVisit_dtl_cd(cust_list.get(++i));
-//				cvo.setVisit_cn(cust_list.get(++i));
-//				cvo.setRec_per(cust_list.get(++i));
-//				cvo.setRemark_cn(cust_list.get(++i));
-//			}
-//		}
 		CustVO custVO = null;
+		
 		if(cust_no == null || cust_no == ""){
 			result = custService.custAdd(cvoS);
 			System.out.println("result"+result);
@@ -235,7 +221,8 @@ public class CustController {
 				System.out.println("if문 안 custVO : "+custVO);
 				
 			}
-		}else if(cust_no != null || cust_no != ""){
+		}
+		else if(cust_no != null || cust_no != ""){
 //			flg=1;
 			cvoS.setCust_no(cust_no);
 			result = custService.custMdfy(cvoS);
@@ -248,6 +235,7 @@ public class CustController {
 		return custVO;
 	}
 	
+	// 전화번호 등록
 	@RequestMapping(value="/custPhoneSave", method=RequestMethod.POST)
 	@ResponseBody
 	public List<CustVO> custPhoneSave(
@@ -287,6 +275,7 @@ public class CustController {
 		return custPList;
 	}
 	
+	// 주소등록
 	@RequestMapping(value="/custAddrSave")
 	@ResponseBody
 	public List<CustVO> custAddrSave(
@@ -333,18 +322,7 @@ public class CustController {
 		return result;
 	}
 	
-	//엑셀 추가 전 팝업
-	@RequestMapping(value="/excelImportTab", method=RequestMethod.GET)
-	public ModelAndView excelImportTab(HttpSession session, Locale locale,@RequestParam(value = "pageNum", defaultValue = "1") int pageNum)
-	{
-		System.out.println("ExcelTab Controller");
-		ModelAndView mov = new ModelAndView("/cust/excel_import_tab");
-		
-		return mov;
-	}
-	
 	// Excel Data Import
-	// custExcelUpload
     @RequestMapping(value="/custExcelUpload", method = {RequestMethod.POST, RequestMethod.GET})
     public @ResponseBody int custExcelForm(@RequestParam("excelFile") MultipartFile file) throws Exception
     {
@@ -353,7 +331,6 @@ public class CustController {
     	return result;
     }
 
-	
 	public void menuImport(ModelAndView mav, String url){
 		String menu_id = menuService.getMenuUrlID(url);
 //		String user_id = session.getAttribute("user").toString();
@@ -373,24 +350,3 @@ public class CustController {
 
 }
 
-/**
- * 안씀.
- * @RequestMapping(value = "/excelUploadAjax", headers = "content-type=multipart/*", method = RequestMethod.POST)
-    public ModelAndView excelUploadAjax(MultipartHttpServletRequest request)  throws Exception
-    {
-        MultipartFile excelFile = request.getFile("excelFile");
-        System.out.println("excelFile : " + excelFile);
-        Map<String, Object> result1 = new HashMap<String, Object>(0);
-		
-        System.out.println("엑셀 파일 업로드 컨트롤러");
-        if(excelFile==null || excelFile.isEmpty()){
-            throw new RuntimeException("엑셀파일을 선택 해 주세요.");
-        }
-        
-        int result = custService.excelUpload(excelFile);
-        System.out.println(result);
-        
-        return new ModelAndView("/cust/excel_import_tab", "result", result);
-    }
- *   
- * */

@@ -91,6 +91,7 @@ public class OpptyController {
 		return mov;
 	}
 	
+	// List Ajax(검색, 페이징)
 	@RequestMapping(value="oppty_sch", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> opptSchList(HttpSession session,
 												  @RequestParam(value = "opptyPageNum", defaultValue = "1") int opptyPageNum,
@@ -202,7 +203,7 @@ public class OpptyController {
 		}
 		else	// 상세보기	OpptyItem도 조회해야함.
 		{
-			List<OpptyItemVO> itemList 	= opptyService.opptyItemList(oppty_no);
+			List<OpptyItemVO> itemList 	= opptyService.opptyItemList(oppty_no);	// 매출상품 리스트 조회
 			List<OpptyVO> status 		= opptyService.opptyStatusCD();
 			List<OpptyVO> stage 		= opptyService.opptyStageCD();
 			List<OpptyVO> dtype 		= opptyService.opptyDtypeCD();
@@ -229,6 +230,7 @@ public class OpptyController {
 	}
 
 	/* CUD */
+	// 단건 등록
 	@RequestMapping(value="oppty_single_add", method=RequestMethod.POST)
 	public @ResponseBody int opptySingleInsert(OpptyVO opptyVo, HttpSession session, HttpServletRequest request)
 	{
@@ -242,6 +244,7 @@ public class OpptyController {
 		return 0;
 	}
 	
+	// 수정
 	@RequestMapping(value="oppty_edit", method=RequestMethod.POST)
 	public @ResponseBody int opptyEdit(OpptyVO opptyVo, HttpSession session)
 	{
@@ -256,6 +259,7 @@ public class OpptyController {
 		return result;
 	}
 	
+	// 삭제
 	@RequestMapping(value="oppty_delete", method=RequestMethod.POST)
 	public @ResponseBody int opptyDelete(OpptyVO opptyVo, HttpSession session)
 	{
@@ -267,6 +271,7 @@ public class OpptyController {
 	}
 	
 	/* Item CUD */
+	// 상품추가
 	@RequestMapping(value="opptyItemInsert", method=RequestMethod.POST)
 	public @ResponseBody List<OpptyItemVO> opptItemInsert(@RequestParam(value="opptyItemList[]", required=false) List<String> opptyItemList, String oppty_no)
 	{
@@ -274,13 +279,13 @@ public class OpptyController {
 		System.out.println("Item Insert : " + oppty_no);
 		
 		List<OpptyItemVO> itemList = new ArrayList<OpptyItemVO>();
-		List<OpptyItemVO> ditemList = opptyService.opptyItemList(oppty_no);
+		List<OpptyItemVO> ditemList = opptyService.opptyItemList(oppty_no);		// 매출상품 조회
 		
 		if(ditemList == null)
 		{
 			System.out.println("list 없음.");
 		}
-		else
+		else		// 리스트가 존재하면 전부 삭제한다.
 		{
 			System.out.println("list");
 			int result = opptyService.opptyItemDelete(oppty_no);
@@ -304,12 +309,12 @@ public class OpptyController {
 			}
 			System.out.println("itemList : " + itemList);
 			// opptyItem Insert
-			int oResult = opptyService.opptyItemInsert(itemList);
+			int oResult = opptyService.opptyItemInsert(itemList);	// 매출상품 추가
 		}
 		
 		// 바로 detail 화면으로 뿌려준다.
 //		List<OpptyVO> optyItemList = opptyService.opptyDetail(oppty_no);
-		List<OpptyItemVO> optyItemList 	= opptyService.opptyItemList(oppty_no);
+		List<OpptyItemVO> optyItemList 	= opptyService.opptyItemList(oppty_no);	// 조회 후 상세보기에 출력
 		
 		return optyItemList;
 	}
@@ -377,6 +382,7 @@ public class OpptyController {
 		}
 	}
 	
+	// 대분류
 	@RequestMapping(value="mainCateListAjax", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> mainCatList(@RequestParam(value = "mainCatePopupPageNum", defaultValue = "1") int mainCatePopupPageNum, String s_main_cate_name)
 	{
@@ -409,6 +415,7 @@ public class OpptyController {
 		}
 	}
 	
+	// 중분류
 	@RequestMapping(value="midCateListAjax", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> midCatList(@RequestParam(value = "midCatePopupPageNum", defaultValue = "1") int midCatePopupPageNum, String main_cate_cd, String s_mid_cate_name)
 	{
@@ -442,6 +449,7 @@ public class OpptyController {
 		}
 	}
 	
+	// 소분류
 	@RequestMapping(value="smallCateListAjax", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> smallCatList(@RequestParam(value = "smallCatePopupPageNum", defaultValue = "1") int smallCatePopupPageNum, String main_cate_cd, String mid_cate_cd, String s_small_cate_name)
 	{
@@ -476,36 +484,7 @@ public class OpptyController {
 		}
 	}
 	
-	//엑셀 추가 전 팝업
-	@RequestMapping(value="/opptyExcelImportTab", method=RequestMethod.GET)
-	public ModelAndView excelImportTab(HttpSession session, Locale locale,@RequestParam(value = "pageNum", defaultValue = "1") int pageNum)
-	{
-		System.out.println("ExcelTab Controller");
-		ModelAndView mov = new ModelAndView("/oppty/excel_import_tab");
-		
-		return mov;
-	}	
-	
-	// Excel Data Import
-    @RequestMapping(value = "/opptyExcelUploadAjax", headers = "content-type=multipart/*", method = RequestMethod.POST)
-    public ModelAndView excelUploadAjax(MultipartHttpServletRequest request)  throws Exception
-    {
-        MultipartFile excelFile = request.getFile("excelFile");
-        System.out.println("excelFile : " + excelFile);
-		
-        System.out.println("엑셀 파일 업로드 컨트롤러");
-       
-        if(excelFile==null || excelFile.isEmpty()){
-            throw new RuntimeException("엑셀파일을 선택 해 주세요.");
-        }
-        
-        int result = opptyService.excelUpload(excelFile);
-        System.out.println(result);
-        
-        return new ModelAndView("/oppty/excel_import_tab", "result", result);
-    }
-    
-    // Excel Data Import Ajax
+    // Excel Data Import Ajax(다건등록)
     @RequestMapping(value="/opptyExcelUpload", method = {RequestMethod.POST, RequestMethod.GET})
 	public @ResponseBody int opptyExcelForm(@RequestParam("excelFile") MultipartFile file) throws Exception 
     {

@@ -348,6 +348,7 @@ public class OpptyDaoImpl implements OpptyDao {
 		return totalCount;
 	}
 
+	// 다건등록(Excel Import)
 	@Override
 	public int opptyUploadExcel(MultipartFile excelFile) {
 		// TODO Auto-generated method stub
@@ -360,7 +361,6 @@ public class OpptyDaoImpl implements OpptyDao {
 			Row row = null;
 			Cell cell = null;
 			
-			String oppty_no   = null;
 			String oppty_name = null;
 			String cust_no = null;
 			String emp_no  = null;
@@ -380,15 +380,6 @@ public class OpptyDaoImpl implements OpptyDao {
 			
 			for(int i=1; i<rows; i++) {
 				row = sheet.getRow(i);
-				
-//				cell = row.getCell(0);
-//				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
-//				{
-//					cell.setCellType(Cell.CELL_TYPE_STRING);
-//					oppty_no = cell.getStringCellValue();
-//					
-//					System.out.println("oppty_no");
-//				}
 				
 				cell = row.getCell(0);
 				oppty_name = cell.getStringCellValue().trim();
