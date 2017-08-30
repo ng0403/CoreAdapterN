@@ -249,55 +249,69 @@
    
    <!-- Popup -->
    <select id="custPopupList" resultType="com.core.plus.contact.cust.vo.CustVO" parameterType="java.util.Map">
-      SELECT
-         cust_no,
-         cust_name
-      FROM
-         tb_cust
-      WHERE
-         del_yn = 'N'
-      <if test="s_cust_name != null and s_cust_name != ''">
-         AND (cust_name like concat('%', #{s_cust_name}, '%'))
-      </if>
+		SELECT P.*
+      	FROM (
+      		SELECT
+	         	cust_no,
+	         	cust_name
+			FROM tb_cust
+	        WHERE del_yn = 'N'
+		      <if test="s_cust_name != null and s_cust_name != ''">
+		         AND (cust_name like concat('%', #{s_cust_name}, '%'))
+		      </if>
+       )p
+       LIMIT #{page.limitStartNum}, #{page.pageSize}
    </select>
    
    <select id="empPopupList" resultType="com.core.plus.emp.vo.EmpVO" parameterType="java.util.Map">
-      SELECT
-         emp_no,
-         emp_name
-      FROM
-         tb_emp
-      WHERE
-         del_yn = 'N'
-      <if test="s_emp_name != null and s_emp_name != ''">
-         AND (emp_name like concat('%', #{s_emp_name}, '%'))
-      </if>
+    	SELECT P.*
+      	FROM (
+	      SELECT
+	         emp_no,
+	         emp_name
+	      FROM
+	         tb_emp
+	      WHERE
+	         del_yn = 'N'
+	      <if test="s_emp_name != null and s_emp_name != ''">
+	         AND (emp_name like concat('%', #{s_emp_name}, '%'))
+	      </if>
+       )p
+       LIMIT #{page.limitStartNum}, #{page.pageSize}
    </select>
    
    <select id="leadPopupList" resultType="com.core.plus.lead.vo.LeadVO" parameterType="java.util.Map">
-      SELECT
-         lead_no,
-         lead_name
-      FROM
-         tb_lead
-      WHERE
-         del_yn = 'N'
-      <if test="s_lead_name != null and s_lead_name != ''">
-         AND (lead_name like concat('%', #{s_lead_name}, '%'))
-      </if>
+      SELECT P.*
+      	FROM (
+		      SELECT
+		         lead_no,
+		         lead_name
+		      FROM
+		         tb_lead
+		      WHERE
+		         del_yn = 'N'
+		      <if test="s_lead_name != null and s_lead_name != ''">
+		         AND (lead_name like concat('%', #{s_lead_name}, '%'))
+		      </if>
+       )p
+       LIMIT #{page.limitStartNum}, #{page.pageSize}
    </select>
    
    <select id="opptyPopupList" resultType="com.core.plus.oppty.vo.OpptyVO" parameterType="java.util.Map">
-      SELECT
-         oppty_no,
-         oppty_name
-      FROM
-         tb_oppty
-      WHERE
-         del_yn = 'N'
-      <if test="s_oppty_name != null and s_oppty_name != ''">
-         AND (oppty_name like concat('%', #{s_oppty_name}, '%'))
-      </if>
+      SELECT P.*
+      	FROM (
+		      SELECT
+		         oppty_no,
+		         oppty_name
+		      FROM
+		         tb_oppty
+		      WHERE
+		         del_yn = 'N'
+		      <if test="s_oppty_name != null and s_oppty_name != ''">
+		         AND (oppty_name like concat('%', #{s_oppty_name}, '%'))
+		      </if>
+       )p
+       LIMIT #{page.limitStartNum}, #{page.pageSize}
    </select>
    
    <insert id="task_multi_insert"  parameterType="com.core.plus.task.vo.TaskVO">

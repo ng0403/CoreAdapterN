@@ -248,13 +248,13 @@ public class TaskController {
 		
 		// paging
 		PagerVO page = taskService.getTaskPopupRow(map);
+		map.put("page", page);
+		map.put("pageNum", custPopupPageNum);
 		
 		// 고객리스트 불러오는 서비스/다오/맵퍼 작성
 		if(s_cust_name == null || s_cust_name == "") {
-			List<CustVO> custPopupList = taskService.custPopupList();
+			List<CustVO> custPopupList = taskService.custPopupList(map);
 			map.put("custPopupList", custPopupList);
-			map.put("page", page);
-			map.put("pageNum", custPopupPageNum);
 			
 			return map;
 			
@@ -265,8 +265,6 @@ public class TaskController {
 			List<CustVO> schCustPopupList = taskService.custPopupList(map);
 			
 			map.put("custPopupList", schCustPopupList);
-			map.put("page", page);
-			map.put("pageNum", custPopupPageNum);
 			
 			return map;
 		}
@@ -280,15 +278,16 @@ public class TaskController {
 		
 		// paging
 		PagerVO page = taskService.getEmpPopupRow(map);
+		map.put("page", page);
+		map.put("pageNum", empPopupPageNum);
+		
 		
 		// 담당자리스트 불러오는 서비스/다오/맵퍼 작성
 		if(s_emp_name == null || s_emp_name == "") {
 			
-			List<EmpVO> empPopupList = taskService.empPopupList();
+			List<EmpVO> empPopupList = taskService.empPopupList(map);
 			
 			map.put("empPopupList", empPopupList);
-			map.put("page", page);
-			map.put("pageNum", empPopupPageNum);
 			
 			return map;
 			
@@ -299,8 +298,6 @@ public class TaskController {
 			List<EmpVO> schEmpPopupList = taskService.empPopupList(map);
 			
 			map.put("empPopupList", schEmpPopupList);
-			map.put("page", page);
-			map.put("pageNum", empPopupPageNum);
 			
 			return map;
 		}
@@ -316,15 +313,15 @@ public class TaskController {
 		
 		// paging
 		PagerVO page = taskService.getLeadPopupRow(map);
+		map.put("page", page);
+		map.put("pageNum", leadPopupPageNum);
 		
 		// 가망고객리스트 불러오는 서비스/다오/맵퍼 작성
 		if(s_lead_name == null || s_lead_name == ""){
 			
-			List<LeadVO> leadPopupList = taskService.leadPopupList();
+			List<LeadVO> leadPopupList = taskService.leadPopupList(map);
 			
 			map.put("leadPopupList", leadPopupList);
-			map.put("page", page);
-			map.put("pageNum", leadPopupPageNum);
 			
 			return map;
 			
@@ -335,8 +332,6 @@ public class TaskController {
 			List<LeadVO> schLeadPopupList = taskService.leadPopupList(map);
 			
 			map.put("leadPopupList", schLeadPopupList);
-			map.put("page", page);
-			map.put("pageNum", leadPopupPageNum);
 			
 			return map;
 		}
@@ -351,15 +346,15 @@ public class TaskController {
 		
 		// paging
 		PagerVO page = taskService.getOpptyPopupRow(map);
+		map.put("page", page);
+		map.put("pageNum", opptyPopupPageNum);
 		
 		// 영업기회 리스트 불러오는 서비스/다오/맵퍼 작성
 		if(s_oppty_name == null || s_oppty_name == "") {
 			
-			List<OpptyVO> opptyPopupList = taskService.opptyPopupList();
+			List<OpptyVO> opptyPopupList = taskService.opptyPopupList(map);
 			
 			map.put("opptyPopupList", opptyPopupList);
-			map.put("page", page);
-			map.put("pageNum", opptyPopupPageNum);
 			
 			return map;
 		} else {
@@ -369,8 +364,6 @@ public class TaskController {
 			List<OpptyVO> schOpptyPopupList = taskService.opptyPopupList(map);
 			
 			map.put("opptyPopupList", schOpptyPopupList);
-			map.put("page", page);
-			map.put("pageNum", opptyPopupPageNum);
 			
 			return map;
 		}

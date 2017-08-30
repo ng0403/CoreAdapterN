@@ -105,7 +105,7 @@ function viewCustList(custPopupPageNum)
 	var ctx = $("#ctx").val();
 	
 	var s_cust_name = $("#s_cust_name").val();
-	var custPopupPageNum = $("#custPopupPageNum").val();
+	//var custPopupPageNum = $("#custPopupPageNum").val();
 	
 	$.ajax({
 		url: ctx + "/taskCustListAjax", 
@@ -166,9 +166,9 @@ function viewCustList(custPopupPageNum)
 				+"<a> / "+data.page.endPageNum+"</a> ▶";
 			} else {
 				pageContent = "<input type='hidden' id='custPageNum' value='"+data.pageNum+"'/><input type='hidden' id='custEndPageNum' value='"+data.page.endPageNum+"'/>"
-				+"<a onclick=\"viewCustList("+(data.pageNum-1)+",2);\" id='pNum' style='cursor: pointer;'> ◀ </a>"
+				+"<a onclick=\"viewCustList("+(data.pageNum-1)+");\" id='pNum' style='cursor: pointer;'> ◀ </a>"
 				+"<input type='text' id='custPopupInput' value='"+data.pageNum+"' onkeypress=\"custPageNumInputEnter(event);\" style='width: 25px; text-align: center;'/>"
-				+"<a onclick=\"viewCustList("+data.page.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
+				+"<a onclick=\"viewCustList("+data.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
 				+"<a onclick=\"viewCustList("+(data.pageNum+1)+");\" id='pNum' style='cursor: pointer;'> ▶ </a>";
 			}
 			$("#custPopupPagingDiv").append(pageContent);
@@ -253,9 +253,9 @@ function viewEmpList(empPopupPageNum) {
 				+"<a> / "+data.page.endPageNum+"</a> ▶";
 			} else {
 				pageContent = "<input type='hidden' id='empPageNum' value='"+data.pageNum+"'/><input type='hidden' id='empEndPageNum' value='"+data.page.endPageNum+"'/>"
-				+"<a onclick=\"viewCustList("+(data.pageNum-1)+",2);\" id='pNum' style='cursor: pointer;'> ◀ </a>"
+				+"<a onclick=\"viewCustList("+(data.pageNum-1)+");\" id='pNum' style='cursor: pointer;'> ◀ </a>"
 				+"<input type='text' id='empPopupInput' value='"+data.pageNum+"' onkeypress=\"custPageNumInputEnter(event);\" style='width: 25px; text-align: center;'/>"
-				+"<a onclick=\"viewEmpList("+data.page.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
+				+"<a onclick=\"viewEmpList("+data.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
 				+"<a onclick=\"viewEmpList("+(data.pageNum+1)+");\" id='pNum' style='cursor: pointer;'> ▶ </a>";
 			}
 			$("#empPopupPagingDiv").append(pageContent);
@@ -281,7 +281,7 @@ function viewLeadList(leadPopupPageNum)
 	var ctx = $("#ctx").val();
 	
 	var s_lead_name = $("#s_lead_name").val();
-	var leadPopupPageNum = $("#leadPopupPageNum").val();
+	//var leadPopupPageNum = $("#leadPopupPageNum").val();
 	
 	$.ajax({
 		url: ctx + "/taskLeadListAjax", 
@@ -342,9 +342,9 @@ function viewLeadList(leadPopupPageNum)
 				+"<a> / "+data.page.endPageNum+"</a> ▶";
 			} else {
 				pageContent = "<input type='hidden' id='leadPageNum' value='"+data.pageNum+"'/><input type='hidden' id='leadEndPageNum' value='"+data.page.endPageNum+"'/>"
-				+"<a onclick=\"viewLeadList("+(data.pageNum-1)+",2);\" id='pNum' style='cursor: pointer;'> ◀ </a>"
+				+"<a onclick=\"viewLeadList("+(data.pageNum-1)+");\" id='pNum' style='cursor: pointer;'> ◀ </a>"
 				+"<input type='text' id='leadPopupInput' value='"+data.pageNum+"' onkeypress=\"leadPageNumInputEnter(event);\" style='width: 25px; text-align: center;'/>"
-				+"<a onclick=\"viewLeadList("+data.page.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
+				+"<a onclick=\"viewLeadList("+data.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
 				+"<a onclick=\"viewLeadList("+(data.pageNum+1)+");\" id='pNum' style='cursor: pointer;'> ▶ </a>";
 			}
 			$("#leadPopupPagingDiv").append(pageContent);
@@ -369,7 +369,7 @@ function viewLeadList(leadPopupPageNum)
 function viewOpptyList(opptyPopupPageNum) 
 {
 	var ctx = $("#ctx").val();
-	var s_oppty_name = $("#s_oppty_name").val();
+	//var s_oppty_name = $("#s_oppty_name").val();
 	
 	$.ajax({
 		url: ctx + "/taskOpptyListAjax", 
@@ -430,9 +430,9 @@ function viewOpptyList(opptyPopupPageNum)
 				+"<a> / "+data.page.endPageNum+"</a> ▶";
 			} else {
 				pageContent = "<input type='hidden' id='opptyPageNum' value='"+data.pageNum+"'/><input type='hidden' id='opptyEndPageNum' value='"+data.page.endPageNum+"'/>"
-				+"<a onclick=\"viewOpptyList("+(data.pageNum-1)+",2);\" id='pNum' style='cursor: pointer;'> ◀ </a>"
+				+"<a onclick=\"viewOpptyList("+(data.pageNum-1)+");\" id='pNum' style='cursor: pointer;'> ◀ </a>"
 				+"<input type='text' id='opptyPopupInput' value='"+data.pageNum+"' onkeypress=\"opptyPageNumInputEnter(event);\" style='width: 25px; text-align: center;'/>"
-				+"<a onclick=\"viewOpptyList("+data.page.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
+				+"<a onclick=\"viewOpptyList("+data.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
 				+"<a onclick=\"viewOpptyList("+(data.pageNum+1)+");\" id='pNum' style='cursor: pointer;'> ▶ </a>";
 			}
 			$("#empPopupPagingDiv").append(pageContent);
