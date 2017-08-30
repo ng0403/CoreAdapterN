@@ -369,7 +369,7 @@ function viewLeadList(leadPopupPageNum)
 function viewOpptyList(opptyPopupPageNum) 
 {
 	var ctx = $("#ctx").val();
-	//var s_oppty_name = $("#s_oppty_name").val();
+	var s_oppty_name = $("#s_oppty_name").val();
 	
 	$.ajax({
 		url: ctx + "/taskOpptyListAjax", 
