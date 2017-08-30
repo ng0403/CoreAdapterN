@@ -328,14 +328,18 @@ public class OpptyController {
 		
 		// paging
 		PagerVO page = opptyService.getCustPopupRow(map);
+		map.put("page", page);
+		map.put("pageNum", custPopupPageNum);
+		
+		System.out.println(page);
 		
 		// 고객리스트 불러오는 서비스/다오/맵퍼 작성
 		if(s_cust_name == null || s_cust_name == "")
 		{
-			List<CustVO> custPopupList = opptyService.custPopupList();
+			List<CustVO> custPopupList = opptyService.custPopupList(map);
 			map.put("custPopupList", custPopupList);
-			map.put("page", page);
-			map.put("pageNum", custPopupPageNum);
+			
+			System.out.println("MAP : " + map);
 			
 			return map;
 		}
@@ -344,8 +348,6 @@ public class OpptyController {
 			map.put("s_cust_name", s_cust_name);
 			List<CustVO> schCustPopupList = opptyService.custPopupList(map);
 			map.put("custPopupList", schCustPopupList);
-			map.put("page", page);
-			map.put("pageNum", custPopupPageNum);
 			
 			return map;
 		}
@@ -359,14 +361,15 @@ public class OpptyController {
 		
 		// paging
 		PagerVO page = opptyService.getEmpPopupRow(map);
+		map.put("page", page);
+		map.put("pageNum", empPopupPageNum);
 		
 		// 담당자리스트 불러오는 서비스/다오/맵퍼 작성
 		if(s_emp_name == null || s_emp_name == "")
 		{
-			List<EmpVO> empPopupList = opptyService.empPopupList();
+			List<EmpVO> empPopupList = opptyService.empPopupList(map);
 			map.put("empPopupList", empPopupList);
-			map.put("page", page);
-			map.put("pageNum", empPopupPageNum);
+			
 			
 			return map;
 		}
@@ -375,8 +378,6 @@ public class OpptyController {
 			map.put("s_emp_name", s_emp_name);
 			List<EmpVO> schEmpPopupList = opptyService.empPopupList(map);
 			map.put("empPopupList", schEmpPopupList);
-			map.put("page", page);
-			map.put("pageNum", empPopupPageNum);
 			
 			return map;
 		}

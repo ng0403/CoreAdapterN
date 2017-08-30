@@ -94,14 +94,14 @@ function viewCustList(custPopupPageNum)
 	var ctx = $("#ctx").val();
 	
 	var s_cust_name = $("#s_cust_name").val();
-	var custPopupPageNum = $("#custPopupPageNum").val();
+//	var custPopupPageNum = $("#custPopupPageNum").val();
 	
-	console.log(s_cust_name);
+	console.log(custPopupPageNum);
 	
 	$.ajax({
 		url: ctx + "/custListAjax", 
 		type: "POST",  
-		data: { 
+		data: {
 			custPopupPageNum : custPopupPageNum,
 			s_cust_name : s_cust_name 
 		},
@@ -142,6 +142,8 @@ function viewCustList(custPopupPageNum)
 			// 페이징 그리기
 			$("#custPopupPagingDiv").empty();
 			var pageContent = "";
+	
+			console.log(data.pageNum);
 			
 			if(data.page.endPageNum == 0 || data.page.endPageNum == 1){
 				pageContent = "◀ <input type='text' id='custPopupInput' readonly='readonly' value='1' style='width: 25px; text-align: center;'/> / 1 ▶";
@@ -157,9 +159,9 @@ function viewCustList(custPopupPageNum)
 				+"<a> / "+data.page.endPageNum+"</a> ▶";
 			} else {
 				pageContent = "<input type='hidden' id='custPageNum' value='"+data.pageNum+"'/><input type='hidden' id='custEndPageNum' value='"+data.page.endPageNum+"'/>"
-				+"<a onclick=\"viewCustList("+(data.pageNum-1)+",2);\" id='pNum' style='cursor: pointer;'> ◀ </a>"
+				+"<a onclick=\"viewCustList("+(data.pageNum-1)+");\" id='pNum' style='cursor: pointer;'> ◀ </a>"
 				+"<input type='text' id='custPopupInput' value='"+data.pageNum+"' onkeypress=\"custPageNumInputEnter(event);\" style='width: 25px; text-align: center;'/>"
-				+"<a onclick=\"viewCustList("+data.page.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
+				+"<a onclick=\"viewCustList("+data.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
 				+"<a onclick=\"viewCustList("+(data.pageNum+1)+");\" id='pNum' style='cursor: pointer;'> ▶ </a>";
 			}
 			$("#custPopupPagingDiv").append(pageContent);
@@ -198,7 +200,7 @@ function custPageNumInputEnter(event) {
 				$("#custPopupInput").val($("#custPageNum").val());
 				$("#custPopupInput").focus();
 			} else {
-				viewCustList(custPopupPageNum);
+//				viewCustList(custPopupPageNum);
 			}
 		}
 		event.stopPropagation();

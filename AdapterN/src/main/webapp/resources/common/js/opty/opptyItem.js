@@ -56,13 +56,6 @@ $(document).ready(function(){
 	});
 });
 
-function paymenyValue()
-{
-	// 동적으로 생성한 태그에 datepicker 추가
-//	$(document).find("input[class=payment_day]").removeClass('hasDatepicker').datepicker();
-	paymentDay.removeClass('hasDatepicker').datepicker();
-}
-
 //체크박스 전체 선택.
 function actAllChk()
 {
@@ -75,7 +68,7 @@ function actAllChk()
 	}
 }
 
-// 테이블 생성(Ajax)
+// 테이블 동적 생성(Ajax)
 function opptyItemAdd()
 {
 	var tbody = $('#oppty_item_list_tbody');
@@ -106,6 +99,7 @@ function opptyItemAdd()
 	$(document).find("input[class=payment_day]").removeClass('hasDatepicker').datepicker();		// datepicker 동적 생성
 }
 
+// 매출상품 추가
 function opptyItemInsert()
 {
 	var oppty_no     = $("#oppty_no").val();
@@ -183,7 +177,6 @@ function opptyItemInsert()
  					
  				tbody.append(tbodyContent);
 			}
-			
 		},
 		error:function(request){
 			alert("error : " + request.status)
@@ -198,10 +191,7 @@ function opptyItemDelte()
 	var delTr = checkbox.parent().parent();											// 체크된 체크박스의 tr을 담는다.
 	var delQty = checkbox.parent().parent().children().eq(4).children().val();		// 체크된 체크박스의 item의 수량을 담는다.
 	
-	console.log(delTr);
-	console.log(delQty);
-	
-	delTr.remove();
+	delTr.remove();		// 체크박스가 체크된 tr을 지운다.
 }
 
 /* Popup */
@@ -262,6 +252,7 @@ function viewMainCateList(mainCatePopupPageNum)
 					var main_cate_cd = this.main_cate_cd;
 					var main_cate_name = this.main_cate_name;
 
+					// 클릭한 tr의 값을 부모창에 입력해준다.
 					trElement.bind("click", function(e) {
 						setTimeout($.unblockUI, 0);
 						tmp.parents().children().eq(0).val(main_cate_cd);
@@ -326,7 +317,7 @@ function midCatePopup()
 	
 	$(document).on( 'click','.mid_cate_name',function(event) {
 		tmp = $(this);
-		main_cate_cd = tmp.parent().parent().children().eq(1).children().eq(0).val();
+		main_cate_cd = tmp.parent().parent().children().eq(1).children().eq(0).val();	// 선택한 대분류에 포함된 중분류를 가지고 와야하기 떄문에 필요하다.
 		
 		if(main_cate_cd == "" || main_cate_cd == null)
 		{

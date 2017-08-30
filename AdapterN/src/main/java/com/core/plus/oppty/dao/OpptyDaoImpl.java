@@ -394,6 +394,10 @@ public class OpptyDaoImpl implements OpptyDao {
 					
 					System.out.println("cust_no");
 				}
+				else
+				{
+					cust_no = cell.getStringCellValue().trim();
+				}
 				
 				cell = row.getCell(2);
 				if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
@@ -402,6 +406,10 @@ public class OpptyDaoImpl implements OpptyDao {
 					emp_no = cell.getStringCellValue();
 					
 					System.out.println("emp_no");
+				}
+				else
+				{
+					emp_no = cell.getStringCellValue();
 				}
 				
 				cell = row.getCell(3);

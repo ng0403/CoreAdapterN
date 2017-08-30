@@ -161,7 +161,7 @@ $(document).ready(function(){
 					<th  style="text-align:right;">예상종료일자</th>
 					<td>
 						<c:if test="${ opptyNoIndex.oppty_no != null }">	<!-- 신규 -->
-							<input type="text" name="exp_close_day" id="exp_close_day" value="${opptyDetail.exp_close_day}" maxlength="10" style="width: 30%; text-align: center;">
+							<input type="text" name="exp_close_day" id="exp_close_day" value="${opptyDetail.exp_close_day}" maxlength="10" style="width: 30%; text-align: center;" readonly="readonly">
 						</c:if>
 						<c:if test="${ opptyNoIndex.oppty_no == null }">	<!-- 상세 -->
 							<input type="text" name="exp_close_day" id="exp_close_day" value="${opptyDetail.exp_close_day}" maxlength="10" style="width: 30%; text-align: center;" readonly="readonly">
