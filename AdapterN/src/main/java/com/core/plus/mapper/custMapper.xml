@@ -196,7 +196,9 @@
 	<update id="custUpdate" parameterType="com.core.plus.contact.cust.vo.CustVO">
 		update tb_cust
 		set
-			cust_id = #{cust_id}
+			cust_name = #{cust_name}
+			,chart_no = #{chart_no}
+			,cust_id = #{cust_id}
 			,visit_cd = #{visit_cd}
 			,visit_dtl_cd = #{visit_dtl_cd}
 			,visit_cn = #{visit_cn}

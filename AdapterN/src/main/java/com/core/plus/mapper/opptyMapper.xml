@@ -39,11 +39,11 @@
 	<!-- Paging -->
 	<select id="custPopupRow" resultType="int">
 		SELECT count(*)
-		FROM tb_cust
-		WHERE del_yn = 'N'
-		<if test="s_cust_name != null and s_cust_name != ''">
-			AND (cust_name like concat('%', #{s_cust_name}, '%'))
-		</if>
+	    FROM tb_cust
+	    WHERE del_yn = 'N'
+	    <if test="s_cust_name != null and s_cust_name != ''">
+	      AND (cust_name like concat('%', #{s_cust_name}, '%'))
+	    </if>
 	</select>
 	
 	<select id="empPopupRow" resultType="int">

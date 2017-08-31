@@ -96,7 +96,7 @@ function custDelete()
 	 console.log($("#cust_no").val());
 	 
 	$(document).ready(function() {
-		var ynChk = confirm("해당 기회를 삭제하시겠습니까?");
+		var ynChk = confirm("해당 고객을 삭제하시겠습니까?");
 		if(ynChk)
 		{
 			$.ajax({
@@ -339,7 +339,7 @@ function cust_add_save()
 		$("#cust_single_modify").addClass("tr_btn");
 
 		$("#cust_name").prop("readonly", false);
-		$("#resident_no").prop("readonly", false);
+//		$("#resident_no").prop("readonly", false);
 		$("#chart_no").prop("readonly", false);
 		$("#cust_id").prop("readonly", false);
 		$("#reason_cd").prop("readonly", false);
@@ -387,7 +387,7 @@ function cust_modify_save()
 				data : {
 					cust_no 		: cust_no,
 					cust_name 		: $("#cust_name").val(),
-					resident_no		: $("#resident_no").val(),
+//					resident_no		: $("#resident_no").val(),
 					chart_no		: $("#chart_no").val(),
 					cust_id			: $("#cust_id").val(),
 					visit_cd		: $("#visit_cd").val(),
