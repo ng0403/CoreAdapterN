@@ -304,6 +304,7 @@ $(document).ready(function(){
 			<div id="coupon_detail_btn_div">
 				<c:if test="${ opptyDetail.oppty_no == null }">
  		 			<input type="button" class="tr_btn" id="oppty_single_add" onclick="opptySingleAdd();" value="저장">
+ 		 			<input type="button" class="tr_btn" id="oppty_reset_btn" onclick="oppty_reset();" value="초기화">
 					<input type="button" class="func_btn" id="oppty_list" onclick="opptyList('${opptyPageNum}');" value="취소">
 				</c:if>
 				<c:if test="${ opptyDetail.oppty_no != null }">

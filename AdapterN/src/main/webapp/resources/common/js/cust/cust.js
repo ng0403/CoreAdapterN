@@ -85,6 +85,41 @@ function custSchReset()
 	$("#phone_no").val("");
 }
 
+//고객 상세 초기화 버튼
+function cust_reset() 
+{
+	$("#cust_name").val("");
+	$("#resident_no").val("");
+	$("#chart_no").val("");
+	$("#cust_id").val("");
+	$("#rec_per").val("");
+	$("#reason_cd").val("");
+	$("#remark_cn").val(""); 
+	
+	$("#discount_cost option:eq(0)").prop("selected", "selected");
+	$("#visit_cd option:eq(0)").prop("selected", "selected");
+	$("#visit_dtl_cd option:eq(0)").prop("selected", "selected");
+	$("#purchase_type_sel option:eq(0)").prop("selected", "selected");
+	$("#payment_cd_sel option:eq(0)").prop("selected", "selected");
+	$("#rec_per_cd_sel option:eq(0)").prop("selected", "selected");
+}
+
+//검색 엔터키 기능
+function custEnterSearch(event) {
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	
+ 	if (keycode == '13') {
+		if ($("#cust_no").val() == '' && $("#cust_name").val() == '' && $("#chart_no").val() == '' && $("#rec_per").val() == ''  && $("#phone_no").val() == '' ) {
+			alert("검색어를 입력하세요.")
+			$("#cust_no").focus();
+		} else {
+			searchKeyword(1);
+		}
+	}
+	event.stopPropagation();
+}
+
+
 function custList(custPageNum)
 {
 	location.href = ctx + '/cust?custPageNum=' + custPageNum;
@@ -135,7 +170,7 @@ function searchKeyword(pageNum)
 	var rec_per = $("#rec_per").val();
 	var phone_no = $("#phone_no").val();
 	
-	console.log(visit_cd);
+	console.log(chart_no);
 	
 	var custData = { 
 			 		 "custPageNum" : pageNum,
@@ -157,52 +192,60 @@ function searchKeyword(pageNum)
 				success: function(data){
 					tbody.children().remove(); 
 					
- 					for(var i=0; i<data.custList.length; i++)
- 					{
- 						var cust_no   = data.custList[i].cust_no;
- 						var cust_name = data.custList[i].cust_name;
- 						var chart_no  = data.custList[i].chart_no;
- 						var cust_id	  = data.custList[i].cust_id;
- 						var rec_per   = data.custList[i].rec_per;
- 						var phone_no  = data.custList[i].phone_no;
- 						var main_address = data.custList[i].main_address;
- 						var visit_dtl_cd = data.custList[i].visit_dtl_cd;
- 						var create_date  = data.custList[i].create_date;
- 						
- 						var vititCdList_contents = '';
-					    
- 						for(var j=0;j < vititCdList.length; j++)
-					    {
-					    	if(vititCdList[j] == data.custList[i].visit_cd){
-					    		vititCdList_contents = vititCdList[++j];
-					    	}
-						}
-					    
-					    var vititDtlCdList_contents = '';
-					    for(var j=0;j < vititDtlCdList.length; j++)
-					    {
-						    if(vititDtlCdList[j] == data.custList[i].visit_dtl_cd){
-						    	vititDtlCdList_contents = vititDtlCdList[++j];
-						    }
-						}
-					    
-					    tbodyContent = "<tr>" +
-					    "<td style='text-align: left;' >" + data.custList[i].cust_no +"</td>" +
-					    "<td style='text-align: left;'>" +
-	 	 					"<a href='#' onclick=custDetail('"+data.custList[i].cust_no+"','"+data.pageNum+"'); id='"+data.custList[i].cust_no+"'>" + data.custList[i].cust_name+"</a></td>" +
-	 	 				"<td style='text-align: left;'>" + data.custList[i].chart_no +"</td>" +
-	 	 				"<td style='text-align: left;' > " + vititCdList_contents +
-	 	 				"</td>" +
-	 	 				"<td style='text-align: left;' > " + vititDtlCdList_contents +
-	 	 				"</td>" +
-	 	 				"<td style='text-align: left;'>" + data.custList[i].rec_per + "</td>" +
-	 	 				"<td style='text-align: left;'>" + data.custList[i].phone_area_no + data.custList[i].phone_no + "</td>" +
-	 	 				"<td style='text-align: left;'>" + data.custList[i].main_address + "</td>" +
-	 	 				"<td style='text-align: left;'>" + data.custList[i].create_date + "</td>" +
-	 	 				"</tr>";
-					    
-					    tbody.append(tbodyContent);
+					if(data.custList.length == 0) {
+						tbodyContent = "<tr style='height: 75px;'><td colspan=9' style='width: 1320px; text-align: center;  vertical-align: middle;'>검색 결과가 없습니다.</td></tr>";
+			    		tbody.append(tbodyContent);
 					}
+					else {
+						for(var i=0; i<data.custList.length; i++)
+						{
+							var cust_no   = data.custList[i].cust_no;
+							var cust_name = data.custList[i].cust_name;
+							var chart_no  = data.custList[i].chart_no;
+							var cust_id	  = data.custList[i].cust_id;
+							var rec_per   = data.custList[i].rec_per;
+							var phone_no  = data.custList[i].phone_no;
+							var main_address = data.custList[i].main_address;
+							var visit_dtl_cd = data.custList[i].visit_dtl_cd;
+							var create_date  = data.custList[i].create_date;
+							
+							var vititCdList_contents = '';
+							
+							for(var j=0;j < vititCdList.length; j++)
+							{
+								if(vititCdList[j] == data.custList[i].visit_cd){
+									vititCdList_contents = vititCdList[++j];
+								}
+							}
+							
+							var vititDtlCdList_contents = '';
+							for(var j=0;j < vititDtlCdList.length; j++)
+							{
+								if(vititDtlCdList[j] == data.custList[i].visit_dtl_cd){
+									vititDtlCdList_contents = vititDtlCdList[++j];
+								}
+							}
+							
+							tbodyContent = "<tr>" +
+							"<td style='text-align: left;' >" + data.custList[i].cust_no +"</td>" +
+							"<td style='text-align: left;'>" +
+							"<a href='#' onclick=custDetail('"+data.custList[i].cust_no+"','"+data.pageNum+"'); id='"+data.custList[i].cust_no+"'>" + data.custList[i].cust_name+"</a></td>" +
+							"<td style='text-align: left;'>" + data.custList[i].chart_no +"</td>" +
+							"<td style='text-align: left;' > " + vititCdList_contents +
+							"</td>" +
+							"<td style='text-align: left;' > " + vititDtlCdList_contents +
+							"</td>" +
+							"<td style='text-align: left;'>" + data.custList[i].rec_per + "</td>" +
+							"<td style='text-align: left;'>" + data.custList[i].phone_area_no + data.custList[i].phone_no + "</td>" +
+							"<td style='text-align: left;'>" + data.custList[i].main_address + "</td>" +
+							"<td style='text-align: left;'>" + data.custList[i].create_date + "</td>" +
+							"</tr>";
+							
+							tbody.append(tbodyContent);
+						}
+						
+					}
+					
  					
  					// 페이징
  					$(".pagingDiv").empty();
@@ -851,38 +894,20 @@ function download_list_Excel(formID, flg)
 		{
 			form.append(excel);
 			form.append(flg);
-			
-//			if(flg == 0) 
-//			{
-				form.attr("action", "/toCustExcel");
-				form.submit();
-//			} 
-//			else(flg == 1) 
-//			{
-//				form.attr("action", "/toCustExcel");
-//				form.submit();
-//			}
+			form.attr("action", "/toCustExcel");
+			form.submit();
+
 		} 
 		$("input[name=excel]").val("");
 	}
 	else if(t == 1)
 	{
-		if(confirm("엑셀 템플릿을 출력합니다.")) 
-		{
-			form.append(excel);
-			form.append(flg);
-//			
-//			if(flg == 0) 
-//			{
-//				form.attr("action", "/toCustExcel");
-//				form.submit();
-//			} 
-//			else(flg == 1) 
-//			{
-				form.attr("action", "/toCustExcel");
-				form.submit();
-//			}
-		} 
+
+		form.append(excel);
+		form.append(flg);
+		form.attr("action", "/toCustExcel");
+		form.submit();
+
 		$("input[name=excel]").val("");
 	}
 	

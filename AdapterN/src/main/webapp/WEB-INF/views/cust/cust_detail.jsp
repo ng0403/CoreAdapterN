@@ -224,6 +224,7 @@ $(document).ready(function(){
 	<c:if test="${flg == 1 }">
 	 	 <div id="cust_single_add_div">
 	 	 	<input type="button" class="tr_btn" id="cust_single_add" value="저장" onclick="cust_add_save();">
+	 	 	<input type="button" class="tr_btn" id="cust_reset_btn" onclick="cust_reset();" value="초기화">
 	 	 	<input type="button" class="func_btn" id="cust_detail_cancel" value="취소" onclick="cust_cancel('${custPageNum}');">
 <%-- 	 	 	<input type="button" class="func_btn" id="cust_list" onclick="custList('${custPageNum}');" value="취소"> --%>
 <!-- 	 	 	<input type="button" class="func_btn" id="cust_single_cancel" value="취소" onclick="cust_cancel();"> -->

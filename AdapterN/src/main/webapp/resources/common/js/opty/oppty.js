@@ -22,6 +22,43 @@ function opptySchReset()
 	$("#purchase_type_srch option:eq(0)").prop("selected", "selected");
 }
 
+//매출기회 상세 초기화 버튼
+function oppty_reset() 
+{
+	$("#oppty_name").val("");
+	$("#cust_no").val("");
+	$("#cust_name").val("");
+	$("#emp_no").val("");
+	$("#emp_name").val("");
+	$("#score").val("");
+	$("#exp_close_day").val("");
+	$("#sur_plan_cn").val("");
+	$("#description").val(""); 
+	
+	$("#oppty_status_cd_sel option:eq(0)").prop("selected", "selected");
+	$("#oppty_stage_cd_sel option:eq(0)").prop("selected", "selected");
+	$("#dtype_cd_sel option:eq(0)").prop("selected", "selected");
+	$("#purchase_type_sel option:eq(0)").prop("selected", "selected");
+	$("#payment_cd_sel option:eq(0)").prop("selected", "selected");
+	$("#rec_per_cd_sel option:eq(0)").prop("selected", "selected");
+}
+
+
+//검색 엔터키 기능
+function opptyEnterSearch(event) {
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	
+ 	if (keycode == '13') {
+		if ($("#oppty_no_srch").val() == '' && $("#oppty_name_srch").val() == '' && $("#cust_name_srch").val() == '' && $("#emp_name_srch").val() == ''  && $("#exp_close_dt_srch").val() == '' ) {
+			alert("검색어를 입력하세요.")
+			$("#cust_no").focus();
+		} else {
+			opptySchList(1);
+		}
+	}
+	event.stopPropagation();
+}
+
 function opptyDetail(oppty_no, opptyPageNum)
 {
 	location.href = ctx + "/oppty_detail?oppty_no=" + oppty_no + "&opptyPageNum=" + opptyPageNum;
@@ -77,8 +114,8 @@ function opptySchList(opptyPageNum)
 			tbody.children().remove();
 			
 			var size = data.srcList.length;
-			if(size == 0)
-			{
+			
+			if(size == 0) {
 				tbodyContent = "<tr style='height: 75px;'><td colspan='13' style='width: 1320px; text-align: center;  vertical-align: middle;'>검색 결과가 없습니다.</td></tr>";
 	    		tbody.append(tbodyContent);
 			}
@@ -265,50 +302,24 @@ function download_list_Excel(formID, flg) {
 	var excel = $('<input type="hidden" value="true" name="excel">');
 	var flg = $("<input type='hidden' value='"+ flg +"' name='flg'>");
 	
-	if(flg == 0)
+	if(t == 0)
 	{
 		if(confirm("엑셀로 출력하시겠습니까? 대량의 경우 대기시간이 필요합니다.")) 
 		{
 			form.append(excel);
 			form.append(flg);
-			
-//			if(flg == 0) 
-//			{
-				form.attr("action", "/toOpptyExcel");
-				form.submit();
-				
-//			} 
-//			else(flg == 1) 
-//			{
-				form.attr("action", "/toOpptyExcel");
-				form.submit();
-//			form.attr("action", "/task_sch");
-//			form.submit();
-//			}
+			form.attr("action", "/toOpptyExcel");
+			form.submit();
 		} 
 		$("input[name=excel]").val("");
 	}
-	else if(flg == 1)
+	else if(t == 1)
 	{
-		if(confirm("엑셀 템플릿을 출력합니다.")) 
-		{
-			form.append(excel);
-			form.append(flg);
-			
-//			if(flg == 0) 
-//			{
-//				form.attr("action", "/toOpptyExcel");
-//				form.submit();
-//				
-//			} 
-//			else(flg == 1) 
-//			{
-				form.attr("action", "/toOpptyExcel");
-				form.submit();
-//			form.attr("action", "/task_sch");
-//			form.submit();
-//			}
-		} 
+		form.append(excel);
+		form.append(flg);
+		form.attr("action", "/toOpptyExcel");
+		form.submit();
+		
 		$("input[name=excel]").val("");
 	}
 }

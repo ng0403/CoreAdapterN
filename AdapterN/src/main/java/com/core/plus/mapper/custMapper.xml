@@ -11,6 +11,9 @@
 			</if> 
 	   		<if test="cust_name !=null and cust_name !=''">
 				and(a.cust_name like concat('%', #{cust_name}, '%') )
+			</if>
+			<if test="chart_no !=null and chart_no !=''">
+				and(a.chart_no like concat('%', #{chart_no}, '%') )
 			</if> 
 	   		<if test="visit_cd !=null and visit_cd !=''">
 				and(a.visit_cd like concat('%', #{visit_cd}, '%') )
@@ -63,7 +66,7 @@
 				and(a.cust_name like concat('%', #{cust_name}, '%') )
 			</if> 
 			<if test="chart_no !=null and chart_no !=''">
-				and(a.cust_name like concat('%', #{cust_name}, '%') )
+				and(a.chart_no like concat('%', #{chart_no}, '%') )
 			</if> 
 	   		<if test="visit_cd !=null and visit_cd !=''">
 				and(a.visit_cd like concat('%', #{visit_cd}, '%') )
@@ -110,7 +113,10 @@
 				</if> 
 		   		<if test="cust_name !=null and cust_name !=''">
 					and(a.cust_name like concat('%', #{cust_name}, '%') )
-				</if> 
+				</if>
+				<if test="chart_no !=null and chart_no !=''">
+					and(a.chart_no like concat('%', #{chart_no}, '%') )
+				</if>
 		   		<if test="visit_cd !=null and visit_cd !=''">
 					and(a.visit_cd like concat('%', #{visit_cd}, '%') )
 				</if> 

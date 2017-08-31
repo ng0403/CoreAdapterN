@@ -113,6 +113,25 @@ function taskCancelList() {
 	$('#dtype_cd_srch').val('');
 }
 
+//상담 상세 초기화 버튼
+function task_reset() {
+	$("#subject").val("");
+	$("#cust_no").val("");
+	$("#cust_name").val("");
+	$("#emp_no").val("");
+	$("#emp_name").val("");
+	$("#lead_no").val("");
+	$("#lead_name").val("");
+	$("#oppty_no").val("");
+	$("#oppty_name").val("");
+	$("#next_day").val(""); 
+	$("#location").val(""); 
+	$("#remark_cn").val("");
+	
+	$("#dtype_cd option:eq(0)").prop("selected", "selected");
+	$("#score_cd option:eq(0)").prop("selected", "selected");
+}
+
 //상담 단건 추가
 function task_add(){
 	//focus, css, readonly, disabled false 상태로 변경
@@ -187,24 +206,35 @@ function taskPaging(pageNum) {
 
 
 //엑셀 출력 적용 함수
-function download_list_Excel(formID, flg) {
-   
+function download_list_Excel(formID, flg) 
+{
 	var t = flg;
-   var ctx = $("#ctx").val();
-   var form = $("#"+formID);
-   var excel = $('<input type="hidden" value="true" name="excel">');
-   var flg = $('<input type="hidden" value="'+flg+'" name="flg">');
+	var ctx = $("#ctx").val();
+	var form = $("#"+formID);
+	var excel = $('<input type="hidden" value="true" name="excel">');
+	var flg = $('<input type="hidden" value="'+flg+'" name="flg">');
    
-   if(confirm("리스트를 출력하시겠습니까? 대량의 경우 대기시간이 필요합니다.")) 
-   {
-	   form.append(excel);
-	   form.append(flg);
-      
-       form.attr("action", "/toExcel");
-       form.submit();
-         
-   } 
-   $("input[name=excel]").val("");
+	if(t == 0)
+	{
+		if(confirm("리스트를 출력하시겠습니까? 대량의 경우 대기시간이 필요합니다.")) 
+		{
+			form.append(excel);
+			form.append(flg);
+			form.attr("action", "/toExcel");
+			form.submit();
+			
+		} 
+		$("input[name=excel]").val("");
+	}
+	else if(t == 1)
+	{
+		form.append(excel);
+		form.append(flg);
+		form.attr("action", "/toExcel");
+		form.submit();
+		
+		$("input[name=excel]").val("");
+	}
 }
 
 //엑셀 양식 다운로드 

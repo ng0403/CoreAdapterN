@@ -45,23 +45,23 @@
 					<tr style="background-color: white; cursor:default; border:0;">
 						 <th style="width:5%;">기회번호</th>
 						 <td style="width:15%;">
-						    <input type="text" id="oppty_no_srch" name="oppty_no_srch" value="" style="width:80%" onkeypress="opptySchList(event);">
+						    <input type="text" id="oppty_no_srch" name="oppty_no_srch" value="" style="width:80%" onkeypress="opptyEnterSearch(event);">
 						 </td>
 						 
 						 <th style="width:5%;">기회명</th>
 						 <td style="width:15%;">
-						    <input type="text" id="oppty_name_srch" name="oppty_name_srch" value="" style="width:80%" onkeypress="opptySchList(event);">
+						    <input type="text" id="oppty_name_srch" name="oppty_name_srch" value="" style="width:80%" onkeypress="opptyEnterSearch(event);">
 						 </td>
 						 
 						 <th style="width:5%;">고객명</th>
 						 <td style="width:15%;">
-						    <input type="text" id="cust_name_srch" name="cust_name_srch" value="" style="width:80%" onkeypress="opptySchList(event);">
+						    <input type="text" id="cust_name_srch" name="cust_name_srch" value="" style="width:80%" onkeypress="opptyEnterSearch(event);">
 						 </td>
 					</tr>
 					<tr>
 						<th style="width:5%;">담당자명</th>
 						<td style="width:15%;">
-						    <input type="text" id="emp_name_srch" name="emp_name_srch" value="" style="width:80%" onkeypress="opptySchList(event);">
+						    <input type="text" id="emp_name_srch" name="emp_name_srch" value="" style="width:80%" onkeypress="opptyEnterSearch(event);">
 						</td >
 						
 						<th style="width:5%;">기회상태</th>

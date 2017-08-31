@@ -52,15 +52,15 @@ var vititDtlCdList = new Array();
 					<tr style="background-color: white; cursor:default; border:0;">
 						 <th style="width:5%;">고객번호</th>
 						 <td style="width:15%;">
-						    <input type="text" id="cust_no" name="cust_no" value="" style="width:80%" onkeypress="searchKeyword(event);">
+						    <input type="text" id="cust_no" name="cust_no" value="" style="width:80%" onkeypress="custEnterSearch(event);">
 						 </td> 
 						 <th style="width:5%;">고객명</th>
 						 <td style="width:15%;">
-						    <input type="text" id="cust_name" name="cust_name" value="" style="width:80%" onkeypress="searchKeyword(event);">
+						    <input type="text" id="cust_name" name="cust_name" value="" style="width:80%" onkeypress="custEnterSearch(event);">
 						 </td>
 						  <th style="width:5%;">차트번호</th>
 						 <td style="width:15%;">
-						    <input type="text" id="chart_no" name="chart_no" value="" style="width:80%" onkeypress="searchKeyword(event);">
+						    <input type="text" id="chart_no" name="chart_no" value="" style="width:80%" onkeypress="custEnterSearch(event);">
 						 </td>
 					  
  		                 <td style="width: 12%;">
@@ -89,12 +89,12 @@ var vititDtlCdList = new Array();
 					
 						 <th style="width:5%;">소개자</th>
 						 <td style="width:15%;">
-							<input type="text" id="rec_per" name="rec_per" value=""  style="width : 80%;" onkeypress="searchKeyword(event);">
+							<input type="text" id="rec_per" name="rec_per" value=""  style="width : 80%;" onkeypress="custEnterSearch(event);">
  						 </td>
 						 
 						  <th style="width:5%;">전화번호</th>
 						 <td style="width:15%;">
-						    <input type="text" id="phone_no" name="phone_no" value="" style="width:80%" onkeypress="searchKeyword(event);" placeholder="-없이 숫자만 입력하세요.">
+						    <input type="text" id="phone_no" name="phone_no" value="" style="width:80%" onkeypress="custEnterSearch(event);" placeholder="-없이 숫자만 입력하세요.">
 						 </td>
 					
 					</tr>
