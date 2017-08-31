@@ -724,7 +724,7 @@ function custAddr_remove() {
 		$(checkbox2).prop("checked", false);
 	}
 	
-	var table_tbody = document.getElementById('tableAddr_tbody');
+//	var table_tbody = document.getElementById('tableAddr_tbody');
 }
 
 //function cust_addr_save(cust_no)

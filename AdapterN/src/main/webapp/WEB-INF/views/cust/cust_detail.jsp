@@ -370,7 +370,7 @@ $(document).ready(function(){
 								</select>
 			 				</td>
 							<td>
-								<input type="text" id="zip_no" name="zip_no" style="width: 90%;" value="${custAList.zip_no }" >
+								<input type="text" id="postcodify_search" class='postcodify postcodify_postcode5 postcodify_search_button' name="zip_no" style="width: 90%;" value="${custAList.zip_no }" >
 		  					</td>
 							<td>
 								<input type="text" id="main_address" name="main_address" style="width: 90%;"  value="${custAList.main_address}" >
