@@ -192,10 +192,10 @@ $(document).ready(function(){
 			<th style="text-align:right;">내원경로세부</th>
 			<td colspan="3">
 				<c:if test="${ flg == 2 }">
-					<input type="text" id="reason_cd" name="reason_cd" value="${custDlist.visit_cn}" readonly="readonly">
+					<input type="text" id="visit_cn" name="visit_cn" value="${custDlist.visit_cn}" readonly="readonly">
 				</c:if>
 				<c:if test="${ flg == 1 }">
-					<input type="text" id="reason_cd" name="reason_cd" value="${custDlist.visit_cn}">
+					<input type="text" id="visit_cn" name="visit_cn" value="${custDlist.visit_cn}">
 				</c:if>		
 			</td>
  		</tr>
@@ -258,7 +258,7 @@ $(document).ready(function(){
 		    	<thead>
 					<tr>
 						<td rowspan="2" style="width: 2%; text-align: center;">
-		 	 				<input id="custPhoneChk" class="custPhoneChk" type="checkbox" onclick="actAllChk(this);" />
+		 	 				<input id="custPhoneChk" class="custPhoneChk" type="checkbox" onclick="custPhoneAllChk(this);" />
 		 	 			</td>
 			 			<th style="text-align:center;">구분</th>
 						<th style="text-align:center;">국가코드</th>
@@ -340,7 +340,7 @@ $(document).ready(function(){
 	    		<thead>
 					<tr>
 						<td style="width: 2%; text-align: center;">
-		 	 				<input id="custAddrChk" class="custAddrChk" type="checkbox" onclick="actAllChk(this);" />
+		 	 				<input id="custAddrChk" class="custAddrChk" type="checkbox" onclick="custAddrAllChk(this);" />
 		 	 			</td>
 		 				<th style="text-align:center;">구분</th>
 						<th style="text-align:center;">우편번호</th>
@@ -353,7 +353,7 @@ $(document).ready(function(){
 					<c:forEach items="${custAList}" var="custAList" >
 						<tr>
 							<td style="width: 2%; text-align: center;">
-		 	 					<input id="custAddrChk" class="custAddrChk" type="checkbox" onclick="actAllChk(this);" />
+		 	 					<input id="custAddrChk" class="custAddrChk" type="checkbox" />
 		 	 				</td>
 							<td>
 								<select id="addr_type_cd" name="addr_type_cd" 

@@ -225,6 +225,8 @@ public class CustController {
 		else if(cust_no != null || cust_no != ""){
 //			flg=1;
 			cvoS.setCust_no(cust_no);
+			
+			System.out.println("mdfy : " + cvoS);
 			result = custService.custMdfy(cvoS);
 			if(result == 1){
 				custVO = custService.custDetailList(cust_no);

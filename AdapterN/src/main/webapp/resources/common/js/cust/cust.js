@@ -37,6 +37,30 @@ $(document).ready(function(){
 //	});
 });
 
+//체크박스 전체 선택.
+function custPhoneAllChk()
+{
+	var checkbox1=$('#custP_form_tbl tbody').find('input[type=checkbox]');
+	
+	if($('#custPhoneChk').is(":checked")){
+		$(checkbox1).prop("checked", true);
+	}else{
+		$(checkbox1).prop("checked", false);
+	}
+}
+
+//체크박스 전체 선택.
+function custAddrAllChk()
+{
+	var checkbox2=$('#custA_form_tbl tbody').find('input[type=checkbox]');
+	
+	if($('#custAddrChk').is(":checked")){
+		$(checkbox2).prop("checked", true);
+	}else{
+		$(checkbox2).prop("checked", false);
+	}
+}
+
 //취소버튼 
 function cust_cancel(custPageNum)
 {
@@ -382,11 +406,10 @@ function cust_add_save()
 		$("#cust_single_modify").addClass("tr_btn");
 
 		$("#cust_name").prop("readonly", false);
-//		$("#resident_no").prop("readonly", false);
 		$("#chart_no").prop("readonly", false);
 		$("#cust_id").prop("readonly", false);
-		$("#reason_cd").prop("readonly", false);
 		$("#remark_cn").prop("readonly", false);
+		$("#visit_cn").prop("readonly", false);
 		$("#rec_per").prop("readonly", false);
 
 		$("#visit_cd").prop("disabled", false);
@@ -512,7 +535,14 @@ function cust_remove()
 	var checkbox=$('#custP_form_tbl tbody').find('input[type=checkbox]:checked');	// 체크된 체크박스를 담는다.
 	var delTr = checkbox.parent().parent();											// 체크된 체크박스의 tr을 담는다.
 	
+	console.log(delTr);
 	delTr.remove();
+	
+	var checkbox1=$('#custP_form_tbl thead').find('input[type=checkbox]');
+	
+	if($('#custPhoneChk').is(":checked")){
+		$(checkbox1).prop("checked", false);
+	}
 	
 //	var table_tbody = document.getElementById('table_tbody');
 }
@@ -686,9 +716,13 @@ function custAddr_remove() {
 	var checkbox=$('#custA_form_tbl tbody').find('input[type=checkbox]:checked');	// 체크된 체크박스를 담는다.
 	var delTr = checkbox.parent().parent();											// 체크된 체크박스의 tr을 담는다.
 	
-	console.log(delTr);
-	
 	delTr.remove();
+	
+	var checkbox2=$('#custA_form_tbl thead').find('input[type=checkbox]');
+	
+	if($('#custAddrChk').is(":checked")){
+		$(checkbox2).prop("checked", false);
+	}
 	
 	var table_tbody = document.getElementById('tableAddr_tbody');
 }

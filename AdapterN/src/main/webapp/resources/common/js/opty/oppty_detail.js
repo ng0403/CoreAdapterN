@@ -40,7 +40,29 @@ function wordch(thisword)
 
 function opptyList(opptyPageNum)
 {
+	alert("매출기회 리스트로 이동합니다.");
 	location.href = ctx + "/oppty?opptyPageNum="+opptyPageNum;
+}
+
+//매출기회 상세 초기화 버튼
+function oppty_reset() 
+{
+	$("#oppty_name").val("");
+	$("#cust_no").val("");
+	$("#cust_name").val("");
+	$("#emp_no").val("");
+	$("#emp_name").val("");
+	$("#score").val("");
+	$("#exp_close_day").val("");
+	$("#sur_plan_cn").val("");
+	$("#description").val(""); 
+	
+	$("#oppty_status_cd_sel option:eq(0)").prop("selected", "selected");
+	$("#oppty_stage_cd_sel option:eq(0)").prop("selected", "selected");
+	$("#dtype_cd_sel option:eq(0)").prop("selected", "selected");
+	$("#purchase_type_sel option:eq(0)").prop("selected", "selected");
+	$("#payment_cd_sel option:eq(0)").prop("selected", "selected");
+	$("#rec_per_cd_sel option:eq(0)").prop("selected", "selected");
 }
 
 // popup
@@ -85,6 +107,13 @@ function empSchPopupOpen()
 	
 	// list 불러오는 함수.
 	viewEmpList(1);
+}
+
+
+//Popup 닫기
+function popupClose()
+{
+	$.unblockUI();
 }
 
 /* 팝업창 고객목록 표시 */
@@ -294,22 +323,6 @@ function viewEmpList(empPopupPageNum) {
 			return false;
 		}
 	});
-}
-
-// 엔터키 기능
-function enterSearch(event) 
-{
-	var keycode = (event.keyCode ? event.keyCode : event.which);
-	if (keycode == '13') {
-		viewProdMenuList(1, 1);
-	}
-	event.stopPropagation();
-}
-
-// Popup 닫기
-function popupClose()
-{
-	$.unblockUI();
 }
 
 // 단건 등록

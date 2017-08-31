@@ -22,28 +22,6 @@ function opptySchReset()
 	$("#purchase_type_srch option:eq(0)").prop("selected", "selected");
 }
 
-//매출기회 상세 초기화 버튼
-function oppty_reset() 
-{
-	$("#oppty_name").val("");
-	$("#cust_no").val("");
-	$("#cust_name").val("");
-	$("#emp_no").val("");
-	$("#emp_name").val("");
-	$("#score").val("");
-	$("#exp_close_day").val("");
-	$("#sur_plan_cn").val("");
-	$("#description").val(""); 
-	
-	$("#oppty_status_cd_sel option:eq(0)").prop("selected", "selected");
-	$("#oppty_stage_cd_sel option:eq(0)").prop("selected", "selected");
-	$("#dtype_cd_sel option:eq(0)").prop("selected", "selected");
-	$("#purchase_type_sel option:eq(0)").prop("selected", "selected");
-	$("#payment_cd_sel option:eq(0)").prop("selected", "selected");
-	$("#rec_per_cd_sel option:eq(0)").prop("selected", "selected");
-}
-
-
 //검색 엔터키 기능
 function opptyEnterSearch(event) {
 	var keycode = (event.keyCode ? event.keyCode : event.which);
