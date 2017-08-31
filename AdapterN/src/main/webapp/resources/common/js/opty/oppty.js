@@ -77,26 +77,34 @@ function opptySchList(opptyPageNum)
 			tbody.children().remove();
 			
 			var size = data.srcList.length;
-			for(var i=0; i<size; i++)
+			if(size == 0)
 			{
-				tbodyContent = "<tr>" +
-	 			"<td style='text-align: left;' >" +data.srcList[i].oppty_no +"</td>" +
-	 			"<td style='text-align: left;'>" +
-	 				"<a onclick=opptyDetail('"+data.srcList[i].oppty_no+"','"+data.opptyPageNum+"'); id='"+data.srcList[i].oppty_no+"'>" + data.srcList[i].oppty_name+"</a></td>" +
-	 			"<td style='text-align: left;'>" + data.srcList[i].cust_no +"</td>" +
-	 			"<td style='text-align: left;'>" + data.srcList[i].cust_name +"</td>" +
-	 			"<td style='text-align: left;'>" + data.srcList[i].cust_phone + "</td>" +
-	 			"<td style='text-align: left;'>" + data.srcList[i].emp_name + "</td>" +
-	 			"<td style='text-align: left;'>" + data.srcList[i].oppty_status_cd + "</td>" +
-	 			"<td style='text-align: left;'>" + data.srcList[i].oppty_stage_cd + "</td>" +
-	 			"<td style='text-align: left;'>" + data.srcList[i].exp_close_day + "</td>" +
-	 			"<td style='text-align: left;'>" + data.srcList[i].dtype_cd + "</td>" +
-	 			"<td style='text-align: left;'>" + data.srcList[i].purchase_type + "</td>" +
-	 			"<td style='text-align: left;'>" + data.srcList[i].rec_per_cd + "</td>" +
-	 			"<td style='text-align: left;'>" + data.srcList[i].create_date + "</td>" +
-	 			"</tr>";
-
-				tbody.append(tbodyContent);
+				tbodyContent = "<tr style='height: 75px;'><td colspan='13' style='width: 1320px; text-align: center;  vertical-align: middle;'>검색 결과가 없습니다.</td></tr>";
+	    		tbody.append(tbodyContent);
+			}
+			else
+			{
+				for(var i=0; i<size; i++)
+				{
+					tbodyContent = "<tr>" +
+					"<td style='text-align: left;' >" +data.srcList[i].oppty_no +"</td>" +
+					"<td style='text-align: left;'>" +
+					"<a onclick=opptyDetail('"+data.srcList[i].oppty_no+"','"+data.opptyPageNum+"'); id='"+data.srcList[i].oppty_no+"'>" + data.srcList[i].oppty_name+"</a></td>" +
+					"<td style='text-align: left;'>" + data.srcList[i].cust_no +"</td>" +
+					"<td style='text-align: left;'>" + data.srcList[i].cust_name +"</td>" +
+					"<td style='text-align: left;'>" + data.srcList[i].cust_phone + "</td>" +
+					"<td style='text-align: left;'>" + data.srcList[i].emp_name + "</td>" +
+					"<td style='text-align: left;'>" + data.srcList[i].oppty_status_cd + "</td>" +
+					"<td style='text-align: left;'>" + data.srcList[i].oppty_stage_cd + "</td>" +
+					"<td style='text-align: left;'>" + data.srcList[i].exp_close_day + "</td>" +
+					"<td style='text-align: left;'>" + data.srcList[i].dtype_cd + "</td>" +
+					"<td style='text-align: left;'>" + data.srcList[i].purchase_type + "</td>" +
+					"<td style='text-align: left;'>" + data.srcList[i].rec_per_cd + "</td>" +
+					"<td style='text-align: left;'>" + data.srcList[i].create_date + "</td>" +
+					"</tr>";
+					
+					tbody.append(tbodyContent);
+				}
 			}
 			
 			// 페이징
