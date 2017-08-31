@@ -59,8 +59,10 @@
 						 </td>
 						 
 						 <td style="width: 12%;">
-							<input type="button" value="조회" id="oppty_list_sch"  onclick="opptySchList(1);"	class="tr_btn" style="margin-left: 0;"> <!-- pageing 시 매개변수 1을 전달한다. -->
-							<input type="button" value="검색 초기화" id="oppty_list_sch_reset"  onclick="opptySchReset();"	class="tr_btn" style="margin-left: 0;"> <!-- pageing 시 매개변수 1을 전달한다. -->
+							 <div style="float: right;">
+								<input type="button" value="조회" id="oppty_list_sch"  onclick="opptySchList(1);"	class="tr_btn" style="margin-left: 0;"> <!-- pageing 시 매개변수 1을 전달한다. -->
+								<input type="button" value="검색 초기화" id="oppty_list_sch_reset"  onclick="opptySchReset();"	class="tr_btn" style="margin-left: 0;"> <!-- pageing 시 매개변수 1을 전달한다. -->
+							 </div>
 						</td>
 					</tr>
 					<tr>
