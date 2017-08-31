@@ -26,31 +26,7 @@ $(function(){
 	  $("#lead_update_title").css("display", "none");
 });
  
-//특수문자 검사
-function wordch(thisword)
-{
-	console.log(thisword);
-	
-	var flag = true;
-	var specialChars="~`!@#$%^&*-=+\|[](){};:'<.,>/?_";
-
-	wordadded = thisword;
-
-	for(i=0; i<wordadded.length; i++) 
-	{
-		for (j = 0; j < specialChars.length; j++) 
-		{         
-			if (wordadded.charAt(i) == specialChars.charAt(j))
-			{
-				flag = false;
-				break;
-	         }
-	     }
-	  }
-	return flag;
-}
-
-
+ 
 
 //검색 엔터키 기능
 function leadEnterSearch(event) {
@@ -339,7 +315,8 @@ function leadPageNumInputEnter(event) {
  function lead_cancel(a){
  
 	 if(confirm("리스트 페이지로 이동하시겠습니까?")){
-	 location.href="/lead?pageNum=" + a;
+		 alert("가망고객 리스트로 이동합니다.");
+		 location.href="/lead?pageNum=" + a;
 	 }
 	 else{
 		 return false;
@@ -376,12 +353,7 @@ function lead_single_save(){
     	alert("접촉할 일자를 입력해 주세요.");
     	return false;
     } 
-    
-	if(wordch($("#remark_cn").val()) == false)
-	{
-		alert("특이사항에는 특수문자는 입력불가능합니다.");
-		return false;
-	}
+ 
   
 
 	  if(confirm("저장 하시겠습니까?")){ 
@@ -435,11 +407,7 @@ function lead_modify_save() {
     	    return false;
         } 
     	
-    	if(wordch($("#remark_cn").val()) == false)
-    	{
-    		alert("특이사항에는 특수문자는 입력불가능합니다.");
-    		return false;
-    	}	
+     
     	
      if(confirm("수정 하시겠습니까?")){ 
      alert("가망고객이 수정되었습니다.");
@@ -459,7 +427,8 @@ function lead_remove() {
 	
 	var formObj = $("form[role='form']");
     if(confirm("삭제 하시겠습니까?")){
-    	alert("삭제되었습니다. 가망고객 리스트로 이동합니다.");
+    	alert("삭제되었습니다.");
+    	alert("가망고객 리스트로 이동합니다.");
  	 formObj.attr("action", "/lead_delete");
 	 formObj.attr("method", "post");
 	 formObj.submit();  

@@ -1,5 +1,4 @@
-/**
-* wordch(thisword)						: 특수문자 입력방지 함수
+/** 
 * task_add_save()						: 상담 저장
 * task_modify_btn() 					: 상담 편집버튼 클릭 시 disabled  해제
 * task_modify_save()					: 상담 수정 
@@ -8,28 +7,7 @@
 */
 
 var ctx = $("#ctx").val();
-
-// 특수문자 입력방지
-function wordch(thisword)
-{
-	var flag = true;
-	var specialChars="~`!@#$%^&*-=+\|[](){};:'<.,>/?_";
-
-	wordadded = thisword;
-
-	for(i=0; i<wordadded.length; i++) 
-	{
-		for (j = 0; j < specialChars.length; j++) 
-		{         
-			if (wordadded.charAt(i) == specialChars.charAt(j))
-			{
-				flag = false;
-				break;
-	         }
-	     }
-	  }
-	return flag;
-}
+ 
 
 //상담 저장
 function task_add_save() {
@@ -75,9 +53,6 @@ function task_add_save() {
 		} else if ($("#location").val() == 0 || $("#location").val() == null || $("#location").val() == "") {
 			alert("진행장소를 입력하세요.");
 			$("#location").focus();
-			return false;
-		} else if (wordch($("#location").val()) == false) {
-			alert("진행장소에 특수문자는 입력 불가능합니다.");
 			return false;
 		} 
 	 	
@@ -197,10 +172,7 @@ function task_modify_save() {
 			alert("진행장소를 입력하세요.");
 			$("#location").focus();
 			return false;
-		} else if (wordch($("#location").val()) == false) {
-			alert("진행장소에 특수문자는 입력 불가능합니다.");
-			return false;
-		} 
+		}  
 	 
 		var ynChk = confirm("해당 상담을 수정하시겠습니까?");
 		if(ynChk){

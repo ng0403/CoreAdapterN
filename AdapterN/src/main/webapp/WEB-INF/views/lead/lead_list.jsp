@@ -45,8 +45,10 @@
 						 </td> 
 					  
  		                 <td style="width: 12%;">
+ 		                 <div style="float:right">
 		                 	<input type="button" value="조회" id="lead_list_srch" onclick="searchKeyword();" class="tr_btn" style="margin-left: 0;">
 		                    <input type="button" value="검색 초기화" id="lead_srch_reset" onclick="srch_reset();" class="tr_btn" style="margin-left: 0;"> 
+		                 </div>
 		                 </td>
 					</tr>
 					<tr>
