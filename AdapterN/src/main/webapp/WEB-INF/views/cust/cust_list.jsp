@@ -62,11 +62,6 @@ var vititDtlCdList = new Array();
 						 <td style="width:15%;">
 						    <input type="text" id="chart_no" name="chart_no" value="" style="width:80%" onkeypress="custEnterSearch(event);">
 						 </td>
-					  
- 		                 <td style="width: 12%;">
-		                 	<input type="button" value="조회" id="lead_list_srch" onclick="searchKeyword(1);" class="tr_btn" style="margin-left: 0;">
-		                 	<input type="button" value="검색 초기화" id="cust_list_sch_reset"  onclick="custSchReset();"	class="tr_btn" style="margin-left: 0;"> <!-- pageing 시 매개변수 1을 전달한다. -->
-		                 </td>
 					</tr>
 					
 					<tr>
@@ -96,6 +91,11 @@ var vititDtlCdList = new Array();
 						 <td style="width:15%;">
 						    <input type="text" id="phone_no" name="phone_no" value="" style="width:80%" onkeypress="custEnterSearch(event);" placeholder="-없이 숫자만 입력하세요.">
 						 </td>
+						 
+						 <td style="width: 12%;">
+		                 	<input type="button" value="조회" id="lead_list_srch" onclick="searchKeyword(1);" class="tr_btn" style="margin-left: 0;">
+		                 	<input type="button" value="검색 초기화" id="cust_list_sch_reset"  onclick="custSchReset();"	class="tr_btn" style="margin-left: 0;"> <!-- pageing 시 매개변수 1을 전달한다. -->
+		                 </td>
 					
 					</tr>
 				</table>
