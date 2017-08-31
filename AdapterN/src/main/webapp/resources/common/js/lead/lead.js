@@ -67,6 +67,32 @@ function leadEnterSearch(event) {
 	event.stopPropagation();
 }
 
+
+
+//페이징 엔터키
+function leadPageNumInputEnter(event) {
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	if (keycode == '13') {
+		var pageNum = parseInt($("#pageInput").val());
+		if ($("#pageInput").val() == '') {
+			alert("페이지 번호를 입력하세요.")
+			$("#pageInput").val($("#pageNum").val());
+			$("#pageInput").focus();
+		} else if(pageNum > parseInt($("#endPageNum").val())) {
+			alert("페이지 번호가 너무 큽니다.");
+			$("#pageInput").val($("#pageNum").val());
+			$("#pageInput").focus();
+		} else if (1 > pageNum) {
+			alert("페이지 번호가 너무 작습니다.");
+			$("#pageInput").val($("#pageNum").val());
+			$("#pageInput").focus();
+		} else {
+			searchKeyword(pageNum);
+		}
+	}
+	event.stopPropagation();
+}
+
  
 // 리드 상세정보
  function leadDetail(a,b) {
@@ -96,7 +122,7 @@ function leadEnterSearch(event) {
  	});
  	
  	// list 불러오는 함수.
- 	viewCustList();
+ 	viewCustList('1');
  }
  
  //담당자 서치 팝
@@ -169,7 +195,34 @@ function leadEnterSearch(event) {
  					$("#custListTbody tr:last").append("<td width='60%'>" + cust_no + "</td>"
  							+ "<td width='30%'>" + cust_name + "</td>");
  				});
- 			}
+ 			} 
+ 		// 페이징 그리기
+			$("#custPopupPagingDiv").empty();
+			var pageContent = "";
+	
+			console.log(data.pageNum);
+			
+			if(data.page.endPageNum == 0 || data.page.endPageNum == 1){
+				pageContent = "◀ <input type='text' id='custPopupInput' readonly='readonly' value='1' style='width: 25px; text-align: center;'/> / 1 ▶";
+			} else if(data.pageNum == data.page.startPageNum){
+				pageContent = "<input type='hidden' id='custPageNum' value='"+data.pageNum+"'/><input type='hidden' id='custEndPageNum' value='"+data.page.endPageNum+"'/>"
+				+"◀ <input type='text' id='custPopupInput' value='"+data.page.startPageNum+"' onkeypress=\"custPageNumInputEnter(event);\" style='width: 25px; text-align: center;'/>" 
+				+"<a onclick=\"viewCustList("+data.page.endPageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
+				+"<a onclick=\"viewCustList("+(data.pageNum+1)+");\" id='pNum' style='cursor: pointer;'> ▶ </a>";
+			} else if(data.pageNum == data.page.endPageNum){
+				pageContent = "<input type='hidden' id='custPageNum' value='"+data.pageNum+"'/><input type='hidden' id='custEndPageNum' value='"+data.page.endPageNum+"'/>"
+				+"<a onclick=\"viewCustList("+(data.pageNum-1)+");\" id='pNum' style='cursor: pointer;'> ◀ </a>"
+				+"<input type='text' id='custPopupInput' value='"+data.page.endPageNum+"' onkeypress=\"custPageNumInputEnter(event);\" style='width: 25px; text-align: center;'/>"
+				+"<a> / "+data.page.endPageNum+"</a> ▶";
+			} else {
+				pageContent = "<input type='hidden' id='custPageNum' value='"+data.pageNum+"'/><input type='hidden' id='custEndPageNum' value='"+data.page.endPageNum+"'/>"
+				+"<a onclick=\"viewCustList("+(data.pageNum-1)+");\" id='pNum' style='cursor: pointer;'> ◀ </a>"
+				+"<input type='text' id='custPopupInput' value='"+data.pageNum+"' onkeypress=\"custPageNumInputEnter(event);\" style='width: 25px; text-align: center;'/>"
+				+"<a onclick=\"viewCustList("+data.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
+				+"<a onclick=\"viewCustList("+(data.pageNum+1)+");\" id='pNum' style='cursor: pointer;'> ▶ </a>";
+			}
+			$("#custPopupPagingDiv").append(pageContent);
+			
  			
  		},
  		beforeSend: function(){
@@ -179,7 +232,7 @@ function leadEnterSearch(event) {
          	viewLoadingHide();	
          },
  		error: function(data) { 
- 			alert("담당자목록을 취득하지 못했습니다.");
+ 			alert("고객 목록을 취득하지 못했습니다.");
  			return false;
  		}
  	});
@@ -235,6 +288,31 @@ function leadEnterSearch(event) {
  				});
  			}
  			
+ 		// 페이징 그리기
+			$("#empPopupPagingDiv").empty();
+			var pageContent = "";
+			
+			if(data.page.endPageNum == 0 || data.page.endPageNum == 1){
+				pageContent = "◀ <input type='text' id='empPopupInput' readonly='readonly' value='1' style='width: 25px; text-align: center;'/> / 1 ▶";
+			} else if(data.pageNum == data.page.startPageNum){
+				pageContent = "<input type='hidden' id='empPageNum' value='"+data.pageNum+"'/><input type='hidden' id='empEndPageNum' value='"+data.page.endPageNum+"'/>"
+				+"◀ <input type='text' id='empPopupInput' value='"+data.page.startPageNum+"' onkeypress=\"custPageNumInputEnter(event);\" style='width: 25px; text-align: center;'/>" 
+				+"<a onclick=\"viewEmpList("+data.page.endPageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
+				+"<a onclick=\"viewEmpList("+(data.pageNum+1)+");\" id='pNum' style='cursor: pointer;'> ▶ </a>";
+			} else if(data.pageNum == data.page.endPageNum){
+				pageContent = "<input type='hidden' id='empPageNum' value='"+data.pageNum+"'/><input type='hidden' id='empEndPageNum' value='"+data.page.endPageNum+"'/>"
+				+"<a onclick=\"viewEmpList("+(data.pageNum-1)+");\" id='pNum' style='cursor: pointer;'> ◀ </a>"
+				+"<input type='text' id='empPopupInput' value='"+data.page.endPageNum+"' onkeypress=\"custPageNumInputEnter(event);\" style='width: 25px; text-align: center;'/>"
+				+"<a> / "+data.page.endPageNum+"</a> ▶";
+			} else {
+				pageContent = "<input type='hidden' id='empPageNum' value='"+data.pageNum+"'/><input type='hidden' id='empEndPageNum' value='"+data.page.endPageNum+"'/>"
+				+"<a onclick=\"viewCustList("+(data.pageNum-1)+",2);\" id='pNum' style='cursor: pointer;'> ◀ </a>"
+				+"<input type='text' id='empPopupInput' value='"+data.pageNum+"' onkeypress=\"custPageNumInputEnter(event);\" style='width: 25px; text-align: center;'/>"
+				+"<a onclick=\"viewEmpList("+data.page.pageNum+");\" id='pNum' style='cursor: pointer;'> / "+data.page.endPageNum+"</a>"
+				+"<a onclick=\"viewEmpList("+(data.pageNum+1)+");\" id='pNum' style='cursor: pointer;'> ▶ </a>";
+			}
+			$("#empPopupPagingDiv").append(pageContent);
+ 			
  		},
  		beforeSend: function(){
          	viewLoadingShow();			
@@ -282,8 +360,7 @@ function lead_single_save(){
 	var formObj = $("form[role='form']");
 	
 	
-    if(confirm("저장 하시겠습니까?")){ 
-    
+  
     if($("#lead_name").val() == null || $("#lead_name").val()==""){
         	alert("리드명을 입력해 주세요.");
         	return false;
@@ -306,11 +383,15 @@ function lead_single_save(){
 		return false;
 	}
   
-    	
- 	 formObj.attr("action", "/lead_single_add");
+
+	  if(confirm("저장 하시겠습니까?")){ 
+	alert("가망고객이 저장되었습니다.");
+	alert("가망고객 리스트로 이동합니다.");
+
+	 formObj.attr("action", "/lead_single_add");
 	 formObj.attr("method", "post");
-	 formObj.submit();  
-    }else{
+	 formObj.submit();          
+	  }else{
    	 return false;
     }
 }
@@ -326,7 +407,7 @@ function lead_modify(){
 	$("#remark_cn").attr("readonly", false);  
 	$("#emp_list_pop").attr("disabled", false);
 	$("#cust_list_pop").attr("disabled", false);
-	 
+	$("#contact_day").attr("disabled", false);
 	
 	$("#lead_detail_div").css("display", "none");
 	$("#lead_update_div").css("display", "block");
@@ -342,7 +423,7 @@ function lead_modify(){
 function lead_modify_save() {
 	
 	var formObj = $("form[role='form']");
-    if(confirm("수정 하시겠습니까?")){
+
     	
     	if($("#cust_no").val() == null || $("#cust_no").val()==""){
     	    alert("고객명을 입력해 주세요.");
@@ -360,6 +441,10 @@ function lead_modify_save() {
     		return false;
     	}	
     	
+     if(confirm("수정 하시겠습니까?")){ 
+     alert("가망고객이 수정되었습니다.");
+	 alert("가망고객 리스트로 이동합니다.");
+
  	 formObj.attr("action", "/lead_update");
 	 formObj.attr("method", "post");
 	 formObj.submit();  
@@ -374,6 +459,7 @@ function lead_remove() {
 	
 	var formObj = $("form[role='form']");
     if(confirm("삭제 하시겠습니까?")){
+    	alert("삭제되었습니다. 가망고객 리스트로 이동합니다.");
  	 formObj.attr("action", "/lead_delete");
 	 formObj.attr("method", "post");
 	 formObj.submit();  
@@ -385,8 +471,7 @@ function lead_remove() {
 
 //가망 고객 검색 초기화
 function srch_reset() {
-	
-	if(confirm("초기화 하시겠습니까?")){
+ 
 		
 		$("#lead_no_srch").val("");
 		$("#lead_name_srch").val("");
@@ -394,8 +479,7 @@ function srch_reset() {
 		$("#emp_name").val("");
 		$("#contact_day_srch").val("");
 		$("#rank_cd").val(""); 
-	}
-	
+ 
 }
 
 
@@ -512,6 +596,8 @@ function download_list_Excel(formID, flgNum) {
 	var form = $("#"+formID);
 	var excel = $('<input type="hidden" value="true" name="excel">');
 	var flg = $('<input type="hidden" value="'+flgNum+'" name="flg">');
+	
+	if(flgNum == '0'){
 	if(confirm("리스트를 출력하시겠습니까? 대량의 경우 대기시간이 필요합니다.")) 
 	{
 		
@@ -534,10 +620,39 @@ function download_list_Excel(formID, flgNum) {
 	} 
 /*	$("input[name=excel]").val("");
 	$("input[name=flg]").val("");*/
- 
+	else{
+		return false;
+	} 
 	form[0].reset();
 }
-
+	
+	if(flgNum == '1'){
+		 
+			form.append(excel);
+			form.append(flg);
+		 
+			
+			form.attr("action", "/toLeadExcel?flg=" + flgNum);
+			form.submit();
+			
+	/*		if(flg == 0) 
+			{
+			
+			} 
+			else(flg == 1) 
+			{
+				form.attr("action", "/task_sch");
+				form.submit();
+			}*/
+		} 
+	/*	$("input[name=excel]").val("");
+		$("input[name=flg]").val("");*/
+		else{
+			return false;
+		} 
+		form[0].reset(); 
+	
+}
 
 
 //엑셀 양식 다운로드 

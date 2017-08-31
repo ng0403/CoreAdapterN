@@ -167,7 +167,7 @@ $(document).ready(function(){
 			 	 	<tbody id="custListTbody"></tbody>
 				</table>
 			<!-- 페이징 DIV -->
-			<div class="pagingDiv" id="prodMenuPagingDiv" style="width: 100%; text-align: center;"></div>
+			<div class="pagingDiv" id="custPopupPagingDiv" style="width: 100%; text-align: center;"></div>
 		</div>	
 	</div>
 	</form>
@@ -211,7 +211,7 @@ $(document).ready(function(){
 			 	 	<tbody id="empListTbody"></tbody>
 				</table>
 			<!-- 페이징 DIV -->
-			<div class="pagingDiv" id="prodMenuPagingDiv" style="width: 100%; text-align: center;"></div>
+			<div class="pagingDiv" id="empPopupPagingDiv" style="width: 100%; text-align: center;"></div>
 		</div>	
 	</div>
 	</form>

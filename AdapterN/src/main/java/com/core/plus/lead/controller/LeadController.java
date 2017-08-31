@@ -226,14 +226,15 @@ public class LeadController {
 		map.put("custPopupPageNum", PageNum);
 		
 		PagerVO page = opptyService.getCustPopupRow(map);
+		map.put("page", page);
+		map.put("pageNum", PageNum);
 		
 		// 담당자리스트 불러오는 서비스/다오/맵퍼 작성
 		if(s_cust_name == null || s_cust_name == "")
 		{
-			List<CustVO> custPopupList = leadService.custPopupList();
+			List<CustVO> custPopupList = leadService.custPopupList(map);
 			map.put("custPopupList", custPopupList);
-			map.put("page", page);
-			map.put("pageNum", PageNum);
+			
 			
 			System.out.println("map ?? " + map.toString());
 			return map;
@@ -242,9 +243,7 @@ public class LeadController {
 		{
 			map.put("s_cust_name", s_cust_name);
 			List<CustVO> schCustPopupList = leadService.custPopupList(map);
-			map.put("custPopupList", schCustPopupList);
-			map.put("page", page);
-			map.put("pageNum", PageNum);
+			map.put("custPopupList", schCustPopupList); 
 			
 			System.out.println("map? " + map.toString());
 			
@@ -260,14 +259,14 @@ public class LeadController {
 		map.put("empPopupPageNum", PageNum);
 		
 		PagerVO page = opptyService.getEmpPopupRow(map);
+		map.put("page", page);
+		map.put("PageNum", PageNum);
 		
 		// 담당자리스트 불러오는 서비스/다오/맵퍼 작성
 		if(s_emp_name == null || s_emp_name == "")
 		{
-			List<EmpVO> empPopupList = leadService.empPopupList();
+			List<EmpVO> empPopupList = leadService.empPopupList(map);
 			map.put("empPopupList", empPopupList);
-			map.put("page", page);
-			map.put("PageNum", PageNum);
 			
 			return map;
 		}
@@ -276,9 +275,7 @@ public class LeadController {
 			map.put("s_emp_name", s_emp_name);
 			List<EmpVO> schEmpPopupList = leadService.empPopupList(map);
 			map.put("empPopupList", schEmpPopupList);
-			map.put("page", page);
-			map.put("PageNum", PageNum);
-			
+ 			
 			return map;
 		}
 	}
