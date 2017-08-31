@@ -357,7 +357,7 @@ function leadPageNumInputEnter(event) {
  
  //가망고객 단건 추가 저장
 function lead_single_save(){
-	var formObj = $("form[role='form']");
+	var formObj =  $("form[role='form']");
 	
 	
   
