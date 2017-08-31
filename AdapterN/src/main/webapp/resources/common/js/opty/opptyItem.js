@@ -194,6 +194,12 @@ function opptyItemDelte()
 	var delQty = checkbox.parent().parent().children().eq(4).children().val();		// 체크된 체크박스의 item의 수량을 담는다.
 	
 	delTr.remove();		// 체크박스가 체크된 tr을 지운다.
+	
+	var checkbox=$('#opptyItemTable thead').find('input[type=checkbox]');
+	
+	if($('#optyItemChk').is(":checked")){
+		$(checkbox).prop("checked", false);
+	}
 }
 
 /* Popup */
