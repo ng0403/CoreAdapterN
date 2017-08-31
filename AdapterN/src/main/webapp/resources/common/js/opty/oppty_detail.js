@@ -525,16 +525,6 @@ function opptyEdit()
 			alert("소개자를 선택하세요.");
 			return false;
 		}
-		if(wordch($("#sur_plan_cn").val()) == false)
-		{
-			alert("특수문자는 입력불가능합니다.");
-			return false;
-		}
-		if(wordch($("#description").val()) == false)
-		{
-			alert("특수문자는 입력불가능합니다.");
-			return false;
-		}
 
 		var ynChk = confirm("해당 기회를 수정하시겠습니까?");
 		if(ynChk)
