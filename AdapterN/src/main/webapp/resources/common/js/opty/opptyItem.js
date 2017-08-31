@@ -87,7 +87,7 @@ function opptyItemAdd()
 			"<td style='text-align: left;'>" +
 				"<input type='hidden' class='small_cate_cd' name='small_cate_cd' value=''>" +
 				"<input type='text' class='small_cate_name' name='small_cate_name' readonly='readonly'></td>"+
-			"<td style='text-align: left;'><input type='text' class='qty' name='qty' onkeyup='totalPrice();'></td>"+
+			"<td style='text-align: left;'><input type='text' class='qty' name='qty' onkeyup='totalPriceCalc();'></td>"+
 			"<td style='text-align: left;'><input type='text' class='list_price' name='list_price' readonly='readonly'></td>"+
 			"<td style='text-align: left;'><input type='text' class='total_price' name='total_price' readonly='readonly'></td>"+
 			"<td style='text-align: left;'><input type='text' class='dc_price' name='dc_price' readonly='readonly'></td>"+
@@ -148,10 +148,12 @@ function opptyItemInsert()
 			tbody.children().remove();
 			
 			alert("매출기회 상품이 추가되었습니다.");
+			console.log(data);
 			
 			var size = data.length;
 			for(var i=0; i<size; i++)
 			{
+				console.log(data[i].offer_price + " : " + data[i].total_price);
 				tbodyContent = "<tr>" +
 				"<td><input type='checkbox' class='del_chk' name='del_chk'></td>" +
 	 			"<td style='text-align: left;'>" +
@@ -171,9 +173,16 @@ function opptyItemInsert()
  					"<input type='text' class='total_price' name='total_price' value='"+ data[i].total_price +"' readonly='readonly'></td>" +
  				"<td style='text-align: left;'>" +
  					"<input type='text' class='dc_price' name='dc_price' value='"+ data[i].dc_price +"'></td>" +
- 				"<td style='text-align: left;'>" +
- 					"<input type='text' class='offer_price' name='offer_price' value='"+ data[i].offer_price +"'></td>" +
- 				"<td style='text-align: left;'>" +
+ 				"<td style='text-align: left;'>";
+				
+ 				if(data[i].total_price == data[i].offer_price){
+ 					tbodyContent += "<input type='text' class='offer_price' name='offer_price' value='"+ 0 +"'></td>";
+ 				}
+ 				else {
+ 					tbodyContent += "<input type='text' class='offer_price' name='offer_price' value='"+ data[i].offer_price +"'></td>";
+ 				}
+ 				
+ 				tbodyContent += "<td style='text-align: left;'>" +
  					"<input type='text' class='payment_day' name='payment_day' value='"+ data[i].payment_day +"'></td>" +
 	 			"</tr>"
  					
@@ -597,7 +606,7 @@ function catePageNumInputEnter(event) {
 }
 
 // 총금액 계산
-function totalPrice()
+function totalPriceCalc()
 {
 	var inputQty = selQty.val();
 	var listPrice = selQty.parent().parent().children().eq(5).children().eq(0).val();
@@ -605,6 +614,7 @@ function totalPrice()
 	
 	// total_price에 값 대입
 	total = selQty.parent().parent().children().eq(6).children().eq(0).val(totalPrice);
+	selQty.parent().parent().children().eq(7).children().eq(0).val(0);
 }
 
 function dcPrice()

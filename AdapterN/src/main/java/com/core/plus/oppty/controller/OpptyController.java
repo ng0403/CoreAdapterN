@@ -320,6 +320,7 @@ public class OpptyController {
 		// 바로 detail 화면으로 뿌려준다.
 //		List<OpptyVO> optyItemList = opptyService.opptyDetail(oppty_no);
 		List<OpptyItemVO> optyItemList 	= opptyService.opptyItemList(oppty_no);	// 조회 후 상세보기에 출력
+		System.out.println("optyItemList : " + optyItemList);
 		
 		return optyItemList;
 	}

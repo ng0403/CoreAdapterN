@@ -7,9 +7,9 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<script src="http://malsup.github.com/jquery.form.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/opty/oppty_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/opty/opptyItem.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/opty/oppty_detail.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
 
 <script type="text/javascript">
 
