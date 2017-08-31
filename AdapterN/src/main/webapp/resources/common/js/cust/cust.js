@@ -64,8 +64,14 @@ function custAddrAllChk()
 //취소버튼 
 function cust_cancel(custPageNum)
 {
-	alert("고객 리스트 화면으로 이동합니다.");
-	location.href="/cust?custPageNum=" + custPageNum;
+	if(confirm("취소하시겠습니까?"))
+	{
+		alert("고객 리스트 화면으로 이동합니다.");
+		location.href="/cust?custPageNum=" + custPageNum;
+	}
+	else
+		return false;
+	
 } 
 
 // 특수문자 예외처리
@@ -112,20 +118,26 @@ function custSchReset()
 //고객 상세 초기화 버튼
 function cust_reset() 
 {
-	$("#cust_name").val("");
-	$("#resident_no").val("");
-	$("#chart_no").val("");
-	$("#cust_id").val("");
-	$("#rec_per").val("");
-	$("#reason_cd").val("");
-	$("#remark_cn").val(""); 
-	
-	$("#discount_cost option:eq(0)").prop("selected", "selected");
-	$("#visit_cd option:eq(0)").prop("selected", "selected");
-	$("#visit_dtl_cd option:eq(0)").prop("selected", "selected");
-	$("#purchase_type_sel option:eq(0)").prop("selected", "selected");
-	$("#payment_cd_sel option:eq(0)").prop("selected", "selected");
-	$("#rec_per_cd_sel option:eq(0)").prop("selected", "selected");
+	if(confirm("입력한 정보를 지우겠습니까?"))
+	{
+		$("#cust_name").val("");
+		$("#resident_no").val("");
+		$("#chart_no").val("");
+		$("#cust_id").val("");
+		$("#rec_per").val("");
+		$("#reason_cd").val("");
+		$("#remark_cn").val(""); 
+		
+		$("#discount_cost option:eq(0)").prop("selected", "selected");
+		$("#visit_cd option:eq(0)").prop("selected", "selected");
+		$("#visit_dtl_cd option:eq(0)").prop("selected", "selected");
+		$("#purchase_type_sel option:eq(0)").prop("selected", "selected");
+		$("#payment_cd_sel option:eq(0)").prop("selected", "selected");
+		$("#rec_per_cd_sel option:eq(0)").prop("selected", "selected");
+	}
+	else
+		return false;
+		
 }
 
 //검색 엔터키 기능
@@ -670,6 +682,7 @@ function cust_phone_save()
 // 우편 테이블 행 추가
 function cust_address_add()
 {
+	var count = 0;
 	var cust_no = $("#cust_no").val();
 	console.log(cust_no);
 
@@ -691,10 +704,10 @@ function cust_address_add()
 								"</select>"+
 							"</td>"+
 							"<td>"+
-								"<input type='text' id='postcodify_search' class='postcodify postcodify_postcode5 postcodify_search_button' onclick='postPop();' name='zip_no' style='width: 90%;'> " +
+								"<input type='text' id='postcodify_search' class='postcodify postcodify_postcode5 postcodify_search_button' name='zip_no' style='width: 90%;'> " +
 							"</td>" +
 							"<td>"+
-								"<input type='text' id='main_address' class='postcodify postcodify_address' name='main_address' style='width: 90%;'> " + 
+								"<input type='text' id='main_address"+count+"' class='postcodify postcodify_address' name='main_address"+count+"' style='width: 90%;'> " + 
 							"</td>" +
 							"<td>"+
 							"<input type='text' id='detail_address' class='postcodify postcodify_details' name='detail_address' style='width: 90%;'> " + 
@@ -706,6 +719,7 @@ function cust_address_add()
 
 	// 새로 그려준다.
 	tbody.append(tbodyContent);
+	count++;
 	
 	$(".postcodify_search_button").postcodifyPopUp();
 }

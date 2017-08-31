@@ -40,29 +40,39 @@ function wordch(thisword)
 
 function opptyList(opptyPageNum)
 {
-	alert("매출기회 리스트로 이동합니다.");
-	location.href = ctx + "/oppty?opptyPageNum="+opptyPageNum;
+	if(confirm("취소하시겠습니까?"))
+	{
+		alert("매출기회 리스트로 이동합니다.");
+		location.href = ctx + "/oppty?opptyPageNum="+opptyPageNum;
+	}
+	else
+		return false;
 }
 
 //매출기회 상세 초기화 버튼
 function oppty_reset() 
 {
-	$("#oppty_name").val("");
-	$("#cust_no").val("");
-	$("#cust_name").val("");
-	$("#emp_no").val("");
-	$("#emp_name").val("");
-	$("#score").val("");
-	$("#exp_close_day").val("");
-	$("#sur_plan_cn").val("");
-	$("#description").val(""); 
-	
-	$("#oppty_status_cd_sel option:eq(0)").prop("selected", "selected");
-	$("#oppty_stage_cd_sel option:eq(0)").prop("selected", "selected");
-	$("#dtype_cd_sel option:eq(0)").prop("selected", "selected");
-	$("#purchase_type_sel option:eq(0)").prop("selected", "selected");
-	$("#payment_cd_sel option:eq(0)").prop("selected", "selected");
-	$("#rec_per_cd_sel option:eq(0)").prop("selected", "selected");
+	if(confirm("입력한 정보를 지우겠습니까?"))
+	{
+		$("#oppty_name").val("");
+		$("#cust_no").val("");
+		$("#cust_name").val("");
+		$("#emp_no").val("");
+		$("#emp_name").val("");
+		$("#score").val("");
+		$("#exp_close_day").val("");
+		$("#sur_plan_cn").val("");
+		$("#description").val(""); 
+		
+		$("#oppty_status_cd_sel option:eq(0)").prop("selected", "selected");
+		$("#oppty_stage_cd_sel option:eq(0)").prop("selected", "selected");
+		$("#dtype_cd_sel option:eq(0)").prop("selected", "selected");
+		$("#purchase_type_sel option:eq(0)").prop("selected", "selected");
+		$("#payment_cd_sel option:eq(0)").prop("selected", "selected");
+		$("#rec_per_cd_sel option:eq(0)").prop("selected", "selected");
+	}
+	else
+		return false;
 }
 
 // popup

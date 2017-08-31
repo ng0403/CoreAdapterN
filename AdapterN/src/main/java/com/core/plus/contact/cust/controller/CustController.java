@@ -74,7 +74,7 @@ public class CustController {
 		mav.addObject("custList", custList);
 		mav.addObject("vititCdList", vititCdList);
 		mav.addObject("vititDtlCdList", vititDtlCdList);
-		
+		mav.addObject("main_menu_url", "cust");
 //		System.out.println("custList" + custList);
 //		System.out.println("vititCdList" + vititCdList);
 		
@@ -198,6 +198,8 @@ public class CustController {
 		mav.addObject("phoneCountryCdList", phoneCountryCdList);
 		mav.addObject("addrTypeCdList", addrTypeCdList);
 		mav.addObject("custPageNum", custPageNum);
+		mav.addObject("main_menu_url", "cust");
+		
 		menuImport(mav, "cust");
 		
 		return mav;

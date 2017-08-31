@@ -85,6 +85,7 @@ public class OpptyController {
 		mov.addObject("opptyStageCd", stage);
 		mov.addObject("dtypeCd", dtype);
 		mov.addObject("purchaseType", purchase);
+		mov.addObject("main_menu_url", "oppty");
 
 		menuImport(mov, "oppty");
 		
@@ -197,6 +198,8 @@ public class OpptyController {
 			mov.addObject("paymentCd", payment);
 			mov.addObject("recperCd", recper);
 			mov.addObject("opptyPageNum", opptyPageNum);
+			mov.addObject("main_menu_url", "oppty");
+			
 			menuImport(mov, "oppty");
 			
 			return mov;
@@ -223,6 +226,8 @@ public class OpptyController {
 			mov.addObject("paymentCd", payment);
 			mov.addObject("recperCd", recper);
 			mov.addObject("opptyPageNum", opptyPageNum);
+			mov.addObject("main_menu_url", "oppty");
+			
 			menuImport(mov, "oppty");
 			
 			return mov;

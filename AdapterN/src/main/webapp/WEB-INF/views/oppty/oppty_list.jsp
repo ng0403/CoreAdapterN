@@ -57,6 +57,11 @@
 						 <td style="width:15%;">
 						    <input type="text" id="cust_name_srch" name="cust_name_srch" value="" style="width:80%" onkeypress="opptyEnterSearch(event);">
 						 </td>
+						 
+						 <td style="width: 12%;">
+							<input type="button" value="조회" id="oppty_list_sch"  onclick="opptySchList(1);"	class="tr_btn" style="margin-left: 0;"> <!-- pageing 시 매개변수 1을 전달한다. -->
+							<input type="button" value="검색 초기화" id="oppty_list_sch_reset"  onclick="opptySchReset();"	class="tr_btn" style="margin-left: 0;"> <!-- pageing 시 매개변수 1을 전달한다. -->
+						</td>
 					</tr>
 					<tr>
 						<th style="width:5%;">담당자명</th>
@@ -114,13 +119,6 @@
 								</c:forEach>
 							</select>
 						</td>
-						
-						<td style="width: 12%;">
-							<input type="button" value="조회" id="oppty_list_sch"  onclick="opptySchList(1);"	class="tr_btn" style="margin-left: 0;"> <!-- pageing 시 매개변수 1을 전달한다. -->
-							<input type="button" value="검색 초기화" id="oppty_list_sch_reset"  onclick="opptySchReset();"	class="tr_btn" style="margin-left: 0;"> <!-- pageing 시 매개변수 1을 전달한다. -->
-						</td>
-
-						
 					</tr>
 				</table>
 			</div>
