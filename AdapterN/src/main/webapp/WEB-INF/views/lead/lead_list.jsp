@@ -58,7 +58,7 @@
 					
 						 <th style="width:5%;">접촉할 일자</th>
 						 <td style="width:25%;">
-							<input type="text" name="contact_day_srch" placeholder ="클릭해주세요." id="contact_day_srch" value="" class="expt_fin_d" 
+							<input type="text" name="contact_day_srch" placeholder ="접촉일자" id="contact_day_srch" value="" class="expt_fin_d" 
 							 readonly="readonly" style="width : 35%; text-align: center; cursor: pointer;">
  						 </td>
 						 
@@ -111,7 +111,7 @@
  		 	 <input type="button" class="func_btn" id="lead_add" value="단건등록" onclick="lead_add();">
 		 	 <input type="button" class="func_btn" id="lead_add_multi" value="다건등록" onclick="leadExcelImportOpen();">
 		 	 <input type="button" class="func_btn" id="exportBtn"      value="엑셀출력"  onclick="download_list_Excel('leadListForm','0');" >	
-			 <input type="button" class="func_btn" id="excel_form_down" value="Excel Template 출력"  onclick="download_list_Excel('leadListForm','1');" >
+			 <input type="button" class="func_btn" id="excel_form_down" value="엑셀템플릿출력"  onclick="download_list_Excel('leadListForm','1');" >
 		</div>
 	 	<div class="pagingDiv">
 			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>

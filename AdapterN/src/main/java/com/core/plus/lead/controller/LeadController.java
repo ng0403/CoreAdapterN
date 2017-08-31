@@ -78,6 +78,7 @@ public class LeadController {
 		mov.addObject("page", page);
 		mov.addObject("pageNum", PageNum);
 		mov.addObject("lead_list", vo);
+		mov.addObject("main_menu_url", "lead");
 		
 		menuImport(mov, "lead");
 		
@@ -91,12 +92,14 @@ public class LeadController {
 	public ModelAndView lead_detail(@RequestParam("lead_no") String lead_no, @RequestParam("pageNum") String PageNum){ 
 	 
 		System.out.println("lead_no : " + lead_no);
-		System.out.println("PageNum? " + PageNum);
+		
+		
 		ModelAndView mov = new ModelAndView("leadCRUD");
 		mov.addObject("detail", leadService.lead_detail(lead_no));
 		mov.addObject("nal","2017-08-09");
 		mov.addObject("flg", "0");
 		mov.addObject("PageNum", PageNum);
+		mov.addObject("main_menu_url", "lead");
 		System.out.println(mov.toString());
 		
 		menuImport(mov, "lead");
@@ -107,10 +110,13 @@ public class LeadController {
 	@RequestMapping(value="lead_single_add" , method=RequestMethod.GET)
 	public ModelAndView lead_single_add_get(LeadVO vo) {
 		System.out.println("single enter");
-
-		ModelAndView mov = new ModelAndView("leadCRUD");
+		
+		LeadVO leadNoIndex	 = leadService.leadNoIndex();
+ 		ModelAndView mov = new ModelAndView("leadCRUD");
 		mov.addObject("flg", "1");
 		mov.addObject("PageNum", "1");
+		mov.addObject("leadNoIndex", leadNoIndex);
+		mov.addObject("main_menu_url", "lead");
 		menuImport(mov, "lead");
 		
 		return mov;
@@ -120,7 +126,8 @@ public class LeadController {
 	@RequestMapping(value="lead_single_add" , method=RequestMethod.POST)
 	public String lead_single_add_post(LeadVO vo) {
 		
-		System.out.println("add single ? " + vo.toString());
+		System.out.println("insert vo ? " +vo.toString());
+		 
  		String cust_no = vo.getCust_no() ;
  		
 		if(cust_no == null)
@@ -151,24 +158,23 @@ public class LeadController {
 	//가망 고객 수정 post.
 	@RequestMapping(value="lead_update" , method=RequestMethod.POST)
 	public String lead_update_post(LeadVO vo){
+		
+		System.out.println("update vo ? " + vo.toString());
+		
 		String cust_no = vo.getCust_no();
 		
 		if(cust_no == null)
 		{
 			vo.setCust_no(" ");
 		} 
-		leadService.lead_update(vo);
-		
-		System.out.println("update... ? " + vo.toString());
+		leadService.lead_update(vo); 
 		
 		return "redirect:/lead";
 	}
 	
 	@RequestMapping(value="lead_delete", method=RequestMethod.POST)
 	public String lead_delete(String lead_no){
-		
-		System.out.println("lead no ? " + lead_no);
-		
+		 
 		leadService.lead_delete(lead_no);
 		
 		return "redirect:/lead";
@@ -180,9 +186,7 @@ public class LeadController {
 			@RequestParam(value = "PageNum", defaultValue = "1") int PageNum,
 			String lead_no_srch,
 			String lead_name_srch, String cust_name, String emp_name, String contact_day_srch, String rank_cd) {
-	
-		System.out.println("PageNum ? " + PageNum);
-		
+	 
 		String contact_day;
 		
 		contact_day = contact_day_srch.replace("-", "");
@@ -197,24 +201,16 @@ public class LeadController {
 		kwMap.put("emp_name", emp_name);
 		kwMap.put("contact_day", contact_day);
 		kwMap.put("rank_cd", rank_cd);
-		
-		System.out.println("kwmap? " + kwMap.toString());
-		
+		 
 		// paging
 	  PagerVO page = leadService.getLeadListRow(kwMap);
-	  System.out.println("조건 검색 page? " + page.toString());
-	  kwMap.put("page", page);
-		
-		
-		
+	 
+	  kwMap.put("page", page); 
 		
 		List<LeadVO> leadList = leadService.leadSearch(kwMap);
 		
 		kwMap.put("leadList", leadList);
-		
-		System.out.println("leadList? " + leadList.toString());
-		System.out.println("lead list size?" + leadList.size());
-		
+		 
 		return kwMap;
 	}
 	
@@ -235,18 +231,14 @@ public class LeadController {
 			List<CustVO> custPopupList = leadService.custPopupList(map);
 			map.put("custPopupList", custPopupList);
 			
-			
-			System.out.println("map ?? " + map.toString());
-			return map;
+ 			return map;
 		}
 		else
 		{
 			map.put("s_cust_name", s_cust_name);
 			List<CustVO> schCustPopupList = leadService.custPopupList(map);
 			map.put("custPopupList", schCustPopupList); 
-			
-			System.out.println("map? " + map.toString());
-			
+ 			
 			return map;
 		}
 	}
@@ -291,9 +283,7 @@ public class LeadController {
 		contact_day = contact_day_srch.replace("-", "");
 		 
 		char temp = flg.charAt(flg.length()-1);
- 		
-		System.out.println("flg ? " + flg);
-		ModelAndView result = new ModelAndView();
+ 		ModelAndView result = new ModelAndView();
 		Map<String, Object> leadMap = new HashMap<String, Object> ();
 		leadMap.put("lead_no_srch", lead_no_srch);
 		leadMap.put("lead_name_srch", lead_name_srch);
@@ -304,8 +294,7 @@ public class LeadController {
 		
 		//taskMap.put("some",req.getParameter("some"));    			// where에 들어갈 조건??
 		if(temp == '0'){
-		System.out.println("enter 0");
-			List<LeadVO> list = leadService.leadExcelExport(leadMap);	// 쿼리
+ 			List<LeadVO> list = leadService.leadExcelExport(leadMap);	// 쿼리
 	  
 		
 		System.out.println("excel list  ? " + list.toString());
@@ -314,8 +303,7 @@ public class LeadController {
 		result.setViewName("/lead/leadList_excel");					// 엑셀로 출력하기 위한 jsp 페이지
 		}
 		else{
-			System.out.println("enter 1");
-			result.setViewName("/lead/leadList_excel");
+ 			result.setViewName("/lead/leadList_excel");
 		}
 		
 		return result;
@@ -325,8 +313,7 @@ public class LeadController {
 	@RequestMapping(value="/leadExcelImportTab", method=RequestMethod.GET)
 	public ModelAndView excelImportTab(HttpSession session, Locale locale,@RequestParam(value = "pageNum", defaultValue = "1") int pageNum)
 	{
-		System.out.println("ExcelTab Controller");
-		ModelAndView mov = new ModelAndView("/lead/excel_import_tab");
+ 		ModelAndView mov = new ModelAndView("/lead/excel_import_tab");
 		
 		return mov;
 	}	

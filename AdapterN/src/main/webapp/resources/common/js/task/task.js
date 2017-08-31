@@ -115,6 +115,9 @@ function taskCancelList() {
 
 //상담 상세 초기화 버튼
 function task_reset() {
+	
+	if(confirm("초기화 하시겠습니까?"))
+	{
 	$("#subject").val("");
 	$("#cust_no").val("");
 	$("#cust_name").val("");
@@ -130,6 +133,10 @@ function task_reset() {
 	
 	$("#dtype_cd option:eq(0)").prop("selected", "selected");
 	$("#score_cd option:eq(0)").prop("selected", "selected");
+	}
+	else{
+		return false;
+	}
 }
 
 //상담 단건 추가
@@ -160,7 +167,8 @@ function taskenterSearch(event)
 {
    var keycode = (event.keyCode ? event.keyCode : event.which);
    if (keycode == '13') {
-      searchKeyword()(1, 1);
+      /*searchKeyword()(1, 1);*/
+	   taskSchList();
    }
    event.stopPropagation();
 }
@@ -183,7 +191,8 @@ function taskPageNumInputEnter(event) {
          $("#pageInput").val($("#pageNum").val());
          $("#pageInput").focus();
       } else {
-         taskPaging(pageNum);
+         /*taskPaging(pageNum);*/
+         taskSchList(pageNum);
       }
    }
    event.stopPropagation();

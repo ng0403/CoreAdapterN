@@ -127,24 +127,24 @@ function task_modify_btn() {
 		$("#task_single_modify").removeClass("func_btn");
 		$("#task_single_modify").addClass("tr_btn");
 		
-		$('#subject').removeAttr("disabled");
-		$('#emp_no').removeAttr("disabled");
-		$('#cust_no').removeAttr("disabled");
+		$('#subject').removeAttr("readonly"); //제목
+		$('#cust_no').removeAttr("readonly");
+		$('#emp_no').removeAttr("readonly"); //담당자 
 		$('#next_day').removeAttr("disabled");
 		$('#dtype_cd').removeAttr("disabled");
-		$('#lead_no').removeAttr("disabled");
-		$('#score_cd').removeAttr("disabled");
-		$('#oppty_no').removeAttr("disabled");
-		$('#location').removeAttr("disabled");
-		$('#remark_cn').removeAttr("disabled");
+		$('#lead_no').removeAttr("readonly");
+		$('#oppty_no').removeAttr("readonly");
+		$('#score_cd').removeAttr("disabled"); 
+		$('#location').removeAttr("readonly");
+		$('#remark_cn').removeAttr("readonly");
 		$('#custSchBtn').removeAttr("disabled");
 		$('#empSchBtn').removeAttr("disabled");
 		$('#leadSchBtn').removeAttr("disabled");
 		$('#opptySchBtn').removeAttr("disabled");
 			
-		$("#task_form_tbl input[type='text'], textarea, input[type='date'], select").attr({
+		/*$("#task_form_tbl input[type='text'], textarea, input[type='date'], select").attr({
 			style:'background-color:white'
-		});
+		});*/
 		return false;
 		
 	} if($("#task_single_modify").val() == "저장") {
@@ -275,6 +275,7 @@ function task_del_save() {
 
 // 취소버튼
 function task_cancel(taskPageNum) {
+	if(confirm("리스트 페이지로 이동하시겠습니까?"))
 	location.href="/task?taskPageNum=" + taskPageNum;
 }
 

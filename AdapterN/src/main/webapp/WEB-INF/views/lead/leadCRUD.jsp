@@ -25,7 +25,7 @@ $(document).ready(function(){
 	<c:if test="${flg == 0 }">
  		<div class="titleDIV" id="lead_detail_title">
 		<span class="titleText">
-		    ■  <a style="cursor: pointer;" onclick="leadlist();"> 가망고객</a> > <span id="coupon_form_title">가망고객 상세정보</span>
+		    ■ 가망고객 > <a style="cursor: pointer;" onclick="leadlist();"> 가망고객관리</a> > <span id="coupon_form_title">가망고객 상세정보</span>
 		</span>
 	</div>   
 	</c:if>
@@ -33,7 +33,7 @@ $(document).ready(function(){
 	<c:if test="${flg == 1 }">
  		<div class="titleDIV" id ="lead_insert_title">
 		<span class="titleText">
-		    ■  <a style="cursor: pointer;" onclick="leadlist('1');"> 가망고객</a> > <span id="coupon_form_title">가망고객 추가</span>
+		    ■ 가망고객 > <a style="cursor: pointer;" onclick="leadlist('1');"> 가망고객관리</a> > <span id="coupon_form_title">가망고객 추가</span>
 		</span>
 	</div>   
 	</c:if>
@@ -41,7 +41,7 @@ $(document).ready(function(){
  
  		<div class="titleDIV" id="lead_update_title">
 		<span class="titleText">
-		    ■  <a style="cursor: pointer;" onclick="leadlist();"> 가망고객</a> > <span id="coupon_form_title">가망고객 수정</span>
+		    ■ 가망고객 > <a style="cursor: pointer;" onclick="leadlist();"> 가망고객관리</a> > <span id="coupon_form_title">가망고객 수정</span>
 		</span>
 	</div>   
  
@@ -51,9 +51,14 @@ $(document).ready(function(){
 	<div class="commonDetail">
 	<table id="coupon_form_tbl" class="commonDetailTable">
 		<tr>
- 			<th id="impTh" style="text-align:right;" >리드번호</th>
+ 			<th id="impTh" style="text-align:right;" >*리드번호</th>
 			<td>
-			<input type="text" id="lead_no" name="lead_no"  readonly="readonly" value="${detail.lead_no}">
+			<c:if test= "${ leadNoIndex.lead_no != null }">
+			<input type="text" id="lead_no" name="lead_no"  disabled="disabled" value="${leadNoIndex.lead_no}">
+ 			</c:if>
+ 			<c:if test= "${ leadNoIndex.lead_no == null }">
+ 			<input type="text" id="lead_no" name="lead_no"  readonly="readonly" value="${detail.lead_no}">
+ 			</c:if>
  			</td>
 			<th id="impTh" style="text-align:right;">*리드명</th>
 			<td>
@@ -62,7 +67,7 @@ $(document).ready(function(){
 		</tr>
 		
 		<tr>
-			<th id="impTh" style="text-align:right;">고객</th>
+			<th id="impTh" style="text-align:right;">*고객</th>
 			<td>
 			<input type="hidden" id="cust_no" name="cust_no"  value="${detail.cust_no}" >
 			<input type="text" id="cust_name" readonly="readonly" name="cust_name" value="${detail.cust_name}">
@@ -76,11 +81,11 @@ $(document).ready(function(){
  			</td>
 		</tr>
 		<tr>
-			<th id="impTh" class="discount_cost" style="text-align:right;">접촉할일자
+			<th id="impTh" class="discount_cost" style="text-align:right;">*접촉할일자
 			</th>
 			<td id="td_disc_type">	
 				<input name="contact_day" id="contact_day" type="text" value="${detail.contact_day}" class="expt_fin_d" 
-							 readonly="readonly" placeholder ="클릭해주세요." style="text-align: center; cursor: pointer;">
+							 readonly="readonly" placeholder ="접촉일자" style="text-align: center; cursor: pointer;">
 			</td>
 			<th style="text-align:right;">순위</th>
 			<td>
@@ -105,24 +110,25 @@ $(document).ready(function(){
 	
 	<c:if test="${flg == 0 }">
 	 	 <div id="lead_detail_div">
-	 	 	<input type="button" class="func_btn" id="lead_single_cancel" value="취소" onclick="lead_cancel('${PageNum}');"> 
 	 	 	<input type="button" class="func_btn" id="lead_update" value="편집" onclick="lead_modify();">
 	 	 	<input type="button" class="tr_btn" id="lead_delete" value="삭제" onclick="lead_remove();">
+	 	 	<input type="button" class="func_btn" id="lead_single_cancel" value="취소" onclick="lead_cancel('${PageNum}');"> 
+	 	 	
 	 	 </div> 
 	 </c:if>
 	
 	<c:if test="${flg == 1 }">
 	 	 <div id="lead_single_add_div">
-	 	   <input type="button" class="func_btn" id="lead_single_cancel" value="취소" onclick="lead_cancel('${PageNum}');">
 	 	 	<input type="button" class="tr_btn" id="lead_single_add" value="저장" onclick="lead_single_save();">
 	 	 	<input type="button" class="tr_btn" id="lead_reset_btn" value="초기화" onclick="lead_reset();">
+	 	    <input type="button" class="func_btn" id="lead_single_cancel" value="취소" onclick="lead_cancel('${PageNum}');">
 	 	 </div> 
 	 </c:if>
 	  
 	 	  <div id="lead_update_div">
-	 	    <input type="button" class="func_btn" id="lead_single_cancel" value="취소" onclick="lead_cancel('${PageNum}');">
 	 	 	<input type="button" class="tr_btn" id="lead_single_add" value="저장" onclick="lead_modify_save();">
 	 	 	<input type="button" class="tr_btn" id="lead_delete" value="삭제" onclick="lead_remove();">
+		    <input type="button" class="func_btn" id="lead_single_cancel" value="취소" onclick="lead_cancel('${PageNum}');">
 	 	 </div> 
  
     </div>

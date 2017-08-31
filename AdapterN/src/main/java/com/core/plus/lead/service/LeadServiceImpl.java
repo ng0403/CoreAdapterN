@@ -116,5 +116,12 @@ public class LeadServiceImpl implements LeadService {
 		
 		return result;
 	}
+	
+	//인덱스번호
+		@Override
+		public LeadVO leadNoIndex() {
+			return leadDao.leadNoIndex();
+		}
+
 
 }

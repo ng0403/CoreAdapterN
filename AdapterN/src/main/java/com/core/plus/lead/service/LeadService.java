@@ -9,6 +9,7 @@ import com.core.plus.common.PagerVO;
 import com.core.plus.contact.cust.vo.CustVO;
 import com.core.plus.emp.vo.EmpVO;
 import com.core.plus.lead.vo.LeadVO;
+import com.core.plus.task.vo.TaskVO;
 
 public interface LeadService {
 	
@@ -34,5 +35,5 @@ public interface LeadService {
 	List<LeadVO> leadExcelExport(Map<String, Object> leadMap);
 	
 	int excelUpload(MultipartFile excelFile);
-	
+	LeadVO leadNoIndex();			
 }

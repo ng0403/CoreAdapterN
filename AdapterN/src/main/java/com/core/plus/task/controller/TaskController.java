@@ -82,6 +82,7 @@ public class TaskController {
 		mov.addObject("taskList", taskList);
 		mov.addObject("dtypeCd", dtypeCd);
 		mov.addObject("scoreCd", scoreCd);
+		mov.addObject("main_menu_url", "task");
 		menuImport(mov, "task");
 		
 		return mov;
@@ -180,6 +181,7 @@ public class TaskController {
 			mov.addObject("scoreCd", scoreCd);
 			mov.addObject("flg", "1");
 			mov.addObject("taskPageNum", taskPageNum);
+			mov.addObject("main_menu_url", "task");
 			menuImport(mov, "task");
 			
 			return mov;
@@ -196,6 +198,7 @@ public class TaskController {
 			mov.addObject("scoreCd", scoreCd);
 			mov.addObject("flg", "2");
 			mov.addObject("taskPageNum", taskPageNum);
+			mov.addObject("main_menu_url", "task");
 			menuImport(mov, "task");
 			
 			return mov;

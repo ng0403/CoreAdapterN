@@ -8,13 +8,13 @@ $(function(){
 		  	$("#lead_name").attr("readonly", true);
 		  	$("#cust_no").attr("readonly", true);
 		    $("#emp_name").attr("readonly", true);
-			$("#contact_day").attr("readonly", true);
-			$("#rank_cd").attr("readonly", true); 
+ 			$("#rank_cd").attr("readonly", true); 
 			$("#reason_cd").attr("readonly", true);
 			$("#remark_cn").attr("readonly", true);  
 			$("#emp_list_pop").attr("disabled", true);
 			$("#cust_list_pop").attr("disabled", true);
 			$("#contact_day").attr("disabled", true);
+			$("#contact_day").css('background-color', 'white');
 	  }
 	  
 	
@@ -400,7 +400,7 @@ function lead_single_save(){
 function lead_modify(){ 
 	
 	
-	$("#emp_name").attr("readonly", false);
+	/*$("#emp_name").attr("readonly", false);*/
 	$("#contact_day").attr("readonly", false);
 	$("#rank_cd").attr("readonly", false); 
 	$("#reason_cd").attr("readonly", false);
@@ -464,6 +464,7 @@ function lead_remove() {
 	 formObj.attr("method", "post");
 	 formObj.submit();  
     }else{
+     alert("취소되었습니다.");
    	 return false;
     }
    
@@ -496,8 +497,7 @@ function lead_reset() {
 	}
 	
 }
-
-
+ 
 
 //검색 조건
 function searchKeyword(a){

@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.core.plus.contact.cust.vo.CustVO;
 import com.core.plus.emp.vo.EmpVO;
 import com.core.plus.lead.vo.LeadVO;
+import com.core.plus.task.vo.TaskVO;
 
 public interface LeadDao {
 	
@@ -34,4 +35,5 @@ public interface LeadDao {
 	
 	int leadUploadExcel(MultipartFile excelFile);
 	
+	LeadVO leadNoIndex();	
 }

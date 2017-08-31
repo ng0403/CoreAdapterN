@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.core.plus.contact.cust.vo.CustVO;
 import com.core.plus.emp.vo.EmpVO;
 import com.core.plus.lead.vo.LeadVO;
+import com.core.plus.task.vo.TaskVO;
 
 @Repository
 public class LeadDaoImpl implements LeadDao {
@@ -118,6 +119,13 @@ public class LeadDaoImpl implements LeadDao {
 		
 		return totalCount;
 	}
+	
+	//인덱스번호
+		@Override
+		public LeadVO leadNoIndex() {
+			
+			return sqlSession.selectOne("lead.leadNoIndex");
+		}
 
 	// 엑셀 출력
 	@Override

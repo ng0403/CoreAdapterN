@@ -132,6 +132,7 @@ function doPopupOpen() {
 
 //마우스 오버시 화면 표시 이벤트 추가
 function addMouseEvent(trElement) {
+ 
 	trElement.bind("mouseover", function(e) {
 		this.className = 'on';
 	});
