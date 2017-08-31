@@ -33,7 +33,7 @@ $(document).ready(function(){
 	<div style="height:10px;"></div>
 	<div class="titleDIV">
 		<span class="titleText">
-		    ■ 매출 > <a style="cursor: pointer;" onclick="opptyList();"> 매출기회관리</a> > <span id="coupon_form_title">매출기회관리 상세 정보</span>
+		    ■ 매출 > <a style="cursor: pointer;" onclick="opptyListPage(1);"> 매출기회관리</a> > <span id="coupon_form_title">매출기회관리 상세 정보</span>
 		</span>
 	</div>
 	<div style="height:10px;"></div>

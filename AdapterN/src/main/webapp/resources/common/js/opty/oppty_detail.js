@@ -49,6 +49,11 @@ function opptyList(opptyPageNum)
 		return false;
 }
 
+function opptyListPage(opptyPageNum)
+{
+	location.href = ctx + "/oppty?opptyPageNum="+opptyPageNum;
+}
+
 //매출기회 상세 초기화 버튼
 function oppty_reset() 
 {
