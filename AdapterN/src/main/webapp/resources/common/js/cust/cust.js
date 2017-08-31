@@ -13,6 +13,7 @@
 */
 
 var ctx = $("#ctx").val();
+var count = 0;
 
 $(document).ready(function(){
 	$(document).on( 'click','.phone_primary_yn', function(event) {
@@ -682,7 +683,6 @@ function cust_phone_save()
 // 우편 테이블 행 추가
 function cust_address_add()
 {
-	var count = 0;
 	var cust_no = $("#cust_no").val();
 	console.log(cust_no);
 
@@ -716,10 +716,10 @@ function cust_address_add()
 								"<input id='custAddrChk' class='addr_primary_yn' type='checkbox' />" +
 							"</td>" +
 						"</tr>";
-
+	count++;
 	// 새로 그려준다.
 	tbody.append(tbodyContent);
-	count++;
+	
 	
 	$(".postcodify_search_button").postcodifyPopUp();
 }
