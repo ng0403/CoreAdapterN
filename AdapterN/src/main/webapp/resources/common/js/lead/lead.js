@@ -373,6 +373,7 @@ function lead_modify(){
 	
 	
 	/*$("#emp_name").attr("readonly", false);*/
+	$("#lead_name").attr("readonly", false);
 	$("#contact_day").attr("readonly", false);
 	$("#rank_cd").attr("readonly", false); 
 	$("#reason_cd").attr("readonly", false);
