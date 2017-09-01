@@ -80,19 +80,19 @@ function opptyItemAdd()
 			"<td><input type='checkbox' class='del_chk' name='del_chk'></td>" +
 			"<td style='text-align: left;'>" +
 				"<input type='hidden' class='main_cate_cd' name='main_cate_cd' value=''>" +
-				"<input type='text' class='main_cate_name' name='main_cate_name' readonly='readonly'></td>"+
+				"<input type='text' class='main_cate_name' name='main_cate_name' readonly='readonly' style='width: 90%;'></td>"+
 			"<td style='text-align: left;'>" +
 				"<input type='hidden' class='mid_cate_cd' name='mid_cate_cd' value=''>" +
-				"<input type='text' class='mid_cate_name' name='mid_cate_name' readonly='readonly'></td>"+
+				"<input type='text' class='mid_cate_name' name='mid_cate_name' readonly='readonly' style='width: 90%;'></td>"+
 			"<td style='text-align: left;'>" +
 				"<input type='hidden' class='small_cate_cd' name='small_cate_cd' value=''>" +
-				"<input type='text' class='small_cate_name' name='small_cate_name' readonly='readonly'></td>"+
-			"<td style='text-align: left;'><input type='text' class='qty' name='qty' onkeyup='totalPriceCalc();'></td>"+
-			"<td style='text-align: left;'><input type='text' class='list_price' name='list_price' readonly='readonly'></td>"+
-			"<td style='text-align: left;'><input type='text' class='total_price' name='total_price' readonly='readonly'></td>"+
-			"<td style='text-align: left;'><input type='text' class='dc_price' name='dc_price' readonly='readonly'></td>"+
-			"<td style='text-align: left;'><input type='text' class='offer_price' name='offer_price' onkeyup='dcPrice();'></td>"+
-			"<td style='text-align: left;'><input type='text' class='payment_day' id='payment_day"+ count+"' name='payment_day' readonly='readonly'></td>"+
+				"<input type='text' class='small_cate_name' name='small_cate_name' readonly='readonly' style='width: 90%;'></td>"+
+			"<td style='text-align: left;'><input type='text' class='qty' name='qty' onkeyup='totalPriceCalc();' style='width: 90%;'></td>"+
+			"<td style='text-align: left;'><input type='text' class='list_price' name='list_price' readonly='readonly' style='width: 90%;'></td>"+
+			"<td style='text-align: left;'><input type='text' class='total_price' name='total_price' readonly='readonly' style='width: 90%;'></td>"+
+			"<td style='text-align: left;'><input type='text' class='dc_price' name='dc_price' readonly='readonly' style='width: 90%;'></td>"+
+			"<td style='text-align: left;'><input type='text' class='offer_price' name='offer_price' onkeyup='dcPrice();' style='width: 90%;'></td>"+
+			"<td style='text-align: left;'><input type='text' class='payment_day' id='payment_day"+ count+"' name='payment_day' readonly='readonly' style='width: 90%;'></td>"+
 		"</tr>"
 	);
 	count++;	// datepicker 값을 넣기 위한 id 카운트

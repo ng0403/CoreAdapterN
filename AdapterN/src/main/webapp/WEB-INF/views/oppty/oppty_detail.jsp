@@ -364,33 +364,33 @@ $(document).ready(function(){
 <!-- 	 	 				</td> -->
 		 	 			<td style="text-align: left;" >
 		 	 				<input type="hidden" class="main_cate_cd" name="main_cate_cd" value="${ itemList.main_cate_cd }">
-		 	 				<input type="text"  class="main_cate_name" name="main_cate_name" value="${ itemList.main_cate_name }" readonly="readonly">
+		 	 				<input type="text"  class="main_cate_name" name="main_cate_name" value="${ itemList.main_cate_name }" readonly="readonly" style="width: 90%;">
 		 	 			</td>
 	 		 			<td style="text-align: left;" >
 	 		 				<input type="hidden" class="mid_cate_cd" id="mid_cate_cd" name="mid_cate_cd" value="${ itemList.mid_cate_cd }">
-	 		 				<input type="text" class="mid_cate_name" id="mid_cate_name" name="mid_cate_name" value="${ itemList.mid_cate_name }" readonly="readonly" onclick="midCatPopup();">
+	 		 				<input type="text" class="mid_cate_name" id="mid_cate_name" name="mid_cate_name" value="${ itemList.mid_cate_name }" readonly="readonly" onclick="midCatPopup();" style="width: 90%;">
 	 		 			</td>
 	 		 			<td style="text-align: left;" >
 							<input type="hidden" class="small_cate_cd" name="small_cate_cd" value="${ itemList.small_cate_cd }">	 		 			
-	 		 				<input type="text" class="small_cate_name" name="small_cate_name" value="${ itemList.small_cate_name }" readonly="readonly" onclick="smallCatPopup();">
+	 		 				<input type="text" class="small_cate_name" name="small_cate_name" value="${ itemList.small_cate_name }" readonly="readonly" onclick="smallCatPopup();" style="width: 90%;">
 	 		 			</td>
 	 		 			<td style="text-align: left;" >
-	 		 				<input type="text" class="qty" name="qty" value="${ itemList.qty }">
+	 		 				<input type="text" class="qty" name="qty" value="${ itemList.qty }" style="width: 90%;">
 	 		 			</td>
 	 		 			<td style="text-align: left;" >
-	 		 				<input type="text" class="list_price" name="list_price" value="${ itemList.list_price }">
+	 		 				<input type="text" class="list_price" name="list_price" value="${ itemList.list_price }" style="width: 90%;">
 	 		 			</td>
 	 		 			<td style="text-align: left;" >
-	 		 				<input type="text" class="total_price" name="total_price" value="${ itemList.total_price }" readonly="readonly"> <!-- 총금액 -->
+	 		 				<input type="text" class="total_price" name="total_price" value="${ itemList.total_price }" readonly="readonly" style="width: 90%;"> <!-- 총금액 -->
 	 		 			</td>
 	 		 			<td style="text-align: left;" >
-	 		 				<input type="text" class="dc_price" name="dc_price" value="${ itemList.dc_price }">
+	 		 				<input type="text" class="dc_price" name="dc_price" value="${ itemList.dc_price }" style="width: 90%;">
 	 		 			</td>
 	 		 			<td style="text-align: left;" >
-	 		 				<input type="text" class="offer_price" name="offer_price" value="${ itemList.offer_price }"> <!-- 제안금액 -->
+	 		 				<input type="text" class="offer_price" name="offer_price" value="${ itemList.offer_price }" style="width: 90%;"> <!-- 제안금액 -->
 	 		 			</td>
 	 		 			<td style="text-align: left;" >
-	 		 				<input type="text" class="patment_day" name="payment_day" value="${ itemList.payment_day }">
+	 		 				<input type="text" class="patment_day" name="payment_day" value="${ itemList.payment_day }" style="width: 90%;">
 	 		 			</td>
 	 	 			</tr>
 	 	 		</c:forEach>
